@@ -9,4 +9,8 @@ Eu aprendi e apliquei minhas atuais configurações usando o arquivo "settings.j
 Mesmo que as configurações do VS Code sejam facilitadas acredito que seja positivo aprender outras formas de configurar e progamar para crescer meu conhecimento nesta profissão que é tão profunda e técnica.
 
 ## Primeiro código
-Meu primeiro código que escrevi foi o |  print('hello, world')  |, gostei do programa e acredito que vou gostar ainda mais ao passar do curso.
+Meu primeiro código que escrevi foi o:
+
+  print('hello, world')
+
+Gostei do programa e acredito que vou gostar ainda mais ao passar do curso.
