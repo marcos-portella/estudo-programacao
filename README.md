@@ -1,5 +1,5 @@
 # Curso Udemy Python
-Este repositório tem o conteúdo do curso Curso de Python 3 do básico ao avançado da plataforma da Udemy
+Este repositório tem o conteúdo do curso de Python 3 do básico ao avançado que estou cursando na plataforma da Udemy.
 
 # Dia 1
 
