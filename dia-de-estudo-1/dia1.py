@@ -1,2 +1,2 @@
-# qualquer coisa
+# Primeiro código oficial
 print('hello, world')
