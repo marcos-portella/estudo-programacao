@@ -1,2 +1,2 @@
 # qualquer coisa
-Print('hello, world')
+print('hello, world')
