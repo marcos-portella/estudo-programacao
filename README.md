@@ -9,14 +9,14 @@
 # 📅 Dia 1 – Primeiros Passos com Python
 # =====================================
 
-# ---------- Configurando o Visual Studio Code ----------
+## ---------- Configurando o Visual Studio Code ----------
 ### Hoje aprendi a configurar o VS Code (Visual Studio Code)
 ### de forma funcional para acompanhar as aulas de Python.
 ### Usei o arquivo "settings.json" para personalizar o ambiente.
 ### Mesmo com interfaces gráficas, aprender a configurar manualmente
 ### ajuda a entender melhor a ferramenta.
 
-# ---------- Meu Primeiro Código ----------
+## ---------- Meu Primeiro Código ----------
 print('hello, world')  # Meu primeiro programa em Python 🎉
 
 ### Me senti motivado e acredito que vou gostar cada vez mais
@@ -26,7 +26,8 @@ print('hello, world')  # Meu primeiro programa em Python 🎉
 # 📅 Dia 2 – Impressões, Comentários e Strings
 # =====================================
 
-# ---------- Funções do print ----------
+## ---------- Funções do print ----------
+
 ## Aprendi sobre os parâmetros:
 ### \n   -> quebra de linha
 ### sep= -> define o separador
@@ -34,7 +35,8 @@ print('hello, world')  # Meu primeiro programa em Python 🎉
 
 print('Python', 'é', 'legal', sep='-', end='!\n')  # Exemplo usando sep e end
 
-# ---------- Tipos de Comentários ----------
+## ---------- Tipos de Comentários ----------
+
 ## Comentário de uma linha usa #
 """
 
@@ -45,14 +47,16 @@ de várias linhas usando DocString
 
 ### O Python lê da esquerda para a direita e de cima para baixo.
 
-# ---------- Tipos de Dados e Strings ----------
+## ---------- Tipos de Dados e Strings ----------
+
 ## Escape de caracteres com \
 print("Linha 1\nLinha 2")  # \n cria uma quebra de linha
 
 ## Strings raw (cruas) usando o prefixo 'r'
 print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 
-# ---------- Conceitos Técnicos ----------
+## ---------- Conceitos Técnicos ----------
+
 ### Linguagem: Python
 ### Tipagem: Dinâmica / Forte
 ### Tipo 'str': Representa strings (textos)
@@ -63,7 +67,8 @@ print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 # 📅 Dia 3 – Variáveis, Tipos e Strings
 # =====================================
 
-# ---------- Variáveis e Tipagem Dinâmica ----------
+## ---------- Variáveis e Tipagem Dinâmica ----------
+
 ### Em Python, não é necessário declarar o tipo da variável.
 ### O interpretador define automaticamente baseado no valor.
 
@@ -75,27 +80,28 @@ altura = 1.68       # float
 
 ativo = True        # bool
 
-# ---------- Concatenando Strings ----------
+## ---------- Concatenando Strings ----------
 print("Olá, " + nome)             # Concatenação com +
 
 print("Python! " * 3)             # Repetição com *
 
-# ---------- Conversão de Tipos ----------
+## ---------- Conversão de Tipos ----------
 print("Idade: " + str(idade))     # Convertendo int para str
 
 num = int("10")                   # string para int
 
 pi = float("3.14")                # string para float
 
-# ---------- Verificando tipos com type() ----------
+## ---------- Verificando tipos com type() ----------
 print(type(nome))                 # <class 'str'>
 
 print(type(idade))                # <class 'int'>
 
 print(type(pi))                   # <class 'float'>
 
-# ---------- Resumo ----------
-## ✅ Variáveis são atribuídas com =
-## ✅ Tipos são inferidos automaticamente
-## ✅ Conversão: int(), str(), float()
-## ✅ type() retorna o tipo da variável
+## ---------- Resumo ----------
+
+### ✅ Variáveis são atribuídas com =
+### ✅ Tipos são inferidos automaticamente
+### ✅ Conversão: int(), str(), float()
+### ✅ type() retorna o tipo da variável
