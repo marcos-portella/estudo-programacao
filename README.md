@@ -66,23 +66,30 @@ print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 ### O interpretador define automaticamente baseado no valor.
 
 nome = "Ana"        # str
+
 idade = 25          # int
+
 altura = 1.68       # float
+
 ativo = True        # bool
 
 # ---------- Concatenando Strings ----------
 print("Olá, " + nome)             # Concatenação com +
+
 print("Python! " * 3)             # Repetição com *
 
 # ---------- Conversão de Tipos ----------
 print("Idade: " + str(idade))     # Convertendo int para str
 
 num = int("10")                   # string para int
+
 pi = float("3.14")                # string para float
 
 # ---------- Verificando tipos com type() ----------
 print(type(nome))                 # <class 'str'>
+
 print(type(idade))                # <class 'int'>
+
 print(type(pi))                   # <class 'float'>
 
 # ---------- Resumo ----------
