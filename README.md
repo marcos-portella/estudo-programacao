@@ -1,13 +1,13 @@
-# ============================================
+# =====================================
 # 🐍 Curso Udemy - Python do Básico ao Avançado
-# ============================================
+# =====================================
 
 ### Este arquivo contém resumos e anotações das aulas
 ### do curso de Python feito na plataforma Udemy.
 
-# ============================================
+# =====================================
 # 📅 Dia 1 – Primeiros Passos com Python
-# ============================================
+# =====================================
 
 # ---------- Configurando o Visual Studio Code ----------
 ### Hoje aprendi a configurar o VS Code (Visual Studio Code)
@@ -22,9 +22,9 @@ print('hello, world')  # Meu primeiro programa em Python 🎉
 ### Me senti motivado e acredito que vou gostar cada vez mais
 ### conforme o curso avança.
 
-# ============================================
+# =====================================
 # 📅 Dia 2 – Impressões, Comentários e Strings
-# ============================================
+# =====================================
 
 # ---------- Funções do print ----------
 ## Aprendi sobre os parâmetros:
@@ -57,9 +57,9 @@ print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 ### Strings são textos dentro de aspas simples ou duplas
 
 
-# ============================================
+# =====================================
 # 📅 Dia 3 – Variáveis, Tipos e Strings
-# ============================================
+# =====================================
 
 # ---------- Variáveis e Tipagem Dinâmica ----------
 ### Em Python, não é necessário declarar o tipo da variável.
