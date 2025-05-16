@@ -105,3 +105,71 @@ print(type(pi))                   # <class 'float'>
 ### ✅ Tipos são inferidos automaticamente
 ### ✅ Conversão: int(), str(), float()
 ### ✅ type() retorna o tipo da variável
+
+
+# =====================================
+# 📅 Dia 4 – Operações Aritméticas e Formatação
+# =====================================
+
+## ---------- Operações Aritméticas ----------
+### Hoje aprendi que o python permite realizar todas as operações 
+### matemáticas básicas
+
+adicao = 10 + 10
+print('Adição:', adicao)  # 20
+
+subtracao = 10 - 5
+print('Subtração:', subtracao)  # 5
+
+multiplicacao = 10 * 10
+print('Multiplicação:', multiplicacao)  # 100
+
+divisao = 10 / 2.2
+print('Divisão:', divisao)  # Resultado com ponto flutuante
+
+divisao_inteira = 10 // 2.2
+print('Divisão inteira:', divisao_inteira)  # Resultado sem casas decimais
+
+exponenciacao = 2 ** 10
+print('Exponenciação:', exponenciacao)  # 1024
+
+modulo = 55 % 2
+print('Módulo:', modulo)  # 1 -> útil para saber se número é par (n % 2 == 0)
+
+## Verificando divisibilidade
+print(10 % 8 == 0)  # False
+print(16 % 8 == 0)  # True
+
+## ---------- Introdução à Formatação ----------
+### Gostei da f-strings:, é forma de formatar strings 
+
+nome = 'Carlos Miguel'
+altura = 1.80
+peso = 95
+imc = peso / (altura * altura)
+
+linha_1 = f'{nome} tem {altura:.2f}m de altura,'
+linha_2 = f'pesa {peso}kg e seu IMC é {imc:.2f}.'
+
+print(linha_1)
+print(linha_2)
+
+## Espaço para separar blocos de saída
+print(end='\n')
+
+## ---------- Outra forma: format() ----------
+a = 'A'
+b = 'BB'
+c = 1.1
+
+## Podemos misturar índices e nomes nomeados
+string = 'a={1} b={nome2:.2f} c={0} new={nome3}'
+formato = string.format(a, b, nome2=c, nome3=1234)
+
+print(formato)
+
+## ---------- Resumo do Dia ----------
+### ✅ Operações: +, -, *, /, //, **, %
+### ✅ Módulo (%) verifica restos e divisibilidade
+### ✅ f-strings: forma moderna e prática de formatar textos
+### ✅ format(): alternativa mais antiga, ainda útil com nomeação e ordem
