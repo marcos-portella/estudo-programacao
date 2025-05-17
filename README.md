@@ -222,7 +222,7 @@ numero_4 = int(input('Digite outro número: '))
 ## Agora é uma soma real entre inteiros
 print(f'A soma do segundo par de números é: {numero_3 + numero_4}')
 
-## ---------- Forma melhor (até agora) ----------
+## ---------- Melhor forma (até agora) ----------
 ### Separar entrada e conversão ajuda na legibilidade
 
 numero_5 = input('Digite um número: ')
