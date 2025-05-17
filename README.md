@@ -189,3 +189,60 @@ print(formato)
 ### ✅ Módulo (%) verifica restos e divisibilidade
 ### ✅ f-strings: forma moderna e prática de formatar textos
 ### ✅ format(): alternativa mais antiga, ainda útil com nomeação e ordem
+
+
+# =====================================
+# 📅 Dia 5 – Entrada de Dados e Conversão
+# =====================================
+
+## ---------- Coletando entrada do usuário ----------
+### input() sempre retorna uma string (str), mesmo que o usuário digite um número
+
+nome = input('Qual o seu nome? ')
+
+print(f'O seu nome é {nome}')
+
+## ---------- Tentativa de somar números diretamente ----------
+### Erro comum: somar strings resulta em concatenação (ex: "5" + "5" = "55")
+
+numero_1 = input('Digite um número: ')
+
+numero_2 = input('Digite outro número: ')
+
+## Aqui ocorre concatenação, não soma aritmética
+print(f'A soma do primeiro par de números é: {numero_1 + numero_2}')  # Ex: "2" + "3" = "23"
+
+## ---------- Corrigindo com conversão de tipos ----------
+### Convertendo para int com int(), o Python entende como números
+
+numero_3 = int(input('Digite um número: '))
+
+numero_4 = int(input('Digite outro número: '))
+
+## Agora é uma soma real entre inteiros
+print(f'A soma do segundo par de números é: {numero_3 + numero_4}')
+
+## ---------- Forma melhor (até agora) ----------
+### Separar entrada e conversão ajuda na legibilidade
+
+numero_5 = input('Digite um número: ')
+
+numero_6 = input('Digite outro número: ')
+
+## Ainda não há tratamento de erro, mas essa estrutura é mais clara
+int_numero_5 = int(numero_5)
+
+int_numero_6 = int(numero_6)
+
+print(f'Soma (forma melhorada): {int_numero_5 + int_numero_6}')
+
+## ---------- Observação importante ----------
+### ⚠️ Se o usuário digitar algo que não seja número, o programa vai quebrar!
+### Para evitar isso, é necessário tratar erros o que será aprendido depois.
+
+## ---------- Resumo do Dia ----------
+### ✅ input() sempre retorna uma string
+### ✅ Para fazer contas, converta com int() ou float()
+### ✅ Cuidado: somar strings resulta em concatenação
+### ✅ Separar entrada e conversão melhora a clareza
+### 🚨 Futuramente: aprenderemos a validar entradas para não ocorrer erros
