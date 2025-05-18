@@ -267,7 +267,7 @@ else:
 
 print('FORA DOS BLOCOS')  # Sempre será executado
 
-## ---------- Blocos condicionais com booleanos ----------
+## ---------- Blocos condicionais com booleas ----------
 
 condicao = True
 
