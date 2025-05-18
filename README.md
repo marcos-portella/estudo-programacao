@@ -246,3 +246,77 @@ print(f'Soma (forma melhorada): {int_numero_5 + int_numero_6}')
 ### ✅ Cuidado: somar strings resulta em concatenação
 ### ✅ Separar entrada e conversão melhora a clareza
 ### 🚨 Futuramente: aprenderemos a validar entradas para não ocorrer erros
+
+
+# =====================================
+# 📅 Dia 6 – Estruturas Condicionais em Python
+# =====================================
+
+## ---------- if / elif / else ----------
+## Usamos essas estruturas para executar blocos de código diferentes de acordo com condições.
+
+entrada = input('Você quer "entrar" ou "sair"? ')
+
+## Verificando a entrada do usuário
+if entrada == 'entrar' or entrada == 'Entrar':
+    print('Você entrou no sistema.')
+elif entrada == 'sair' or entrada == 'Sair':
+    print('Você saiu do sistema.')
+else:
+    print('Você não digitou nem "entrar" nem "sair".')
+
+print('FORA DOS BLOCOS')  # Sempre será executado
+
+## ---------- Blocos condicionais com booleanos ----------
+
+condicao = True
+
+if condicao:
+    print('Este é o código do if (condição é True)')
+
+condicao2 = False
+
+if condicao2:
+    print('Este é o código do if2 (não será executado)')
+else:
+    print('Este é o novo código do if2 (executado pois condição2 é False)')
+
+## ---------- Comparações diretas ----------
+
+if 10 == 10:
+    print('Verdadeiro if3')  # Será executado
+else:
+    print('Falso if3')
+
+if 10 == 11:
+    print('Verdadeiro if4')
+else:
+    print('Falso if4')  # Será executado
+
+print('Fora do if')  # Sempre executado
+
+## ---------- Encadeando condições ----------
+
+condicao1 = False
+condicao2 = False
+condicao3 = False
+condicao4 = False
+
+if condicao1:
+    print('Verdadeiro 1')
+elif condicao2:
+    print('Verdadeiro 2')
+elif condicao3:
+    print('Verdadeiro 3')
+elif condicao4:
+    print('Verdadeiro 4')
+else:
+    print('Nenhuma condição foi satisfeita')  # Será executado
+
+## ---------- Resumo do Dia ----------
+### ✅ if → executa um bloco se a condição for True
+### ✅ elif → checa nova condição caso o if falhe
+### ✅ else → executa se nenhuma condição anterior for satisfeita
+### ✅ Blocos fora do if sempre são executados normalmente
+### ✅ Podemos comparar valores diretamente (ex: 10 == 10)
+### ✅ É possível encadear várias condições com elif
