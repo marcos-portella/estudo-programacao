@@ -498,17 +498,17 @@ print(not False)   # True
 '''
 Operadores relacionais:
 
-">"   (maior)
+>   (maior)
 
-">="  (maior ou igual)
+>=  (maior ou igual)
 
-"<"   (menor)
+<   (menor)
 
-"<="  (menor ou igual)
+<=  (menor ou igual)
 
-"=="  (igual)
+==  (igual)
 
-"!="  (diferente)
+!= (diferente)
 '''
 
 maior = 2 > 1                  # True
