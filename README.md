@@ -320,3 +320,140 @@ else:
 ### ✅ Blocos fora do if sempre são executados normalmente
 ### ✅ Podemos comparar valores diretamente (ex: 10 == 10)
 ### ✅ É possível encadear várias condições com elif
+
+
+# =====================================
+# 📅 Dia 7 – Comparações, Lógica e Debugger
+# =====================================
+
+## ---------- Testando estruturas condicionais ----------
+## Avaliação encadeada com elif: apenas o primeiro True será executado
+
+condicao1 = False
+
+condicao2 = False
+
+condicao3 = True
+
+condicao4 = True
+
+if condicao1:
+    print('Verdadeiro 1')
+
+elif condicao2:
+    print('Verdadeiro 2')
+
+elif condicao3:
+    print('Verdadeiro 3')  # Este será executado
+
+elif condicao4:
+    print('Verdadeiro 4')
+
+else:
+    print('Nenhuma condição foi satisfeita')
+
+## ---------- Comparando valores digitados ----------
+primeiro_valor = input('Digite um valor: ')
+
+segundo_valor = input('Digite outro valor: ')
+
+## Comparando os valores com operadores relacionais
+if primeiro_valor > segundo_valor:
+    print(f'{primeiro_valor=} é maior que {segundo_valor=}.')
+
+elif primeiro_valor < segundo_valor:
+    print(f'{segundo_valor=} é maior que {primeiro_valor=}.')
+
+elif primeiro_valor == segundo_valor:
+    print(f'{primeiro_valor=} é igual a {segundo_valor=}.')
+
+else:
+    print('Você digitou um texto inválido.')
+
+## ---------- Operadores Lógicos: and, or, not ----------
+## and → todas as condições precisam ser verdadeiras
+entrada = input('[E]ntrar [S]air: ')
+
+senha_digitada = input('Senha: ')
+
+senha_permitida = '123456'
+
+if entrada == 'E' and senha_digitada == senha_permitida:
+    print('Entrar')
+
+else:
+    print('Sair')
+
+## Curto-circuito com "and": para na primeira expressão falsa
+print(True and 0 and True)  # Retorna 0
+
+## Exemplo de uso de "or": se input for vazio, usa valor padrão
+senha = input('Senha: ') or 'Sem senha'
+
+print(senha)
+
+## or → basta uma condição ser verdadeira
+entrada2 = input('[E]ntrar [S]air: ')
+
+senha_digitada2 = input('Senha: ')
+
+senha_permitida2 = '123456'
+
+if (entrada2 == 'E' or entrada2 == 'e') and senha_digitada2 == senha_permitida2:
+    print('Entrar')
+
+else:
+    print('Sair')
+
+## not → inverte o valor lógico
+senha2 = input('Senha: ')
+
+if not senha2:
+    print('Você não digitou nada')
+
+## Testando o not:
+print(not 0)       # True
+
+print(not True)    # False
+
+print(not False)   # True
+
+## ---------- Operadores de comparação ----------
+'''
+Operadores relacionais:
+
+">"   (maior)
+
+">="  (maior ou igual)
+
+"<"   (menor)
+
+"<="  (menor ou igual)
+
+"=="  (igual)
+
+"!="  (diferente)
+'''
+
+maior = 2 > 1                  # True
+
+maior_ou_igual = 2 >= 2        # True
+
+menor = 1 < 2                  # True
+
+menor_ou_igual = 2 <= 2        # True
+
+igual = 'a' == 'a'             # True
+
+diferente = 'a' != 'b'         # True
+
+print(diferente)  # Saída: True
+
+## ---------- Resumo do Dia ----------
+### ✅ elif para várias condições exclusivas
+### ✅ Comparações com operadores relacionais (>, <, ==, etc.)
+### ✅ Lógica com operadores: and, or, not
+### ✅ Curto-circuito: expressão para no primeiro valor "falso"
+### ✅ input() pode ser combinado com or para valores padrão
+### ✅ not inverte valores booleanos
+### ✅ Atenção: input() sempre retorna string, cuidado ao comparar com números
