@@ -44,12 +44,14 @@ print('Python', 'é', 'legal', sep='-', end='!\n')  # Exemplo usando sep e end
 ### ---------- Tipos de Comentários ----------
 
 ### Comentário de uma linha usa #
+```
 """
 
 Este é um comentário
 de várias linhas usando DocString
 
 """
+```
 
 ### O Python lê da esquerda para a direita e de cima para baixo.
 
