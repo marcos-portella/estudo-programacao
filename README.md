@@ -377,12 +377,12 @@ else:
 ### ✅ É possível encadear várias condições com elif
 
 
-# =====================================
-# 📅 Dia 7 – Comparações, Lógica e Debugger
-# =====================================
+## =====================================
+## 📅 Dia 7 – Comparações, Lógica e Debugger
+## =====================================
 
-## ---------- Testando estruturas condicionais ----------
-## Avaliação encadeada com elif: apenas o primeiro True será executado
+### ---------- Testando estruturas condicionais ----------
+### Avaliação encadeada com elif: apenas o primeiro True será executado
 
 ```
 condicao1 = False
@@ -409,14 +409,14 @@ else:
     print('Nenhuma condição foi satisfeita')
 ```
 
-## ---------- Comparando valores digitados ----------
+### ---------- Comparando valores digitados ----------
 ```
 primeiro_valor = input('Digite um valor: ')
 
 segundo_valor = input('Digite outro valor: ')
 ```
 
-## Comparando os valores com operadores relacionais
+### Comparando os valores com operadores relacionais
 ```
 if primeiro_valor > segundo_valor:
     print(f'{primeiro_valor=} é maior que {segundo_valor=}.')
@@ -431,8 +431,8 @@ else:
     print('Você digitou um texto inválido.')
 ```
 
-## ---------- Operadores Lógicos: and, or, not ----------
-## and → todas as condições precisam ser verdadeiras
+### ---------- Operadores Lógicos: and, or, not ----------
+### and → todas as condições precisam ser verdadeiras
 ```
 entrada = input('[E]ntrar [S]air: ')
 
@@ -447,19 +447,19 @@ else:
     print('Sair')
 ```
 
-## Curto-circuito com "and": para na primeira expressão falsa
+### Curto-circuito com "and": para na primeira expressão falsa
 ```
 print(True and 0 and True)  # Retorna 0
 ```
 
-## Exemplo de uso de "or": se input for vazio, usa valor padrão
+### Exemplo de uso de "or": se input for vazio, usa valor padrão
 ```
 senha = input('Senha: ') or 'Sem senha'
 
 print(senha)
 ```
 
-## or → basta uma condição ser verdadeira
+### or → basta uma condição ser verdadeira
 ```
 entrada2 = input('[E]ntrar [S]air: ')
 
@@ -474,7 +474,7 @@ else:
     print('Sair')
 ```
 
-## not → inverte o valor lógico
+### not → inverte o valor lógico
 ```
 senha2 = input('Senha: ')
 
@@ -482,7 +482,7 @@ if not senha2:
     print('Você não digitou nada')
 ```
 
-## Testando o not:
+### Testando o not:
 ```
 print(not 0)       # True
 
@@ -491,7 +491,7 @@ print(not True)    # False
 print(not False)   # True
 ```
 
-## ---------- Operadores de comparação ----------
+### ---------- Operadores de comparação ----------
 ```
 '''
 Operadores relacionais:
@@ -524,7 +524,8 @@ diferente = 'a' != 'b'         # True
 print(diferente)  # Saída: True
 ```
 
-## ---------- Resumo do Dia ----------
+### ---------- Resumo do Dia ----------
+
 ### ✅ elif para várias condições exclusivas
 ### ✅ Comparações com operadores relacionais (>, <, ==, etc.)
 ### ✅ Lógica com operadores: and, or, not
