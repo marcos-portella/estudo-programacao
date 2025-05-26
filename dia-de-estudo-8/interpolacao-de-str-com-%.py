@@ -1,4 +1,5 @@
 """
+Método antigo
 Interpolação básica de strings
 s - string
 d e i - int

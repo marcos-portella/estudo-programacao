@@ -591,3 +591,117 @@ print(diferente)  # Saída: True
 ### > input() pode ser combinado com or para valores padrão
 ### > not inverte valores booleanos
 ### ! Atenção: input() sempre retorna string, cuidado ao comparar com números
+
+
+
+## Dia 8 – Operadores `in`, Interpolação Antiga e Formatação de Strings
+
+
+### Operadores `in` e `not in`:
+
+
+### Strings são iteráveis, e podemos acessar seus caracteres por índice:
+
+# Índices positivos e negativos:
+#  0 1 2 3 4 5
+#  O t á v i o
+# -6-5-4-3-2-1
+
+```
+nome = 'Otávio'
+
+print(nome[2])    # á
+print(nome[-4])   # á
+```
+
+# Verificando presença de caracteres com in / not in:
+
+```
+print('á' in nome)         # True
+print('z' in nome)         # False
+print('Otá' not in nome)   # False
+print('zin' not in nome)   # True
+```
+
+# Interagindo com o usuário:
+
+```
+nome2 = input('Digite seu nome: ')
+encontrar = input('Digite o que deseja encontar: ')
+
+if encontrar in nome:
+    print(f'{encontrar} está em {nome}')
+else:
+    print(f'{encontrar} não está em {nome}')
+```
+
+### Interpolação Antiga de Strings:
+
+
+### Método antigo de formatação com o operador %
+
+# %s -> string
+# %d ou %i -> inteiros
+# %f -> float (permite casas decimais)
+# %x ou %X -> hexadecimal
+
+```
+nome = 'Luiz'
+preco = 1000.95897643
+
+variavel = '%s, o preço é R$%.2f' % (nome, preco)
+print(variavel)  # Luiz, o preço é R$1000.96
+```
+
+# Representação hexadecimal:
+
+```
+print('O hexadecimal de %d é %04x' % (1500, 1500))  # 05dc
+print('O hexadecimal de %i é %08X' % (1500, 1500))  # 000005DC
+```
+
+### Formatação Moderna com f-strings:
+
+```
+"""
+f-strings com alinhamento e preenchimento:
+
+(Caractere)(><^)(largura)
+>  → alinha à direita
+<  → alinha à esquerda
+^  → centraliza
+=  → força o sinal à esquerda
+Sinal: + ou -
+Conversão: !r (repr), !s (str), !a (ascii)
+"""
+
+variavel = 'ABC'
+
+print(f'{variavel}')             # ABC
+print(f'{variavel: >10}')        #        ABC
+print(f'{variavel:$<10}')        # ABC$$$$$$$
+print(f'{variavel:$^10}')        # $$$ABC$$$$
+```
+
+# Formatação numérica com sinal, separador e casas decimais:
+````
+print(f'{1000.4873648123746:0=+10,.1f}')  # +001,000.5
+````
+
+# Hexadecimal com f-string:
+```
+print(f'O hexadecimal de 150 é {1500:08x}')  # 000005dc
+```
+
+# Usando conversão com !r (iremos ver mais sobre isso no futuro):
+```
+print(f'{variavel!r}')           # 'ABC'
+```
+
+### Resumo do Dia:
+
+### > Strings são iteráveis e podem ser verificadas com `in` / `not in`
+### > Interpolação antiga usa `%s`, `%d`, `%f` e `%x`
+### > f-strings são a forma moderna e mais prática de formatar
+### > f-strings permitem controle de alinhamento, preenchimento, casas decimais e sinais
+### > Também permitem conversões como `!r` para debug/representações
