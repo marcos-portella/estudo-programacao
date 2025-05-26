@@ -602,10 +602,10 @@ print(diferente)  # Saída: True
 
 ### Strings são iteráveis, e podemos acessar seus caracteres por índice:
 
-# Índices positivos e negativos:
-#  0 1 2 3 4 5
-#  O t á v i o
-# -6-5-4-3-2-1
+### Índices positivos e negativos:
+ 0 1 2 3 4 5
+ O t á v i o
+ -6-5-4-3-2-1
 
 ```
 nome = 'Otávio'
@@ -614,7 +614,7 @@ print(nome[2])    # á
 print(nome[-4])   # á
 ```
 
-# Verificando presença de caracteres com in / not in:
+### Verificando presença de caracteres com in / not in:
 
 ```
 print('á' in nome)         # True
@@ -623,7 +623,7 @@ print('Otá' not in nome)   # False
 print('zin' not in nome)   # True
 ```
 
-# Interagindo com o usuário:
+### Interagindo com o usuário:
 
 ```
 nome2 = input('Digite seu nome: ')
@@ -640,10 +640,10 @@ else:
 
 ### Método antigo de formatação com o operador %
 
-# %s -> string
-# %d ou %i -> inteiros
-# %f -> float (permite casas decimais)
-# %x ou %X -> hexadecimal
+ %s -> string
+ %d ou %i -> inteiros
+ %f -> float (permite casas decimais)
+ %x ou %X -> hexadecimal
 
 ```
 nome = 'Luiz'
@@ -683,17 +683,17 @@ print(f'{variavel:$<10}')        # ABC$$$$$$$
 print(f'{variavel:$^10}')        # $$$ABC$$$$
 ```
 
-# Formatação numérica com sinal, separador e casas decimais:
+### Formatação numérica com sinal, separador e casas decimais:
 ````
 print(f'{1000.4873648123746:0=+10,.1f}')  # +001,000.5
 ````
 
-# Hexadecimal com f-string:
+### Hexadecimal com f-string:
 ```
 print(f'O hexadecimal de 150 é {1500:08x}')  # 000005dc
 ```
 
-# Usando conversão com !r (iremos ver mais sobre isso no futuro):
+### Usando conversão com !r (iremos ver mais sobre isso no futuro):
 ```
 print(f'{variavel!r}')           # 'ABC'
 ```
