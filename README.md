@@ -10,11 +10,11 @@
 
 ### Configurando o Visual Studio Code:
 
-### Hoje aprendi a configurar o VS Code (Visual Studio Code)
-### de forma funcional para acompanhar as aulas de Python.
-### Usei o arquivo "settings.json" para personalizar o ambiente.
-### Mesmo com interfaces gráficas, aprender a configurar manualmente
-### ajuda a entender melhor a ferramenta.
+#### Hoje aprendi a configurar o VS Code (Visual Studio Code)
+#### de forma funcional para acompanhar as aulas de Python.
+#### Usei o arquivo "settings.json" para personalizar o ambiente.
+#### Mesmo com interfaces gráficas, aprender a configurar manualmente
+#### ajuda a entender melhor a ferramenta.
 
 
 ### Meu Primeiro Código:
@@ -23,8 +23,8 @@
 print('hello, world')  # Meu primeiro programa em Python 🎉
 ````
 
-### Me senti motivado e acredito que vou gostar cada vez mais
-### conforme o curso avança.
+#### Me senti motivado e acredito que vou gostar cada vez mais
+#### conforme o curso avança.
 
 
 
@@ -34,11 +34,11 @@ print('hello, world')  # Meu primeiro programa em Python 🎉
 ### Funções do print:
 
 
-### Aprendi sobre os parâmetros:
+#### Aprendi sobre os parâmetros:
 
-### \n   -> quebra de linha
-### sep= -> define o separador
-### end= -> define o final da linha
+#### \n   -> quebra de linha
+#### sep= -> define o separador
+#### end= -> define o final da linha
 
 ```
 print('Python', 'é', 'legal', sep='-', end='!\n')  # Exemplo usando sep e end
@@ -48,7 +48,7 @@ print('Python', 'é', 'legal', sep='-', end='!\n')  # Exemplo usando sep e end
 ### Tipos de Comentários:
 
 
-### Comentário de uma linha usa #
+#### Comentário de uma linha usa #
 ```
 """
 
@@ -58,19 +58,19 @@ de várias linhas usando DocString
 """
 ```
 
-### O Python lê da esquerda para a direita e de cima para baixo.
+#### O Python lê da esquerda para a direita e de cima para baixo.
 
 
 ### Tipos de Dados e Strings:
 
 
-### Escape de caracteres com \
+#### Escape de caracteres com \
 
 ```
 print("Linha 1\nLinha 2")  # \n cria uma quebra de linha
 ```
 
-### Strings raw (cruas) usando o prefixo 'r'
+#### Strings raw (cruas) usando o prefixo 'r'
 ```
 print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 ```
@@ -79,10 +79,10 @@ print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 ### Conceitos Técnicos:
 
 
-### Linguagem: Python
-### Tipagem: Dinâmica / Forte
-### Tipo 'str': Representa strings (textos)
-### Strings são textos dentro de aspas simples ou duplas
+#### > Linguagem: Python
+#### > Tipagem: Dinâmica / Forte
+#### > Tipo 'str': Representa strings (textos)
+#### > Strings são textos dentro de aspas simples ou duplas
 
 
 
@@ -93,7 +93,7 @@ print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
 
 
 ### Em Python, não é necessário declarar o tipo da variável.
-### O interpretador define automaticamente baseado no valor.
+#### O interpretador define automaticamente baseado no valor:
 
 ```
 nome = "Ana"        # str
@@ -106,7 +106,7 @@ ativo = True        # bool
 ```
 
 
-### Concatenando Strings:
+#### Concatenando Strings:
 
 ```
 print("Olá, " + nome)             # Concatenação com +
@@ -115,7 +115,7 @@ print("Python! " * 3)             # Repetição com *
 ```
 
 
-### Conversão de Tipos:
+#### Conversão de Tipos:
 
 ```
 print("Idade: " + str(idade))     # Convertendo int para str
@@ -126,7 +126,7 @@ pi = float("3.14")                # string para float
 ```
 
 
-### Verificando tipos com type():
+#### Verificando tipos com type():
 
 ```
 print(type(nome))                 # <class 'str'>
@@ -139,10 +139,10 @@ print(type(pi))                   # <class 'float'>
 
 ### Resumo do dia:
 
-### > Variáveis são atribuídas com =
-### > Tipos são inferidos automaticamente
-### > Conversão: int(), str(), float()
-### > type() retorna o tipo da variável
+#### > Variáveis são atribuídas com =
+#### > Tipos são inferidos automaticamente
+#### > Conversão: int(), str(), float()
+#### > type() retorna o tipo da variável
 
 
 
@@ -150,8 +150,10 @@ print(type(pi))                   # <class 'float'>
 
 
 ### Operações Aritméticas:
-### Hoje aprendi que o python permite realizar todas as operações 
-### matemáticas básicas
+
+#### Hoje aprendi que o python permite realizar todas as operações:
+
+### matemáticas básicas:
 
 ```
 adicao = 10 + 10
@@ -183,7 +185,7 @@ modulo = 55 % 2
 print('Módulo:', modulo)  # 1 -> útil para saber se número é par (n % 2 == 0)
 ```
 
-### Verificando divisibilidade
+#### Verificando divisibilidade:
 ```
 print(10 % 8 == 0)  # False
 
@@ -194,7 +196,7 @@ print(16 % 8 == 0)  # True
 ### Introdução à Formatação:
 
 
-### Gostei da f-strings:, é forma de formatar strings 
+#### Gostei da f-strings:, é forma de formatar strings:
 ```
 
 nome = 'Carlos Miguel'
@@ -214,13 +216,13 @@ print(linha_1)
 print(linha_2)
 ```
 
-### Espaço para separar blocos de saída
+#### Espaço para separar blocos de saída:
 ```
 print(end='\n')
 ```
 
 
-### Outra forma: format():
+#### Outra forma: format():
 
 ```
 a = 'A'
@@ -230,7 +232,7 @@ b = 'BB'
 c = 1.1
 ```
 
-### Podemos misturar índices e nomes nomeados
+#### Podemos misturar índices e nomes nomeados:
 ```
 string = 'a={1} b={nome2:.2f} c={0} new={nome3}'
 
@@ -241,10 +243,9 @@ print(formato)
 
 ### Resumo do Dia:
 
-### > Operações: +, -, *, /, //, **, %
-### > Módulo (%) verifica restos e divisibilidade
-### > f-strings: forma moderna e prática de formatar textos
-### > format(): alternativa mais antiga, ainda útil com nomeação e ordem
+#### > Módulo (%) verifica restos e divisibilidade
+#### > f-strings: forma moderna e prática de formatar textos
+#### > format(): alternativa mais antiga, ainda útil com nomeação e ordem
 
 
 
@@ -254,7 +255,7 @@ print(formato)
 ### Coletando entrada do usuário:
 
 
-### input() sempre retorna uma string (str), mesmo que o usuário digite um número
+#### input() sempre retorna uma string (str), mesmo que o usuário digite um número:
 
 ````
 nome = input('Qual o seu nome? ')
@@ -266,7 +267,7 @@ print(f'O seu nome é {nome}')
 ### Tentativa de somar números diretamente:
 
 
-### Erro comum: somar strings resulta em concatenação (ex: "5" + "5" = "55")
+#### Erro comum: somar strings resulta em concatenação (ex: "5" + "5" = "55"):
 
 ```
 numero_1 = input('Digite um número: ')
@@ -274,7 +275,7 @@ numero_1 = input('Digite um número: ')
 numero_2 = input('Digite outro número: ')
 ```
 
-### Aqui ocorre concatenação, não soma aritmética
+#### Aqui ocorre concatenação, não soma aritmética:
 ```
 print(f'A soma do primeiro par de números é: {numero_1 + numero_2}')  # Ex: "2" + "3" = "23"
 ```
@@ -283,7 +284,7 @@ print(f'A soma do primeiro par de números é: {numero_1 + numero_2}')  # Ex: "2
 ### Corrigindo com conversão de tipos:
 
 
-### Convertendo para int com int(), o Python entende como números
+#### Convertendo para int com int(), o Python entende como números:
 
 ```
 numero_3 = int(input('Digite um número: '))
@@ -291,7 +292,7 @@ numero_3 = int(input('Digite um número: '))
 numero_4 = int(input('Digite outro número: '))
 ```
 
-## Agora é uma soma real entre inteiros
+#### Agora é uma soma real entre inteiros:
 ```
 print(f'A soma do segundo par de números é: {numero_3 + numero_4}')
 ```
@@ -300,7 +301,7 @@ print(f'A soma do segundo par de números é: {numero_3 + numero_4}')
 ### Melhor forma (até agora):
 
 
-### Separar entrada e conversão ajuda na legibilidade
+#### Separar entrada e conversão ajuda na legibilidade:
 
 ```
 numero_5 = input('Digite um número: ')
@@ -308,7 +309,7 @@ numero_5 = input('Digite um número: ')
 numero_6 = input('Digite outro número: ')
 ```
 
-### Ainda não há tratamento de erro, mas essa estrutura é mais clara
+#### Ainda não há tratamento de erro, mas essa estrutura é mais clara:
 ```
 int_numero_5 = int(numero_5)
 
@@ -321,17 +322,17 @@ print(f'Soma (forma melhorada): {int_numero_5 + int_numero_6}')
 ### Observação importante:
 
 
-### ⚠️ Se o usuário digitar algo que não seja número, o programa vai quebrar!
-### Para evitar isso, é necessário tratar erros o que será aprendido depois.
+#### ⚠️ Se o usuário digitar algo que não seja número, o programa vai quebrar!
+#### Para evitar isso, é necessário tratar erros o que será aprendido depois.
 
 
 ### Resumo do Dia:
 
-### > input() sempre retorna uma string
-### > Para fazer contas, converta com int() ou float()
-### > Cuidado: somar strings resulta em concatenação
-### > Separar entrada e conversão melhora a clareza
-### ! Futuramente: aprenderemos a validar entradas para não ocorrer erros
+#### > input() sempre retorna uma string
+#### > Para fazer contas, converta com int() ou float()
+#### > Cuidado: somar strings resulta em concatenação
+#### > Separar entrada e conversão melhora a clareza
+#### ! Futuramente: aprenderemos a validar entradas para não ocorrer erros
 
 
 
@@ -347,7 +348,7 @@ print(f'Soma (forma melhorada): {int_numero_5 + int_numero_6}')
 entrada = input('Você quer "entrar" ou "sair"? ')
 ```
 
-### Verificando a entrada do usuário
+#### Verificando a entrada do usuário:
 ```
 if entrada == 'entrar' or entrada == 'Entrar':
     print('Você entrou no sistema.')
@@ -360,7 +361,7 @@ print('FORA DOS BLOCOS')  # Sempre será executado
 ```
 
 
-### Blocos condicionais com booleans:
+#### Blocos condicionais com booleans:
 
 ```
 condicao = True
@@ -375,7 +376,7 @@ if condicao2:
 else:
     print('Este é o novo código do if2 (executado pois condição2 é False)')
 ```
-### Comparações diretas:
+#### Comparações diretas:
 
 
 ```
@@ -392,7 +393,7 @@ else:
 print('Fora do if')  # Sempre executado
 ```
 
-### Encadeando condições:
+#### Encadeando condições:
 
 
 ```
@@ -416,12 +417,12 @@ else:
 
 ### Resumo do Dia:
 
-### > if → executa um bloco se a condição for True
-### > elif → checa nova condição caso o if falhe
-### > else → executa se nenhuma condição anterior for satisfeita
-### > Blocos fora do if sempre são executados normalmente
-### > Podemos comparar valores diretamente (ex: 10 == 10)
-### > É possível encadear várias condições com elif
+#### > if → executa um bloco se a condição for True
+#### > elif → checa nova condição caso o if falhe
+#### > else → executa se nenhuma condição anterior for satisfeita
+#### > Blocos fora do if sempre são executados normalmente
+#### > Podemos comparar valores diretamente (ex: 10 == 10)
+#### > É possível encadear várias condições com elif
 
 
 
@@ -431,7 +432,7 @@ else:
 ### Testando estruturas condicionais:
 
 
-### Avaliação encadeada com elif: apenas o primeiro True será executado
+#### Avaliação encadeada com elif: apenas o primeiro True será executado
 
 ```
 condicao1 = False
@@ -459,14 +460,14 @@ else:
 ```
 
 
-### Comparando valores digitados:
+#### Comparando valores digitados:
 ```
 primeiro_valor = input('Digite um valor: ')
 
 segundo_valor = input('Digite outro valor: ')
 ```
 
-### Comparando os valores com operadores relacionais
+#### Comparando os valores com operadores relacionais
 ```
 if primeiro_valor > segundo_valor:
     print(f'{primeiro_valor=} é maior que {segundo_valor=}.')
@@ -485,7 +486,7 @@ else:
 ### Operadores Lógicos: and, or, not:
 
 
-### and → todas as condições precisam ser verdadeiras
+#### and → todas as condições precisam ser verdadeiras
 ```
 entrada = input('[E]ntrar [S]air: ')
 
@@ -500,19 +501,19 @@ else:
     print('Sair')
 ```
 
-### Curto-circuito com "and": para na primeira expressão falsa
+#### Curto-circuito com "and": para na primeira expressão falsa
 ```
 print(True and 0 and True)  # Retorna 0
 ```
 
-### Exemplo de uso de "or": se input for vazio, usa valor padrão
+#### Exemplo de uso de "or": se input for vazio, usa valor padrão
 ```
 senha = input('Senha: ') or 'Sem senha'
 
 print(senha)
 ```
 
-### or → basta uma condição ser verdadeira
+#### or → basta uma condição ser verdadeira
 ```
 entrada2 = input('[E]ntrar [S]air: ')
 
@@ -527,7 +528,7 @@ else:
     print('Sair')
 ```
 
-### not → inverte o valor lógico
+#### not → inverte o valor lógico
 ```
 senha2 = input('Senha: ')
 
@@ -536,7 +537,7 @@ if not senha2:
 ```
 
 
-### Testando o not:
+#### Testando o not:
 
 ```
 print(not 0)       # True
@@ -584,13 +585,13 @@ print(diferente)  # Saída: True
 
 ### Resumo do Dia:
 
-### > elif para várias condições exclusivas
-### > Comparações com operadores relacionais (>, <, ==, etc.)
-### > Lógica com operadores: and, or, not
-### > Curto-circuito: expressão para no primeiro valor "falso"
-### > input() pode ser combinado com or para valores padrão
-### > not inverte valores booleanos
-### ! Atenção: input() sempre retorna string, cuidado ao comparar com números
+#### > elif para várias condições exclusivas
+#### > Comparações com operadores relacionais (>, <, ==, etc.)
+#### > Lógica com operadores: and, or, not
+#### > Curto-circuito: expressão para no primeiro valor "falso"
+#### > input() pode ser combinado com or para valores padrão
+#### > not inverte valores booleanos
+#### ! Atenção: input() sempre retorna string, cuidado ao comparar com números
 
 
 
@@ -602,7 +603,7 @@ print(diferente)  # Saída: True
 
 ### Strings são iteráveis, e podemos acessar seus caracteres por índice:
 
-### Índices positivos e negativos:
+#### Índices positivos e negativos:
  0 1 2 3 4 5
  O t á v i o
  -6-5-4-3-2-1
@@ -614,7 +615,7 @@ print(nome[2])    # á
 print(nome[-4])   # á
 ```
 
-### Verificando presença de caracteres com in / not in:
+#### Verificando presença de caracteres com in / not in:
 
 ```
 print('á' in nome)         # True
@@ -623,7 +624,7 @@ print('Otá' not in nome)   # False
 print('zin' not in nome)   # True
 ```
 
-### Interagindo com o usuário:
+#### Interagindo com o usuário:
 
 ```
 nome2 = input('Digite seu nome: ')
@@ -638,7 +639,7 @@ else:
 ### Interpolação Antiga de Strings:
 
 
-### Método antigo de formatação com o operador %
+#### Método antigo de formatação com o operador %:
 
  %s -> string
  %d ou %i -> inteiros
@@ -653,7 +654,7 @@ variavel = '%s, o preço é R$%.2f' % (nome, preco)
 print(variavel)  # Luiz, o preço é R$1000.96
 ```
 
-# Representação hexadecimal:
+#### Representação hexadecimal:
 
 ```
 print('O hexadecimal de %d é %04x' % (1500, 1500))  # 05dc
@@ -683,25 +684,25 @@ print(f'{variavel:$<10}')        # ABC$$$$$$$
 print(f'{variavel:$^10}')        # $$$ABC$$$$
 ```
 
-### Formatação numérica com sinal, separador e casas decimais:
+#### Formatação numérica com sinal, separador e casas decimais:
 ````
 print(f'{1000.4873648123746:0=+10,.1f}')  # +001,000.5
 ````
 
-### Hexadecimal com f-string:
+#### Hexadecimal com f-string:
 ```
 print(f'O hexadecimal de 150 é {1500:08x}')  # 000005dc
 ```
 
-### Usando conversão com !r (iremos ver mais sobre isso no futuro):
+#### Usando conversão com !r (iremos ver mais sobre isso no futuro):
 ```
 print(f'{variavel!r}')           # 'ABC'
 ```
 
 ### Resumo do Dia:
 
-### > Strings são iteráveis e podem ser verificadas com `in` / `not in`
-### > Interpolação antiga usa `%s`, `%d`, `%f` e `%x`
-### > f-strings são a forma moderna e mais prática de formatar
-### > f-strings permitem controle de alinhamento, preenchimento, casas decimais e sinais
-### > Também permitem conversões como `!r` para debug/representações
+#### > Strings são iteráveis e podem ser verificadas com `in` / `not in`
+#### > Interpolação antiga usa `%s`, `%d`, `%f` e `%x`
+#### > f-strings são a forma moderna e mais prática de formatar
+#### > f-strings permitem controle de alinhamento, preenchimento, casas decimais e sinais
+#### > Também permitem conversões como `!r` para debug/representações
