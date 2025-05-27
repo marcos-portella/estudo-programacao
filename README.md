@@ -791,5 +791,5 @@ else:
 ```
 
 ### Observações:
-### - O uso de índices negativos permite percorrer strings de trás para frente.
-### - O aluno resolveu o exercício com uma estrutura levemente diferente da solução do professor, mas funcional.
+#### - O uso de índices negativos permite percorrer strings de trás para frente.
+#### - O aluno resolveu o exercício com uma estrutura levemente diferente da solução do professor, mas funcional.
