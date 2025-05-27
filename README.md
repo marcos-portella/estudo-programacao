@@ -708,3 +708,88 @@ print(f'{variavel!r}')           # 'ABC'
 #### > f-strings são a forma moderna e mais prática de formatar
 #### > f-strings permitem controle de alinhamento, preenchimento, casas decimais e sinais
 #### > Também permitem conversões como `!r` para debug/representações
+
+
+
+## DIA 9
+
+### Assuntos abordados:
+#### - Fatiamento de strings
+#### - A função len()
+#### - Uso de índices negativos
+#### - Exercício com manipulação de strings e validação de entrada
+
+### FATIAMENTO DE STRINGS:
+```
+[str(início:fim:passo)] # permite acessar fatias de uma string.
+
+# Ex:
+variavel = 'Olá mundo'
+print(variavel[4:])     # 'mundo' - Omitido o fim, pega do índice 4 até o final
+print(variavel[4:6])    # 'mu' - Fatiamento do índice 4 até o 5 (6 é exclusivo)
+print(variavel[:5])     # 'Olá m' - Omitido o início, começa do índice 0 até 4
+```
+
+### len() → retorna a quantidade de caracteres da string (ou fatia):
+```
+print(len(variavel[3])) # 1 - Apenas 1 caractere retornado no índice 3 (' ')
+print(len(variavel))    # 9 - Total de caracteres em 'Olá mundo'
+```
+
+### Utilizando len() no fatiamento completo com passo:
+```
+print(variavel[0:len(variavel):1])  # 'Olá mundo'
+print(variavel[0:9:1])              # Também retorna 'Olá mundo'
+print(variavel[0:9:2])              # 'Oámno' - passo de 2 em 2
+print(variavel[-1:-10:-1])          # 'odnum álO' - string invertida com passo negativo
+```
+
+
+### EXERCÍCIO: Solicita nome e idade do usuário e realiza verificações.
+
+```
+nome = input('Digite seu nome aqui: ')
+idade = input('Digite sua idade  aqui: ')
+
+if not nome:
+    print('Desculpe, você deixou campos vazios') 
+elif not idade:
+    print('Desculpe, você deixou campos vazios') 
+else:
+    print(f'Seu nome é {nome}')
+    print(f'Seu nome invertido é {nome[::-1]}')
+    if ' ' in  nome:
+        print(f'Seu nome contém espaços')
+    else:
+        print(f'Seu nome não contém espaços')
+
+    print(f'Seu nome tem {[len(nome)]} letras')
+    print(f'A primeira letra do seu nome é {nome[0]}')
+    print(f'A última letra do seu nome é {nome[-1]}')  
+```
+
+### Solução do professor:
+
+```
+nome = input('Digite o seu nome: ')
+idade = input('Digite sua idade: ')
+
+if nome and idade:
+    print(f'Seu nome é {nome}')
+    print(f'Seu nome invertido é {nome[::-1]}')
+
+    if ' ' in nome:
+        print('Seu nome contém espaços')
+    else:
+        print('Seu nome NÃO contém espaços')
+
+    print(f'Seu nome tem {len(nome)} letras')
+    print(f'A primeira letra do seu nome é {nome[0]}')
+    print(f'A última letra do seu nome é {nome[-1]}')
+else:
+    print("Desculpe, você deixou campos vazios.")
+```
+
+### Observações:
+### - O uso de índices negativos permite percorrer strings de trás para frente.
+### - O aluno resolveu o exercício com uma estrutura levemente diferente da solução do professor, mas funcional.
