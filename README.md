@@ -793,3 +793,69 @@ else:
 ### Observações:
 #### - O uso de índices negativos permite percorrer strings de trás para frente.
 #### - O aluno resolveu o exercício com uma estrutura levemente diferente da solução do professor, mas funcional.
+
+
+
+"""
+## Dia 10
+
+### Assuntos estudados:
+#### - Tratamento de erros com try/except
+#### - Conversão de tipos e verificação de dados
+#### - Constantes (boas práticas com variáveis imutáveis)
+#### - Avaliação de múltiplas condições com operadores lógicos (and)
+#### - Organização de código para reduzir complexidade
+
+
+### EXEMPLOS PRÁTICOS
+
+
+#### EXEMPLO 1 – try / except para tratamento de erro em tempo de execução:
+
+```
+numero_str = input('Vou dobrar o número que você digitar: ')
+
+try:
+    numero_float = float(numero_str)  # Tentativa de conversão para float
+    print('FLOAT:', numero_float)
+    print(f'O dobro de {numero_str} é {numero_float * 2:.2f}')
+except:
+    print('Isso não é um número')  # Mensagem de erro padrão
+
+
+# Mesmo com erro acima, código continua a ser executado abaixo:
+print(1234)
+print(456)
+# int('a')  # Comentado para evitar exceção ao rodar o arquivo
+```
+
+# EXEMPLO 2 – Constantes e verificação de múltiplas condições:
+```
+velocidade = 60  # velocidade atual do carro
+local_carro = 107  # local em que o carro está na estrada
+
+RADAR_1 = 60         # velocidade máxima permitida no radar 1
+LOCAL_1 = 100        # localização do radar 1
+RADAR_RANGE = 1      # alcance de detecção do radar
+
+# Verificações:
+velocidade_do_carro_passou_radar_1 = velocidade > RADAR_1
+carro_passou_radar_1 = local_carro >= (LOCAL_1 - RADAR_RANGE)
+
+# Resultado de cada verificação:
+if velocidade_do_carro_passou_radar_1:
+    print('Carro está acima do limite de velocidade')
+else:
+    print('Carro abaixo do limite de velocidade')
+
+if carro_passou_radar_1:
+    print('Carro passou pelo radar')
+else:
+    print('Carro não passou pelo radar')
+
+# Verificando se foi multado
+if carro_passou_radar_1 and velocidade_do_carro_passou_radar_1:
+    print('Carro multado em radar 1')
+else:
+    print('Carro não multado')
+```
