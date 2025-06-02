@@ -858,3 +858,109 @@ if carro_passou_radar_1 and velocidade_do_carro_passou_radar_1:
 else:
     print('Carro não multado')
 ```
+
+
+## dia 11 
+
+### Assuntos abordados:
+- Flag (bandeira), None, is, is not, id
+- Exercícios: par/ímpar, saudação por hora, tamanho do nome
+- Tipos imutáveis, fatiamento e métodos de string
+
+
+### Flag (bandeira), None, is, is not, id
+```
+v1 = 'a'
+v2 = 'a'
+print(id(v1))  # Mesmo id por otimização do Python
+print(id(v2))
+
+condicao = False
+passou_no_if = None
+
+if condicao:
+    passou_no_if = True
+    print('Faça algo')
+else:
+    print('Não faça algo')
+
+print(passou_no_if is None)       # True se não passou no if
+print(passou_no_if is not None)   # False se não passou no if
+
+if passou_no_if is None:
+    print('Não passou no if')
+else:
+    print('Passou no if')
+```
+
+### Exercício: par ou ímpar
+```
+# Resposta do professor:
+
+numero = input('Digite um número: ')
+
+try:
+    numero_float = float(numero)
+    par_impar = numero_float % 2 == 0
+    par_impar_texto = 'impar'
+
+    if par_impar:
+        par_impar_texto = 'par'
+
+    print(f'O número {numero_float} é {par_impar_texto}')
+
+except:
+    print('O número digitado não é inteiro')
+```
+
+### Exercício: saudação por horário
+```
+# Resposta do professor:
+
+entrada = input('Digite a hora em números inteiros: ')
+
+try:
+    hora = int(entrada)
+
+    if hora >= 0 and hora <= 11:
+        print('Bom dia')
+    elif hora >= 12 and hora <= 17:
+        print('Bom tarde')
+    elif hora >= 18 and hora <= 23:
+        print('Bom noite')
+    else:
+        print('Não conheço essa hora')
+except:
+    print('Por favor, digite apenas números inteiros')
+```
+
+### Exercício: tamanho do nome
+```
+# Resposta do professor:
+
+nome = input('Digite seu nome: ')
+tamanho_nome = len(nome)
+
+if tamanho_nome > 1:
+    if tamanho_nome <= 4:
+        print('Seu nome é curto')
+    elif tamanho_nome >= 5 and tamanho_nome <= 6:
+        print('Seu nome é normal')
+    else:
+        print('Seu nome é muito grande')
+else:
+    print('Digite mais de uma letra.')
+```
+
+### Tipos imutáveis, fatiamento e métodos de string
+```
+string = '100000'
+outra_variavel = f'{string[:3]}ABC{string[4:]}'
+print(string)             # Original
+print(outra_variavel)     # Modificada via fatiamento
+print(string.zfill(10))   # Preenche com zeros à esquerda
+
+# Link para a documentação oficial:
+# https://docs.python.org/pt-br/3/library/stdtypes.html
+# Imutáveis que vimos: str, int, float, bool
+```
