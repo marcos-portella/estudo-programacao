@@ -967,7 +967,9 @@ print(string.zfill(10))   # Preenche com zeros à esquerda
 
 
 ## Dia 12
-### Tópicos: while, operadores de atribuição, controle de fluxo, iterando strings:
+ Neste dia, estudamos os conceitos básicos de estruturas de repetição com o comando while, incluindo loops simples e aninhados, além do uso dos operadores de atribuição como +=, -=,*=, /=, **=, %=.
+Também abordamos controle de fluxo dentro de loops usando continue e break para pular ou interromper iterações.
+Por fim, praticamos iteração sobre strings com o while, construindo novas strings comcaracteres adicionais.
 
 
 Introducao ao while:
@@ -1033,87 +1035,79 @@ print('Acabou')
 ```
 
 
-Operadores de atribuição:
-
+### Operadores de atribuição:
 +=, -=, *=, /=, //=, **=, %=
+
+Operador de soma (int):
 ```
-# Operador de soma (int):
 contador = 0
 
 while contador < 10:
     contador += 1
     print(contador)
-
 print('Acabou')
 ```
+Operadores de soma (str):
 ```
-# Operadores de soma (str):
 contador = '1'
 
 while contador < '12':
     contador += '2'
     print(contador)
-
 print('Acabou')
 ```
+Operador de multiplicação:
 ```
-# Operador de multiplicação:
 contador = 10
 
 while contador < 10:
     contador *= '2'
     print(contador)
-
 print('Acabou')
 ```
+Operador de subtração:
 ```
-# Operador de subtração:
 contador = 20
 
 while contador > 10:
     contador -= 1
     print(contador)
-
 print('Acabou')
 ```
+Operador de divisão:
 ```
-#  Operador de divisão:
 contador = 125
 
 while contador > 5:
     contador /= 5
     print(contador)
-
 print('Acabou')
 ```
+Operador de divisão inteira:
 ```
-# Operador de divisão inteira:
 contador = 125
 
 while contador > 5:
     contador /= 5
     print(contador)
-
 print('Acabou')
 ```
+Operador de potenciação:
 ```
-# Operador de potenciação:
 contador = 10
 
 while contador < 10000:
     contador **= 2
     print(contador)
-
 print('Acabou')
 ```
+Operador de módulo:
 ```
-# Operador de módulo:
 contador = 21
 
 while contador > 10:
     contador %= 2
     print(contador)
-
 print('Acabou')
 ```
 
@@ -1122,7 +1116,6 @@ Exercício de strings com while:
 # Solução do professor:
 
 nome = 'Maria Helena'  # Iteráveis
-
 indice = 0
 novo_nome = ''
 
@@ -1130,7 +1123,13 @@ while indice < len(nome):
     letra = nome[indice]
     novo_nome += f'*{letra}'
     indice += 1
-
 novo_nome += '*'
 print(novo_nome)
 ```
+
+### Observações finais:
+
+- O uso de while deve sempre ter uma condição que permita a saída do loop para evitar loops infinitos.
+- Operadores de atribuição facilitam a escrita e tornam o código mais legível e eficiente.
+- Controle de fluxo com continue e break ajuda a gerenciar a lógica dentro dos loops, evitando condições complexas.
+- Iterar strings com while é útil para manipulações específicas, mas em muitos casos o for pode ser mais simples.
