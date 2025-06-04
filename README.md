@@ -967,7 +967,7 @@ print(string.zfill(10))   # Preenche com zeros à esquerda
 
 
 ## Dia 12
- Neste dia, estudamos os conceitos básicos de estruturas de repetição com o comando while, incluindo loops simples e aninhados, além do uso dos operadores de atribuição como +=, -=,*=, /=, **=, %=.
+ Neste dia, estudamos os conceitos básicos de estruturas de repetição com o comando while, incluindo loops simples e aninhados, além do uso dos operadores de atribuição como +=, -=,*=, /=, **=,%=.
 
 Também abordamos controle de fluxo dentro de loops usando continue e break para pular ou interromper iterações.
 
