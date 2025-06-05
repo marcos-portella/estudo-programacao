@@ -46,4 +46,4 @@ lista_c = lista_a + lista_b
 lista_d = lista_a.extend(lista_b) # Modifica diretamente a lista_a
 print(lista_c)
 print(lista_d) # Não retorna nada por ter modificado a lista_a
-print(lista_a) #lista_a modificada
+print(lista_a) #lista_a modificadas
