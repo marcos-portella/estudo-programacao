@@ -1,3 +1,5 @@
+# Introdução ao for
+
 # O while é usado em situações que não sabemos quantas repetições serão feitas:
 
 senha_salva = '123456'

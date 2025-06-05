@@ -1135,3 +1135,292 @@ print(novo_nome)
 - Operadores de atribuição facilitam a escrita e tornam o código mais legível e eficiente.
 - Controle de fluxo com continue e break ajuda a gerenciar a lógica dentro dos loops, evitando condições complexas.
 - Iterar strings com while é útil para manipulações específicas, mas em muitos casos o for pode ser mais simples.
+
+
+## Dia 13
+### Tópicos:
+- while/else
+- laços
+- manipulação de strings
+- calculadora simples
+- jogo de adivinhação
+- for
+- iteradores
+- listas
+
+
+While / else
+```
+string = 'Valorqualquer'
+
+i = 0
+while i < len(string):
+    letra = string[i]
+
+    if letra == ' ':
+        break
+
+    print(letra)
+    i += 1
+else:
+    print('Não encontrei um espaço na string.')
+print('Fora do while')
+```
+
+Calculadora com while
+```
+while True:
+    num_1 = input('Digite um número: ')
+    num_2 = input('Digite outro número: ')
+    operador = input('Digite o operador (+-/*): ')
+
+    numeros_validos = None
+
+    try:
+        num_1_float = float(num_1)
+        num_2_float = float(num_2)
+        numeros_validos = True
+    except:
+        numeros_validos = None
+
+    if numeros_validos is None:
+        print('Um ou ambos os números digitados são inválidos.')
+        continue
+
+    operadores_permitidos = '+-/*'
+
+    if operador not in operadores_permitidos:
+        print('Operador inválido.')
+        continue
+
+    if len(operador) > 1:
+        print('Digite apenas um operador.')
+        continue
+    
+    print('Realizando sua conta. Confira o resultado abaixo:')
+
+    if operador == '+':
+        print(f'{num_1_float} + {num_2_float}=',num_1_float + num_2_float)
+    elif operador == '-':
+        print(f'{num_1_float} - {num_2_float}=',num_1_float - num_2_float)
+
+    elif operador == '/':
+         print(f'{num_1_float} / {num_2_float}=',num_1_float / num_2_float)
+
+    elif operador == '*':
+        print(f'{num_1_float} * {num_2_float}=',num_1_float * num_2_float)
+
+    else:
+        print('Nunca deveria ter chegado até aqui')
+    sair = input('Quer sair? [s]im: ').lower().startswith('s')
+
+    if sair is True:
+        break
+```
+
+Exercício: Jogo de adivinhação de palavra:
+```
+# Solução do professor:
+
+import os
+
+palavra_secreta = 'perfume'
+letras_acertadas = ''
+numero_tentativas = 0
+
+while True:
+    letra_digitada = input('Digite uma letra: ')
+    numero_tentativas += 1
+
+    if len(letra_digitada) > 1:
+        print('Digite apenas uma letra.')
+        continue
+
+    if letra_digitada in palavra_secreta:
+        letras_acertadas += letra_digitada
+
+    palavra_formada = ''
+    for letra_secreta in palavra_secreta:
+        if letra_secreta in letras_acertadas:
+            palavra_formada += letra_secreta
+        else:
+            palavra_formada += '*'
+
+    print('Palavra formada:', palavra_formada)
+
+    if palavra_formada == palavra_secreta:
+        os.system('clear')
+        print('VOCÊ GANHOU!! PARABÉNS!')
+        print('A palavra era', palavra_secreta)
+        print('Tentativas:', numero_tentativas)
+        letras_acertadas = ''
+        numero_tentativas = 0
+```
+
+Introdução ao for:
+```
+senha_salva = '123456'
+senha_digitada = ''
+repeticoes = 0
+
+while senha_salva != senha_digitada:
+    senha_digitada = input(f'Sua senha ({repeticoes}x): ')
+
+    repeticoes += 1
+
+print(repeticoes)
+print('Aquele laço acima pode ter repetições infinitas')
+
+# O for é usado em situações que sabemos quantas repetições serão feitas:
+
+texto = 'Python'
+novo_texto = ''
+
+for letra in texto:
+    novo_texto += f'*{letra}'
+    print(letra)
+print(novo_texto + '*')
+```
+
+for por baixo dos panos:
+```
+# for letra in texto:
+texto = 'Luiz'  # iterável
+iteratador = iter(texto)  # iterator
+
+# Como funciona o for por baixo dos panos:
+while True:
+    try:
+        letra = next(iteratador)
+        print(letra)
+    except StopIteration:
+        break
+
+# Como fica o for final:
+for letra in texto:
+    print(letra)
+```
+
+For + Range
+```
+numeros = range(0, 100, 8)
+for numero in numeros:
+    print(numero)
+```
+
+Controle de fluxo no for
+```
+for i in range(10):
+    if i == 2:
+        print('i é 2, pulando...')
+        continue
+
+    if i == 8:
+        print('i é 8, seu else não executará')
+        break
+
+    for j in range(1, 3):
+        print(i, j)
+else:
+    print('For completo com sucesso!')
+```
+
+Listas em Python:
+```
+# Pode ter vários tipos diferente na mesma lista:
+#        0    1      2              3    4
+#       -5   -4     -3             -2   -1
+lista = [123, True, 'Luiz Otávio',  1.2, []]
+lista[-3] = 'Maria'
+print(lista)
+print(lista[2], type(lista[2]))
+
+print(bool([]))  # falsy
+print(lista, type(lista))
+```
+
+Removendo, inserindo e concatenando listas
+```
+# É possível alterar facilmente as listas se necessário:
+lista2 = [10, 20, 30, 40]
+numero = [lista2[2]]
+print(numero)
+
+lista2[2] = 300
+print(lista2[2])
+print(lista2)
+
+#  Adcionando valores na lista:
+lista2.append(50)
+lista2.append(60)
+print(lista2)
+
+
+#  Removendo valores na lista:
+lista2.append(50)
+lista2.append(60)
+lista2.pop() # Remove o último item da lista
+lista2.append(70)
+lista2.append(80)
+print(lista2)
+ultimo_valor = lista2.pop()
+print (lista2, 'Removido:', ultimo_valor)
+
+#  Removendo valores específicos na lista:
+lista2.pop(2)
+print(lista2)
+
+# Deletando itens da lista:
+del lista2[-1]
+print(lista2)
+
+#inserindo valores na lista:
+lista2.insert(0, 'MM')
+print(lista2)
+
+# Limpando a lista:
+lista2.clear()
+print(lista2)
+
+# Concatenando listas:
+lista_a = [1,2,3]
+lista_b = [4,5,6]
+lista_c = lista_a + lista_b
+lista_d = lista_a.extend(lista_b) # Modifica diretamente a lista_a
+print(lista_c)
+print(lista_d) # Não retorna nada por ter modificado a lista_a
+print(lista_a) #lista_a modificadas
+```
+
+Cuidados com dados mutáveis:
+```
+= - copiado o valor (imutáveis)
+= - aponta para o mesmo valor na memória (mutável)
+"""
+lista_a = ['Luiz', 'Maria', 1, True, 1.2]
+lista_b = lista_a.copy() # Criando uma nova lista, mas com os mesmos itens
+
+lista_a[0] = 'Qualquer coisa' # Modificar a lista_a não vai alterar nada na lista_b
+print(lista_a)
+print(lista_b)
+```
+
+For in com listas:
+```
+lista = ['Maria', 'Helena', 'Luiz']
+
+for nome in lista:
+    print(nome, type(nome))
+```
+
+Exercício: índices e adição em lista:
+```
+# Solução do professor:
+lista = ['Maria', 'Helena', 'Luiz']
+lista.append('João')
+
+indices = range(len(lista))
+
+for indice in indices:
+    print(indice, lista[indice], type(lista[indice]))
+```
