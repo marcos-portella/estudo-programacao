@@ -1138,15 +1138,11 @@ print(novo_nome)
 
 
 ## Dia 13
-### Tópicos:
-- while/else
-- laços
-- manipulação de strings
-- calculadora simples
-- jogo de adivinhação
-- for
-- iteradores
-- listas
+Hoje exploramos o uso avançado dos laços while e for, incluindo a estrutura while/else. 
+
+Vimos uma calculadora simples que valida entrada do usuário, um jogo básico de adivinhação de palavra usando loops, e os conceitos de iteradores e iteráveis. 
+
+Também revisamos operações básicas e manipulação de listas em Python, bem como exercícios para reforçar índices e métodos de listas.
 
 
 While / else
@@ -1424,3 +1420,11 @@ indices = range(len(lista))
 for indice in indices:
     print(indice, lista[indice], type(lista[indice]))
 ```
+### Observações finais:
+- Estrutura while/else é pouco usada, mas útil para certos casos.
+
+- Sempre trate entradas do usuário para evitar erros.
+
+- A diferença entre mutável e imutável impacta diretamente como dados são manipulados na memória.
+
+- Entender o funcionamento interno do for com iteradores ajuda a compreender o controle de fluxo em Python.
