@@ -1428,3 +1428,236 @@ for indice in indices:
 - A diferença entre mutável e imutável impacta diretamente como dados são manipulados na memória.
 
 - Entender o funcionamento interno do for com iteradores ajuda a compreender o controle de fluxo em Python.
+
+
+
+Dia 14
+
+### Sumário:
+1. Enumerate e desempacotamento em loops;
+2. Imprecisão de ponto flutuante e decimal.Decimal;
+3. Manipulação de strings: split, strip e join;
+4. Introdução ao empacotamento e desempacotamento;
+5. Desempacotamento em chamadas de funções e métodos;
+6. Listas de listas e acesso por índice;
+7. Lista de compras interativa com tratamento de exceções;
+8. Comandos comuns do interpretador Python e The Zen of Python;
+
+### 1. 
+Enumerate e desempacotamento em loops:
+```
+# [(0, 'Maria'), (1, 'Helena'), (2, 'Luiz'), (3, 'João')]
+lista = ['Maria', 'Helena', 'Luiz']
+lista.append('João')
+```
+
+Desempacotando o enumerate:
+```
+for item in enumerate(lista):
+    indice, nome = item
+    print(indice, nome)
+
+
+# Desta forma fica mais legível:
+for indice, nome in enumerate(lista):
+    print(indice, nome, lista[indice])
+
+
+# Refazendo o anterior, mas detalhando mais ou menos o que acontece:
+for tupla_enumerada in enumerate(lista):
+    print('FOR da tupla:')
+    for valor in tupla_enumerada:
+        print(f'\t{valor}')
+```
+
+### 2. 
+Imprecisão de ponto flutuante e decimal.Decimal:
+```
+Double-precision floating-point format IEEE 754
+https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+https://docs.python.org/pt-br/3/tutorial/floatingpoint.html
+"""
+import decimal
+
+numero_1 = decimal.Decimal('0.1')
+numero_2 = decimal.Decimal('0.7')
+numero_3 = numero_1 + numero_2
+print(numero_3)
+print(f'{numero_3:.2f}') # Retorna str
+print(round(numero_3, 2)) # Retorna float
+```
+
+### 3. 
+Manipulação de strings: split, strip e join:
+```
+"""
+split, strip e join com list e str
+split - divide uma string (list)
+join - une uma string
+"""
+frase = '   Olha só que   , coisa interessante          '
+lista_frases_cruas = frase.split(',')
+
+lista_frases = []
+for i, frase in enumerate(lista_frases_cruas):
+    lista_frases.append(lista_frases_cruas[i].strip()) # .strip() corta os espaços da str
+
+print(lista_frases_cruas)
+print(lista_frases)
+frases_unidas = ', '.join(lista_frases) # Unir novamente a lista em uma str
+print(frases_unidas)
+```
+
+### 4. 
+Introdução ao empacotamento e desempacotamento:
+```
+# Adiciona uma variável para cada valor da lista:
+nome1, nome2, nome3 = nome =['Maria', 'Helena', 'Luiz']
+print(nome3)
+
+# a variável "resto" está pegando o que sobrou da minha lista:
+_, _, nome7, *resto = ['Maria', 'Helena', 'Luiz', 'Marcos', 'Pedro']
+print(nome7)
+
+# O "_" pode ser usado em  variáveis que não serão utilizadas:
+_, _, nome, *_ = ['Maria', 'Helena', 'Luiz', 'Marcos', 'Pedro']
+
+# tuples são listas imutáveis:
+lista = 'Marcos', 'Gomes', 'Portella' # Pode ser sem parênteses 
+lista = ('Marcos', 'Gomes', 'Portella') # Pode ser com parênteses
+tuple(_) # Pode transformar listas em tuples
+list(_) # Pode transformar tuples em listas
+```
+
+### 5. 
+Desempacotamento em chamadas de funções e métodos:
+```
+string = 'ABCD'
+lista = ['Maria', 'Helena', 1, 2, 3, 'Eduarda']
+tupla = 'Python', 'é', 'legal'
+salas = [
+    # 0        1
+    ['Maria', 'Helena', ],  # 0
+    # 0
+    ['Elaine', ],  # 1
+    # 0       1       2
+    ['Luiz', 'João', 'Eduarda', ],  # 2
+]
+
+p, b, *_, ap, u = lista
+print(p, u, ap) # Desempacotando tudo, mas exibindo valores específicos
+
+print('Maria', 'Helena', 1, 2, 3, 'Eduarda')
+print(*lista) # Desempacotando sem for
+print(*string)
+print(*tupla)
+
+print(*salas, sep='\n')
+```
+
+### 6. 
+Listas de listas e acesso por índice:
+```
+salas = [
+    # 0        1
+    ['Maria', 'Helena', ],  # 0
+    # 0
+    ['Elaine', ],  # 1
+    # 0       1       2
+    ['Luiz', 'João', 'Eduarda', ],  # 2
+]
+
+print(salas[1][0])
+print(salas[0][1])
+print(salas[2][2])
+print(salas[1][0][2])
+
+for numero, sala in enumerate(salas):
+    print(f'Na sala {numero + 1} temos os alunos:')
+    for aluno in sala:
+        print(aluno)
+```
+
+### 7. 
+Exercício de lista de compras interativa com tratamento de exceções:
+```
+"""
+Faça uma lista de comprar com listas
+O usuário deve ter a possibilidade de
+inserir, apagar e listar valores da sua lista
+Não permita que o programa quebre com 
+erros de índices inexistentes na lista.
+"""
+
+# Solução do professor:
+import os
+
+lista = []
+
+while True:
+    print('Selecione uma opção')
+    opcao = input('[i]nserir [a]pagar [l]istar: ')
+
+    if opcao == 'i':
+        os.system('clear')
+        valor = input('Valor: ')
+        lista.append(valor)
+    elif opcao == 'a':
+        indice_str = input(
+            'Escolha o índice para apagar: '
+        )
+
+        try:
+            indice = int(indice_str)
+            del lista[indice]
+        except ValueError:
+            print('Por favor digite número int.')
+        except IndexError:
+            print('Índice não existe na lista')
+        except Exception:
+            print('Erro desconhecido')
+    elif opcao == 'l':
+        os.system('clear')
+
+        if len(lista) == 0:
+            print('Nada para listar')
+
+        for i, valor in enumerate(lista):
+            print(i, valor)
+    else:
+        print('Por favor, escolha i, a ou l.')
+```
+
+### 8. 
+Comandos comuns do interpretador Python e The Zen of Python:
+```
+Interpretador do Python mais comuns
+
+python mod.py (executa o mod)
+python -u (unbuffered)
+python -m mod (lib mod como script)
+python -c 'cmd' (comando)
+python -i mod.py (interativo com mod)
+```
+
+The Zen of Python, por Tim Peters
+
+Bonito é melhor que feio.
+Explícito é melhor que implícito.
+Simples é melhor que complexo.
+Complexo é melhor que complicado.
+Plano é melhor que aglomerado.
+Esparso é melhor que denso.
+Legibilidade conta.
+Casos especiais não são especiais o bastante para quebrar as regras.
+Embora a praticidade vença a pureza.
+Erros nunca devem passar silenciosamente.
+A menos que sejam explicitamente silenciados.
+Diante da ambiguidade, recuse a tentação de adivinhar.
+Deve haver um -- e só um -- modo óbvio para fazer algo.
+Embora esse modo possa não ser óbvio à primeira vista a menos que você seja holandês.
+Agora é melhor que nunca.
+Embora nunca frequentemente seja melhor que *exatamente* agora.
+Se a implementação é difícil de explicar, é uma má ideia.
+Se a implementação é fácil de explicar, pode ser uma boa ideia.
+Namespaces são uma grande ideia -- vamos fazer mais dessas!
