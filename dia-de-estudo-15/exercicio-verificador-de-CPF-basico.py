@@ -25,6 +25,11 @@ O primeiro dígito do CPF é 7
 """
 
 
+# Eu poderia ter diminuido o código fundindo várias partes deles
+# em apenas uma linhas, mas fiz deste modo para ficar mais óbvio 
+# o que está acontecendo no código, mesmo que tendo que repetir 
+# em algumas partes
+
 import os
 cpf_guardado = '746.824.890-70'
 digito_1_guardado = (f'{cpf_guardado[-2]}')

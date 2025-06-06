@@ -1711,7 +1711,7 @@ print('Valor' if False else 'Outro valor' if False else 'Fim')
 ### 2. Cálculo dos Dígitos do CPF (Validação):
 
 Este código valida um CPF baseado no cálculo dos dois dígitos verificadores finais.
-Eu poderia ter diminuido o código fundindo várias partes deles em apenas uma linhas, mas fiz deste modo para ficar mais óbvio o que está acontecendo no código, mesmo que tento que repetir em algumas partes
+Eu poderia ter diminuido o código fundindo várias partes deles em apenas uma linhas, mas fiz deste modo para ficar mais óbvio o que está acontecendo no código, mesmo que tendo que repetir em algumas partes
 
 ```
 import os
