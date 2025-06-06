@@ -1679,3 +1679,124 @@ Se a implementação é difícil de explicar, é uma má ideia.
 Se a implementação é fácil de explicar, pode ser uma boa ideia.
 
 Namespaces são uma grande ideia -- vamos fazer mais dessas!
+
+
+## Dia 15
+
+1. Operação Ternária
+2. Cálculo dos Dígitos do CPF (Validação)
+
+
+
+### 1. Operação Ternária
+
+A operação ternária é uma forma reduzida de escrever condicionais:
+```
+condicao = 10 == 11
+variavel = 'Valor' if condicao else 'Outro valor'
+print(variavel)
+
+digito = 9  # > 9 = 0
+novo_digito = digito if digito <= 9 else 0
+print(novo_digito)
+
+digito = 8
+novo_digito = 0 if digito > 9 else digito
+print(novo_digito)
+
+print('Valor' if False else 'Outro valor' if False else 'Fim')
+```
+
+
+### 2. Cálculo dos Dígitos do CPF (Validação):
+
+Este código valida um CPF baseado no cálculo dos dois dígitos verificadores finais.
+Eu poderia ter diminuido o código fundindo várias partes deles em apenas uma linhas, mas fiz deste modo para ficar mais óbvio o que está acontecendo no código, mesmo que tento que repetir em algumas partes
+
+```
+import os
+cpf_guardado = '746.824.890-70'
+digito_1_guardado = (f'{cpf_guardado[-2]}')
+digito_2_guardado = (f'{cpf_guardado[-1]}')
+digito_1_guardado = int(digito_1_guardado)
+digito_2_guardado = int(digito_2_guardado)
+
+while True:
+    cpf_digitado = input('Digite seu CPF: ')
+    multiplicador = 11
+    digitos_cpf_digitado_somados = 0
+    os.system('clear')
+
+    if cpf_digitado == 'sair':
+        break
+
+    cpf_digitado_modificado = cpf_digitado.replace('.', '').replace('-','')
+    nove_digitos_cpf_digitado = (f'{cpf_digitado_modificado[:9]}')
+    ultimo_digito = (f'{cpf_digitado_modificado[-1]}')
+    ultimo_digito_int = int(ultimo_digito)
+
+    if  ultimo_digito_int == digito_2_guardado:
+        ...
+    else:
+        print('ERRO: CPF inválido.')
+        break
+
+    try:
+        cpf_digitado_modificado_int = int(cpf_digitado_modificado)
+    except ValueError:
+        print('Digite apenas números.')
+        break
+
+    for digito_atual_cpf_digitado in nove_digitos_cpf_digitado:
+        multiplicador -= 1
+        digito_atual_cpf_digitado_int = int(digito_atual_cpf_digitado)
+        digito_atual_cpf_digitado_mult = digito_atual_cpf_digitado_int * multiplicador
+        digitos_cpf_digitado_somados += digito_atual_cpf_digitado_mult
+    
+    digitos_cpf_digitado_somados_mult = digitos_cpf_digitado_somados * 10
+    digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult % 11
+
+    if digitos_cpf_digitado_somados_mult_resto > 9:
+        digitos_cpf_digitado_somados_mult_resto = 0
+    else:
+        digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult_resto
+
+    try:
+        if digitos_cpf_digitado_somados_mult_resto != digito_1_guardado:
+            print('ERRO: CPF inválido.')
+        elif digitos_cpf_digitado_somados_mult_resto == digito_1_guardado:
+            ...
+    except:
+        print('ERRO DESCONHECIDO')
+
+    multiplicador = 12
+    dez_digitos_cpf_digitado = (f'{cpf_digitado_modificado[:10]}')
+    digitos_cpf_digitado_somados = 0
+
+    for digito_atual_cpf_digitado in dez_digitos_cpf_digitado:
+        multiplicador -= 1
+        digito_atual_cpf_digitado_int = int(digito_atual_cpf_digitado)
+        digito_atual_cpf_digitado_mult = digito_atual_cpf_digitado_int * multiplicador
+        digitos_cpf_digitado_somados += digito_atual_cpf_digitado_mult
+    
+    digitos_cpf_digitado_somados_mult = digitos_cpf_digitado_somados * 10
+    digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult % 11
+
+    if digitos_cpf_digitado_somados_mult_resto > 9:
+        digitos_cpf_digitado_somados_mult_resto = 0
+    else:
+        digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult_resto
+    
+    try:
+        if digitos_cpf_digitado_somados_mult_resto != digito_2_guardado:
+            print('ERRO: CPF inválido.')
+        elif digitos_cpf_digitado_somados_mult_resto == digito_2_guardado:
+            print('CPF válido')
+    except:
+        print('ERRO DESCONHECIDO')
+```
+
+### Observações Finais:
+- A operação ternária é útil para expressar condições simples de forma compacta.
+- A validação de CPF envolve multiplicações por pesos decrescentes e operações com módulo 11.
+- Importante usar try/except para proteger o código contra entradas inválidas do usuário.
