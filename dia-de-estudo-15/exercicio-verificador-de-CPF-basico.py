@@ -31,7 +31,9 @@ O primeiro dígito do CPF é 7
 # em algumas partes
 
 import os
+
 cpf = '746.824.890-70'
+
 digit1 = (f'{cpf[-2]}')
 digit2 = (f'{cpf[-1]}')
 digit1 = int(digit1)

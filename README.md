@@ -1715,82 +1715,78 @@ Eu poderia ter diminuido o código fundindo várias partes deles em apenas uma l
 
 ```
 import os
-cpf_guardado = '746.824.890-70'
-digito_1_guardado = (f'{cpf_guardado[-2]}')
-digito_2_guardado = (f'{cpf_guardado[-1]}')
-digito_1_guardado = int(digito_1_guardado)
-digito_2_guardado = int(digito_2_guardado)
+
+cpf = '746.824.890-70'
+
+digit1 = (f'{cpf[-2]}')
+digit2 = (f'{cpf[-1]}')
+digit1 = int(digit1)
+digit2 = int(digit2)
 
 while True:
-    cpf_digitado = input('Digite seu CPF: ')
-    multiplicador = 11
-    digitos_cpf_digitado_somados = 0
+    cpf_typed = input('Digite seu CPF: ')
+    multiplier = 11
+    digit_added = 0
     os.system('clear')
 
-    if cpf_digitado == 'sair':
+    if cpf_typed == 'sair':
         break
 
-    cpf_digitado_modificado = cpf_digitado.replace('.', '').replace('-','')
-    nove_digitos_cpf_digitado = (f'{cpf_digitado_modificado[:9]}')
-    ultimo_digito = (f'{cpf_digitado_modificado[-1]}')
-    ultimo_digito_int = int(ultimo_digito)
+    cpf_modified = cpf_typed.replace('.', '').replace('-','')
+    nine_digit = (f'{cpf_modified[:9]}')
+    last_digit = (f'{cpf_modified[-1]}')
+    last_digit_i = int(last_digit)
 
-    if  ultimo_digito_int == digito_2_guardado:
+    if  last_digit_i == digit2:
         ...
     else:
         print('ERRO: CPF inválido.')
         break
 
     try:
-        cpf_digitado_modificado_int = int(cpf_digitado_modificado)
+        cpf_modified_i = int(cpf_modified)
     except ValueError:
         print('Digite apenas números.')
         break
 
-    for digito_atual_cpf_digitado in nove_digitos_cpf_digitado:
-        multiplicador -= 1
-        digito_atual_cpf_digitado_int = int(digito_atual_cpf_digitado)
-        digito_atual_cpf_digitado_mult = digito_atual_cpf_digitado_int * multiplicador
-        digitos_cpf_digitado_somados += digito_atual_cpf_digitado_mult
-    
-    digitos_cpf_digitado_somados_mult = digitos_cpf_digitado_somados * 10
-    digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult % 11
+    for cpf_typed_digit in nine_digit:
+        multiplier -= 1
+        digit_added += int(cpf_typed_digit) * multiplier
 
-    if digitos_cpf_digitado_somados_mult_resto > 9:
-        digitos_cpf_digitado_somados_mult_resto = 0
+    cpf_typed_rest = (digit_added * 10) % 11
+
+    if cpf_typed_rest > 9:
+        cpf_typed_rest = 0
     else:
-        digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult_resto
+        cpf_typed_rest = cpf_typed_rest
 
     try:
-        if digitos_cpf_digitado_somados_mult_resto != digito_1_guardado:
+        if cpf_typed_rest != digit1:
             print('ERRO: CPF inválido.')
-        elif digitos_cpf_digitado_somados_mult_resto == digito_1_guardado:
+        elif cpf_typed_rest == digit1:
             ...
     except:
         print('ERRO DESCONHECIDO')
 
-    multiplicador = 12
-    dez_digitos_cpf_digitado = (f'{cpf_digitado_modificado[:10]}')
-    digitos_cpf_digitado_somados = 0
+    multiplier = 12
+    ten_digits = (f'{cpf_modified[:10]}')
+    digit_added = 0
 
-    for digito_atual_cpf_digitado in dez_digitos_cpf_digitado:
-        multiplicador -= 1
-        digito_atual_cpf_digitado_int = int(digito_atual_cpf_digitado)
-        digito_atual_cpf_digitado_mult = digito_atual_cpf_digitado_int * multiplicador
-        digitos_cpf_digitado_somados += digito_atual_cpf_digitado_mult
+    for cpf_typed_digit in ten_digits:
+        multiplier -= 1
+        digit_added += int(cpf_typed_digit) * multiplier
     
-    digitos_cpf_digitado_somados_mult = digitos_cpf_digitado_somados * 10
-    digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult % 11
+    cpf_typed_rest = digit_added * 10 % 11
 
-    if digitos_cpf_digitado_somados_mult_resto > 9:
-        digitos_cpf_digitado_somados_mult_resto = 0
+    if cpf_typed_rest > 9:
+        cpf_typed_rest = 0
     else:
-        digitos_cpf_digitado_somados_mult_resto = digitos_cpf_digitado_somados_mult_resto
+        cpf_typed_rest = cpf_typed_rest
     
     try:
-        if digitos_cpf_digitado_somados_mult_resto != digito_2_guardado:
+        if cpf_typed_rest != digit2:
             print('ERRO: CPF inválido.')
-        elif digitos_cpf_digitado_somados_mult_resto == digito_2_guardado:
+        elif cpf_typed_rest == digit2:
             print('CPF válido')
     except:
         print('ERRO DESCONHECIDO')
