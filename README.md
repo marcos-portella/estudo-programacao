@@ -1796,3 +1796,229 @@ while True:
 - A operação ternária é útil para expressar condições simples de forma compacta.
 - A validação de CPF envolve multiplicações por pesos decrescentes e operações com módulo 11.
 - Importante usar try/except para proteger o código contra entradas inválidas do usuário.
+
+
+
+## Dia 16
+
+### Resumo:
+
+Hoje, aprendi a criar funções com parâmetros e valores padrão.
+Entendi como funciona o escopo local e global das variáveis,
+e a usar o comando return para devolver resultados.
+
+Explorei o uso de argumentos variáveis com *args, que me permitem
+passar múltiplos valores para uma função. Também conheci funções
+de ordem superior, que podem receber ou retornar outras funções.
+
+Aprendi sobre argumentos nomeados, closures (funções que retornam funções)
+e fiz exercícios práticos para multiplicar números, verificar se um número
+é par ou ímpar, e criar multiplicadores personalizados.
+
+Esses conceitos me ajudam a escrever códigos mais modulares,
+reutilizáveis e expressivos em Python.
+
+
+### Conteúdo:
+1. Introdução às funções (def) em Python
+2. Escopo de funções em Python
+3. Retorno de valores das funções (return)
+4. Valores padrão para parâmetros
+5. args - Argumentos não nomeados (*args)
+6. Exercícios com funções (multiplicação e par/impar)
+7. Higher Order Functions (funções que recebem funções)
+8. Argumentos nomeados e não nomeados em funções
+9. Closure e funções que retornam outras funções
+10. Exercícios com funções que retornam funções (multiplicadores)
+
+
+1. Introdução às funções (def) em Python:
+```
+def saudacao(nome= 'Sem nome'):
+    print(f'Olá {nome}')
+
+saudacao('Luiz Otávio')
+saudacao()
+```
+
+2. Escopo de funções em Python:
+```
+x = 1
+
+def escopo(va):
+    x = 10
+    print(x)
+    print(va)
+    def outra_funcao():
+        x = 11
+        y = 2
+        print(x, y)
+
+    outra_funcao()
+    print(x)
+
+
+print(x)
+escopo(x)
+print(x)
+```
+
+3. Retorno de valores das funções (return):
+```
+def soma(x, y):
+    if x > 10:
+        return [10, 20]
+    return x + y
+
+soma1 = soma(2, 2)
+soma2 = soma(3, 3)
+print(soma1)
+print(soma2)
+print(soma(11, 55))
+```
+
+4. Valores padrão para parâmetros:
+```
+def soma(x, y, z=None):
+    if z is not None:
+        print(f'{x=} {y=} {z=}', x + y + z)
+    else:
+        print(f'{x=} {y=}', x + y)
+
+
+soma(1, 2)
+soma(3, 5)
+soma(100, 200)
+soma(7, 9, 0)
+soma(y=9, z=0, x=7)
+```
+
+5. args - Argumentos não nomeados (*args):
+```
+x, y, *resto = 1, 2, 3, 4
+print(x, y, resto)
+
+def soma(*args):
+    total = 0
+    for numero in args:
+        total += numero
+    return total
+
+soma_1_2_3 = soma(1, 2, 3)
+print(soma_1_2_3)
+
+numeros = 1, 2, 3, 4, 5, 6, 7, 78, 10
+outra_soma = soma(*numeros)
+print(outra_soma)
+
+print(sum(numeros))
+```
+
+6. Exercícios com funções:
+```
+# Crie uma função que multiplica todos os argumentos
+# não nomeados recebidos
+# Retorne o total para uma variável e mostre o valor
+# da variável.
+
+
+def mult(*args):
+    result = 1
+    for number in args:
+        result *= number
+    return result
+
+total = (mult(1, 2, 3, 4, 5))
+print(total)
+
+
+# Exercício 2 Solução do professor:
+# Crie uma função fala se um número é par ou ímpar.
+# Retorne se o número é par ou ímpar.
+
+def par_impar(numero):
+    multiplo_de_dois = numero % 2 == 0
+
+    if multiplo_de_dois:
+        return f'{numero} é par'
+    return f'{numero} é ímpar'
+
+
+outro_par_impar = par_impar
+dois_e_par = outro_par_impar(2)
+print(dois_e_par)
+
+print(par_impar(3))
+
+print(par_impar is outro_par_impar)
+```
+
+7. Higher Order Functions:
+```
+def saudacao(msg, nome):
+    return f'{msg}, {nome}!'
+
+def executa(funcao, *args):
+    return funcao(*args)
+
+print(
+    executa(saudacao, 'Bom dia', 'Luiz')
+)
+print(
+    executa(saudacao, 'Boa noite', 'Maria')
+)
+```
+
+8. Argumentos nomeados e não nomeados em funções Python:
+```
+def soma(x, y, z):
+    # Definição
+    print(f'{x=} y={y} {z=}', '|', 'x + y + z = ', x + y + z)
+
+soma(1, 2, 3)
+soma(1, y=2, z=5)
+
+print(1, 2, 3, sep='-')
+```
+
+9. Closure e funções que retornam outras funções:
+```
+def criar_saudacao(saudacao):
+    def saudar(nome):
+        return f'{saudacao}, {nome}!'
+    return saudar
+
+falar_bom_dia = criar_saudacao('Bom dia')
+falar_boa_noite = criar_saudacao('Boa noite')
+
+for nome in ['Maria', 'Joana', 'Luiz']:
+    print(falar_bom_dia(nome))
+    print(falar_boa_noite(nome))
+```
+
+10. Exercícios com funções que retornam funções (multiplicadores):
+```
+total = 1
+
+def multiplier(mult):
+    def number(number):
+        return number * mult 
+    return number
+
+duplicate = multiplier(2)
+triple = multiplier(3)
+quadruple = multiplier(4)
+
+print(duplicate(5))
+print(triple(5))
+print(quadruple(5))
+```
+
+### Observações finais:
+- Funções em Python são blocos reutilizáveis de código que podem receber parâmetros e retornar valores.
+- O escopo de variáveis pode ser local (dentro da função) ou global (fora da função).
+- O uso de valores padrão nos parâmetros facilita a chamada das funções.
+- *args permite passar número variável de argumentos não nomeados.
+- Funções podem ser passadas como argumentos e retornadas, permitindo programação funcional e uso de closures.
+- Entender closures é essencial para criar funções dinâmicas e personalizadas.
+- Exercitar funções com argumentos variáveis e funções retornando funções ajuda a consolidar conceitos avançados.
