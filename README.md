@@ -2094,6 +2094,8 @@ Em seguida, conheci os sets, estruturas que armazenam apenas valores únicos. Ap
 
 ### Dia 18
 
+### Prefácio:
+
 Hoje aprendi bastante sobre compreensões de listas, dicionários e conjuntos, que são formas práticas e elegantes de criar coleções em Python. Vi como usar funções lambda para criar funções rápidas e anônimas, e como usá-las para ordenar listas de dicionários. Também explorei funções que recebem outras funções como argumento, entendendo melhor o conceito de funções de ordem superior.
 
 Estudei o empacotamento e desempacotamento de dicionários, além de entender como passar argumentos nomeados usando **kwargs. Reforcei o uso do isinstance para verificar tipos de dados, e aprendi sobre valores "truthy" e "falsy", que são importantes para entender como Python avalia condições.
