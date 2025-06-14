@@ -1,4 +1,10 @@
 .vscode/
+
 __pycache__/
+*.py[cod]
 
+*.log
+*.tmp
 
+venv/
+env/
