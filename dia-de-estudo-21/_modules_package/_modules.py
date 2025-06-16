@@ -1,10 +1,10 @@
 def type_int_float(func):
-    def internal(*args, **kwargs):
+    def iner(*args, **kwargs):
         for arg in args:
             e_int_float(arg)
         resultado = func(*args, **kwargs)
         return resultado
-    return internal
+    return iner
 
 def e_int_float(param):
     if not isinstance(param, int|float):
