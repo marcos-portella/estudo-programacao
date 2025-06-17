@@ -2653,3 +2653,160 @@ def divide(n, d):
 
 print(divide(8, '0'))
 ```
+
+
+## Dia 21
+
+### Prefácio
+
+No dia 21, mergulhei em recursos mais avançados e elegantes da linguagem Python. Este estudo teve como foco a composição e transformação de funções, a organização do código com decoradores e modularização, além do uso de ferramentas poderosas como `itertools` e `copy`. Foi um dia dedicado a entender como escrever código mais expressivo, reutilizável e robusto.
+
+### Manipulação de Listas com `zip` e `zip_longest`:
+
+Comecei com a união de listas usando `zip`, que combina os elementos de duas listas na mesma posição.
+
+```
+zip([1, 2, 3], [4, 5, 6]) → [(1, 4), (2, 5), (3, 6)]
+```
+
+Usei também `zip_longest`, do módulo `itertools`, que permite combinar listas de tamanhos diferentes preenchendo com um valor padrão.
+
+```
+zip_longest(['a', 'b'], [1], fillvalue='X') → [('a', 1), ('b', 'X')]
+```
+
+### Variáveis Livres e `nonlocal`:
+
+Estudei o conceito de variáveis livres, que são capturadas por funções aninhadas. Com `nonlocal`, consigo modificar o valor de uma variável de escopo externo (mas não global), preservando o estado entre chamadas.
+
+```
+def contador():
+    total = 0
+    def interno():
+        nonlocal total
+        total += 1
+        return total
+    return interno
+
+c = contador()
+c() → 1
+c() → 2
+```
+
+### Funções Decoradoras:
+
+Aprendi a criar decoradores, que são funções que modificam o comportamento de outras funções. Servem para adicionar funcionalidades de forma elegante e reutilizável.
+
+```
+def decorador(func):
+    def wrapper(*args):
+        print("Antes")
+        resultado = func(*args)
+        print("Depois")
+        return resultado
+    return wrapper
+```
+
+Apliquei decoradores com a sintaxe ``@decorador``, o chamado açúcar sintático.
+
+```
+@decorador
+def saudacao(nome):
+    return f"Olá, {nome}"
+```
+
+### Decoradores com Parâmetros:
+
+Vi que é possível criar decoradores que recebem argumentos próprios, criando uma "fábrica de decoradores".
+
+```
+def com_prefixo(texto):
+    def decorador(func):
+        def wrapper(*args):
+            return f"{texto} {func(*args)}"
+        return wrapper
+    return decorador
+
+@com_prefixo(">>")
+def saudacao(nome):
+    return f"Olá, {nome}"
+```
+
+### Ordem de Execução de Decoradores:
+
+Quando usamos múltiplos decoradores empilhados, o Python executa de baixo para cima. Isso significa que o decorador mais próximo da função é executado primeiro.
+
+```
+@A
+@B
+def func(): pass
+
+# A ordem é: func → B(func) → A(B(func))
+```
+
+### Criação de Funções Parcialmente Aplicadas:
+
+Usei funções para criar outras funções com parte dos argumentos já definidos, um conceito inspirado em programação funcional.
+
+```
+def multiplicar_por(x):
+    def resultado(y):
+        return x * y
+    return resultado
+
+dobro = multiplicar_por(2)
+dobro(5) → 10
+```
+
+### Validação com Decoradores:
+
+Implementei decoradores para validar os argumentos passados a uma função. Por exemplo, rejeitar valores que não sejam ``int`` ou ``float``.
+
+```
+def somente_numeros(func):
+    def wrapper(*args):
+        for arg in args:
+            if not isinstance(arg, (int, float)):
+                raise TypeError("Apenas números permitidos")
+        return func(*args)
+    return wrapper
+```
+
+### ``itertools.count`` como contador infinito:
+
+Usei o ``count`` da biblioteca ``itertools`` para criar um contador infinito controlável por condição:
+
+```
+from itertools import count
+
+for i in count(start=0, step=2):
+    if i > 10:
+        break
+    print(i)  # 0, 2, 4, 6, 8, 10
+
+```
+
+### Cópia Profunda e Ordenação de Dicionários:
+
+Usei ``copy.deepcopy`` para modificar estruturas de dados sem afetar o original, ideal para listas de dicionários.
+````
+import copy
+novo = copy.deepcopy(lista_original)
+````
+
+Ordenei listas de dicionários com ``sorted``, usando ``lambda`` como chave:
+
+````
+sorted(produtos, key=lambda p: p['preco'])
+````
+
+### Uso de ``__init__.py``:
+
+Vi que o arquivo especial ``__init__.py`` dentro de uma pasta permite que ela seja tratada como um pacote Python, podendo assim importar funções ou objetos diretamente dela com:
+
+````
+from minha_pasta import minha_funcao
+````
+
+### Considerações Finais
+O estudo de hoje foi essencial para me preparar para um código mais modular, reutilizável e seguro. Aprendi a manipular funções como objetos, controlar escopos internos com ``nonlocal``, e tornar minha lógica mais flexível com decoradores — inclusive com parâmetros. Ferramentas como ``zip``, ``itertools``, ``copy`` e a estruturação com ``__init__.py`` aumentam muito a capacidade de escrever código Python mais limpo, organizado e profissional.
