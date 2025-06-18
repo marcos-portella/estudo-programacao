@@ -2813,3 +2813,150 @@ from minha_pasta import minha_funcao
 
 ### Considerações Finais
 O estudo de hoje foi essencial para me preparar para um código mais modular, reutilizável e seguro. Aprendi a manipular funções como objetos, controlar escopos internos com ``nonlocal``, e tornar minha lógica mais flexível com decoradores — inclusive com parâmetros. Ferramentas como ``zip``, ``itertools``, ``copy`` e a estruturação com ``__init__.py`` aumentam muito a capacidade de escrever código Python mais limpo, organizado e profissional.
+
+
+
+## Dia 22
+
+### Prefácio:
+
+Neste resumo, exploraremos conceitos fundamentais e avançados da linguagem Python, com ênfase em funções recursivas, ferramentas funcionais, itertools e ambientes virtuais. Cada tópico é abordado com explicações claras e pequenos exemplos para consolidar a compreensão.
+
+### Sumário:
+
+1. Funções Recursivas
+2. Funções Funcionais: map, partial, reduce, filter
+3. Itertools: combinations, permutations, product, groupby
+4. Ambientes Virtuais e pip
+5. Considerações Finais
+
+## 1. Funções Recursivas:
+
+Recursão é uma técnica em que uma função se chama a si mesma para resolver problemas menores de um problema maior. Uma função recursiva precisa de:
+
+- Um caso base (que para a recursão)
+- Um caso recursivo (que continua a chamada)
+
+Exemplo:
+```
+# Contagem de 0 até fim
+def recursiva(inicio, fim):
+    print(inicio)
+    if inicio >= fim:
+        return fim
+    return recursiva(inicio + 1, fim)
+
+recursiva(0, 4)
+```
+
+Outro exemplo clássico é o fatorial:
+
+```
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))  # 120
+```
+
+### 2. Funções Funcionais:
+
+- `map` aplica uma função a cada item de um iterável:
+```
+print(list(map(lambda x: x * 2, [1, 2, 3])))  # [2, 4, 6]
+```
+
+- `partial` fixa argumentos de uma função:
+```
+from functools import partial
+
+def aumentar(valor, taxa):
+    return valor * taxa
+
+aumentar10 = partial(aumentar, taxa=1.1)
+print(aumentar10(100))  # 110.0
+```
+
+- `reduce` reduz um iterável a um único valor:
+```
+from functools import reduce
+
+numeros = [1, 2, 3, 4]
+soma = reduce(lambda acc, x: acc + x, numeros, 0)
+print(soma)  # 10
+```
+
+- `filter` filtra elementos com base em uma condição:
+
+```
+numeros = [10, 20, 5, 8]
+maiores = filter(lambda x: x > 10, numeros)
+print(list(maiores))  # [20]
+```
+
+### 3. Itertools:
+
+- `combinations`: gera combinações sem importar a ordem:
+
+```
+from itertools import combinations
+print(list(combinations(['A', 'B', 'C'], 2)))  # [('A', 'B'), ('A', 'C'), ('B', 'C')]
+```
+
+- `permutations`: considera a ordem:
+
+```
+from itertools import permutations
+print(list(permutations(['A', 'B'], 2)))  # [('A', 'B'), ('B', 'A')]
+```
+
+- `product`: produto cartesiano com repetição:
+
+```
+from itertools import product
+print(list(product([1, 2], repeat=2)))  # [(1, 1), (1, 2), (2, 1), (2, 2)]
+```
+
+- `groupby`: agrupa elementos semelhantes:
+
+```
+from itertools import groupby
+
+alunos = [
+    {'nome': 'Ana', 'nota': 'A'},
+    {'nome': 'Bia', 'nota': 'B'},
+    {'nome': 'Carlos', 'nota': 'A'}
+]
+
+alunos.sort(key=lambda x: x['nota'])
+grupo = groupby(alunos, key=lambda x: x['nota'])
+for chave, grupo_de_alunos in grupo:
+    print(chave, list(grupo_de_alunos))
+```
+
+### 4. Ambientes Virtuais e pip:
+
+Ambientes virtuais permitem isolar dependências de projetos Python, evitando conflitos entre bibliotecas.
+
+- Criar:
+```
+python -m venv venv
+```
+
+- Ativar (Windows Bash):
+```
+. nome_do_arquivo/Scripts/activate
+```
+
+- Usar pip:
+
+```
+pip install nome_pacote
+pip freeze > requirements.txt
+pip install -r requirements.txt
+```
+
+### 5. Considerações Finais:
+
+Este resumo abordou tópicos essenciais para quem deseja dominar Python em um nível mais funcional e profissional. O uso de recursão, funções como `map` e `filter`, e ferramentas como `itertools` permitem escrever código mais expressivo e eficiente. O gerenciamento com `venv` e `pip` é indispensável para projetos organizados.
