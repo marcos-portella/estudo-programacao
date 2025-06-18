@@ -2830,7 +2830,7 @@ Neste resumo, exploraremos conceitos fundamentais e avançados da linguagem Pyth
 4. Ambientes Virtuais e pip
 5. Considerações Finais
 
-## 1. Funções Recursivas:
+### 1. Funções Recursivas:
 
 Recursão é uma técnica em que uma função se chama a si mesma para resolver problemas menores de um problema maior. Uma função recursiva precisa de:
 
