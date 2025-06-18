@@ -9,7 +9,6 @@
 # ambiente virtual, mas os mais comuns são:
 # venv env .venv .env
 
-
 # Meu caminho python
 #/c/Users/marco/AppData/Local/Programs/Python/Python313/python
 
