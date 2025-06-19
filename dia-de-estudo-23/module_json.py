@@ -1,5 +1,6 @@
 import json
 
+
 # Vamos falar mais sobre o módulo json, mas:
 # json.dump = Gera um arquivo json
 # json.load
