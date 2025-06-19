@@ -2960,3 +2960,136 @@ pip install -r requirements.txt
 ### 5. Considerações Finais:
 
 Este resumo abordou tópicos essenciais para quem deseja dominar Python em um nível mais funcional e profissional. O uso de recursão, funções como `map` e `filter`, e ferramentas como `itertools` permitem escrever código mais expressivo e eficiente. O gerenciamento com `venv` e `pip` é indispensável para projetos organizados.
+
+
+## Dia 23
+
+### Prefácio:
+
+Hoje exploramos funcionalidades importantes para manipulação de arquivos, parâmetros de funções, controle de listas de tarefas e a serialização com JSON. Vários exemplos foram usados para mostrar práticas recomendadas, como uso de context manager, tratamento de parâmetros padrão mutáveis, entre outros.
+
+### Sumário:
+
+1. Manipulação de arquivos com `with open` e o módulo `os`;
+2. Parâmetros padrão mutáveis e boas práticas;
+3. Leitura e gravação de JSON com o módulo `json`;
+4. Lista de tarefas com desfazer e refazer;
+5. Persistência de tarefas com JSON;
+6. Parâmetros apenas posicionais e nomeados com `/` e `*`;
+
+### 1. Manipulação de arquivos com `with open` e o módulo `os`:
+
+Para manipular arquivos com segurança e sem precisar se preocupar em fechar manualmente, 
+utilizamos o `with open`.
+
+Exemplo:
+```
+with open('arquivo.txt', 'w+') as arquivo:
+    arquivo.write('Linha 1\n')
+    arquivo.seek(0)
+    print(arquivo.read())
+```
+Também vimos como:
+
+Usar os modos `'r'`, `'w'`, `'a'`, `'x'`, `'b'`, ```'t'`` e ``'+'``
+
+Apagar arquivos com ``os.remove`` ou ``os.unlink``
+
+Renomear com ``os.rename``
+
+### 2. Parâmetros padrão mutáveis e boas práticas:
+
+Evite usar listas ou dicionários como valores padrão diretamente nos parâmetros.
+
+Errado:
+
+````
+def func(lista=[]): ...
+````
+
+Correto:
+````
+def adiciona_clientes(nome, lista=None):
+    if lista is None:
+        lista = []
+    lista.append(nome)
+    return lista
+````
+
+### 3. Leitura e gravação de JSON com o módulo ``json``:
+
+Aprendemos a salvar e ler dicionários no formato JSON, útil para persistência de dados.
+
+Salvar:
+
+````
+with open('arquivo.json', 'w', encoding='utf8') as f:
+    json.dump(objeto, f, indent=2, ensure_ascii=False)
+````
+
+Carregar:
+
+````
+with open('arquivo.json', 'r', encoding='utf8') as f:
+    dados = json.load(f)
+````
+
+### 4. Lista de tarefas com desfazer e refazer:
+
+Criamos uma lista de tarefas com a habilidade de desfazer e refazer operações,
+usando duas listas: ``tarefas`` e ``tarefas_refazer``.
+
+Funções principais:
+
+- ``listar(tarefas)``;
+
+- ``desfazer(tarefas, tarefas_refazer)``;
+
+- ``refazer(tarefas, tarefas_refazer)``;
+
+- ``adicionar(tarefa, tarefas)``;
+
+### 5. Persistência de tarefas com JSON:
+
+A versão evoluída do sistema de tarefas salva e carrega automaticamente os dados
+em um arquivo JSON, mantendo as tarefas mesmo após o programa ser fechado.
+
+````
+def salvar(tarefas, caminho):
+    with open(caminho, 'w', encoding='utf8') as f:
+        json.dump(tarefas, f, indent=2, ensure_ascii=False)
+
+def ler(caminho):
+    try:
+        with open(caminho, 'r', encoding='utf8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+````
+
+### 6. Parâmetros apenas posicionais e nomeados com ``/`` e ``*``:
+
+Python permite forçar parâmetros a serem:
+
+- Apenas posicionais (``/``);
+
+- Apenas nomeados (``*``);
+
+Exemplo:
+
+````
+def soma(a, b, /, *, c, **kwargs):
+    print(a + b + c)
+
+soma(1, 2, c=3)
+````
+
+Tudo antes da ``/`` deve ser passado posicionalmente.
+Tudo depois de ``*`` deve ser passado como argumento nomeado.
+
+### Considerações Finais:
+
+Neste dia, revisitamos conceitos fundamentais com profundidade prática. O uso de arquivos,
+listas com controle de estado e estruturas como JSON nos dá mais poder para criar aplicações persistentes e seguras. 
+
+Além disso, aprendemos a tornar funções mais robustas com o uso adequado de parâmetros, reforçando a importância da clareza e previsibilidade no código Python.
