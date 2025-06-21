@@ -28,7 +28,6 @@ class Camera:
         print(f'{self.nome} está fotografando...')
     
 
-
 c1 = Camera('Canon')
 c2 = Camera('Sony')
 
