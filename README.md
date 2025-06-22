@@ -3104,7 +3104,7 @@ Esses conceitos são essenciais para construção de sistemas organizados, modul
 
 ### Sumário:
 1. Criando classes e instâncias;
-2. Métodos de instância e uso do self;
+2. Métodos de instância e uso do ``self``;
 3. Mantendo estados internos com atributos;
 4. Atributos de instância com ``__dict__`` e ``vars()``;
 5. Atributos de classe e valores compartilhados;
