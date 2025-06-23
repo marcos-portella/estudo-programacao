@@ -29,14 +29,14 @@ class engine:
     def __init__(self, name):
         self.name = name
 
-factory1 = factory('foice')
-factory2 = factory('coice')
+foice = factory('foice')
+coice = factory('coice')
 
-engine1 = engine('pole')
-engine2 = engine('castro')
+pole = engine('pole')
+castro = engine('castro')
 
-car1 = car.create_car('Gato', factory1, engine1)
-car2 = car.create_car('lingui', factory2, engine2)
+car1 = car.create_car('Gato', foice, pole)
+car2 = car.create_car('lingui', coice, castro)
 
 print(car1.name, car1.factory.name, car1.engine.name)
 print(car2.name, car2.factory.name, car2.engine.name)
