@@ -3360,11 +3360,11 @@ print(car1.name, car1.factory.name, car1.engine.name)
 
 ### 6.Diferenças entre method, classmethod e staticmethod:
 
-- *method:* recebe ``self`` (instância);
+- **method:** recebe ``self`` (instância);
 
-- *@classmethod:* recebe ``cls`` (classe);
+- **@classmethod:** recebe ``cls`` (classe);
 
-- *@staticmethod:* não recebe nada automaticamente;
+- **@staticmethod:** não recebe nada automaticamente;
 
 ````
 class Connection:
