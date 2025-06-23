@@ -3242,12 +3242,12 @@ salvar e carregar objetos com JSON prepara o terreno para aplicações mais robu
 ## Dia 25
 
 ### Prefácio:
-No dia 25 de estudos, aprofundamos nossos conhecimentos em Programação Orientada a Objetos com foco em boas práticas, encapsulamento, propriedades com @property, métodos de classe, estáticos e tipos de relacionamento entre classes, além de práticas aplicadas com exercícios. Foi um passo importante para escrever códigos mais robustos e profissionais.
+No dia 25 de estudos, aprofundamos nossos conhecimentos em Programação Orientada a Objetos com foco em boas práticas, encapsulamento, propriedades com ``@property``, métodos de classe, estáticos e tipos de relacionamento entre classes, além de práticas aplicadas com exercícios. Foi um passo importante para escrever códigos mais robustos e profissionais.
 
 ### Sumário:
 1. Encapsulamento: public, protected e private;
-2. @property e @setter: getters e setters pythônicos;
-3. @staticmethod: métodos estáticos;
+2. ``@property`` e @setter: getters e setters pythônicos;
+3. ``@staticmethod``: métodos estáticos;
 4. Relações entre classes: associação, agregação, composição;
 5. Exercício prático de composição (Carro, Motor, Fabricante);
 6. Diferenças entre method, classmethod e staticmethod;
@@ -3294,7 +3294,7 @@ class Caneta:
 
 ### 3. @staticmethod: métodos estáticos:
 
-Métodos estáticos não recebem self nem cls. São funções organizadas dentro de uma classe.
+Métodos estáticos não recebem ``self`` nem ``cls``. São funções organizadas dentro de uma classe.
 
 ````
 class Classe:
@@ -3334,7 +3334,7 @@ class Cliente:
 
 ### 5.Exercício prático de composição (Carro, Motor, Fabricante):
 
-Relacionamos classes com ``has-a`` (tem-um) utilizando atributos compostos:
+Relacionamos classes com has-a (tem-um) utilizando atributos compostos:
 
 ````
 class car:
@@ -3360,9 +3360,9 @@ print(car1.name, car1.factory.name, car1.engine.name)
 
 ### 6.Diferenças entre method, classmethod e staticmethod:
 
-- *method:* recebe self (instância);
+- *method:* recebe ``self`` (instância);
 
-- *@classmethod:* recebe cls (classe);
+- *@classmethod:* recebe ``cls`` (classe);
 
 - *@staticmethod:* não recebe nada automaticamente;
 
