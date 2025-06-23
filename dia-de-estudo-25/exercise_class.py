@@ -14,12 +14,6 @@ class car:
         self.factory = None
         self.engine = None
 
-    def set_factory(self, factory):
-        self.factory = factory
-
-    def set_engine(self, engine):
-        self.engine = engine
-
     @classmethod
     def create_car(cls, name,  factory, engine):
         car = cls(name)
