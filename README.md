@@ -3405,68 +3405,68 @@ Livro - Arquitetura Limpa by Robert C. Martim
 Capítulos do 1 ao 5:
 
 ### 1. Design vs Arquitetura:
-- Não há diferença real entre design e arquitetura
-- Arquitetura está associada a decisões de alto nível
-- Design está associado a detalhes de baixo nível
-- Exemplo: Na construção civil, o arquiteto define desde a forma da casa até a posição de tomadas e interruptores
-- No software: decisões de alto e baixo nível formam um todo contínuo
+- Não há diferença real entre design e arquitetura;
+- Arquitetura está associada a decisões de alto nível;
+- Design está associado a detalhes de baixo nível;
+- Exemplo: Na construção civil, o arquiteto define desde a forma da casa até a posição de tomadas e interruptores;
+- No software: decisões de alto e baixo nível formam um todo contínuo;
 
 ### 2. Objetivo da Arquitetura de Software:
-- Principal objetivo: Minimizar os recursos humanos necessários para construir e manter o sistema
-- Bom design: Facilita mudanças sem aumento exponencial de custos
-- Mau design: Custo de manutenção cresce a cada novo release
+- Principal objetivo: Minimizar os recursos humanos necessários para construir e manter o sistema;
+- Bom design: Facilita mudanças sem aumento exponencial de custos;
+- Mau design: Custo de manutenção cresce a cada novo release;
 
 ### 3. Estudo de Caso: O Problema da Bagunça no Código:
-- Crescimento da equipe não significa aumento de produtividade
-- Problema observado: Custo por linha de código aumentou 40 vezes entre o 1º e 8º release
-- Causa principal: Acúmulo de código mal estruturado
-- Consequência: Desenvolvedores gastam mais tempo corrigindo problemas do que adicionando funcionalidades
-- Gráficos mostram produtividade tendendo a zero com o tempo
+- Crescimento da equipe não significa aumento de produtividade;
+- Problema observado: Custo por linha de código aumentou 40 vezes entre o 1º e 8º release;
+- Causa principal: Acúmulo de código mal estruturado;
+- Consequência: Desenvolvedores gastam mais tempo corrigindo problemas do que adicionando funcionalidades;
+- Gráficos mostram produtividade tendendo a zero com o tempo;
 
 ### 4. O Erro da Mentalidade "Depois a Gente Limpa":
-- Mito comum: "Podemos escrever código rápido agora e arrumar depois"
-- Realidade: A bagunça raramente é corrigida posteriormente
+- Mito comum: "Podemos escrever código rápido agora e arrumar depois";
+- Realidade: A bagunça raramente é corrigida posteriormente;
 - Experimento com TDD:
-  * Dias usando Test-Driven Development foram 10% mais eficientes
-  * Até o dia mais lento com TDD foi mais rápido que o dia mais rápido sem TDD
-- Conclusão: Manter o código limpo desde o início é mais eficiente
+  * Dias usando Test-Driven Development foram 10% mais eficientes;
+  * Até o dia mais lento com TDD foi mais rápido que o dia mais rápido sem TDD;
+- Conclusão: Manter o código limpo desde o início é mais eficiente;
 
 ### 5. Os Dois Valores do Software:
-5.1 Comportamento (Funcionalidade)
-- O que o software deve fazer
-- Valor urgente, mas nem sempre o mais importante
-5.2 Arquitetura (Flexibilidade)
-- Facilidade de realizar mudanças
-- Valor importante, mas frequentemente negligenciado
-- Prioridade: Arquitetura > Comportamento
-- Argumento: Um sistema flexível pode ser adaptado para novos requisitos
+5.1 Comportamento (Funcionalidade):
+- O que o software deve fazer;
+- Valor urgente, mas nem sempre o mais importante;
+5.2 Arquitetura (Flexibilidade):
+- Facilidade de realizar mudanças;
+- Valor importante, mas frequentemente negligenciado;
+- Prioridade: Arquitetura > Comportamento;
+- Argumento: Um sistema flexível pode ser adaptado para novos requisitos;
 
 ### 6. Paradigmas de Programação:
-6.1 Programação Estruturada (Dijkstra, 1968)
-- Substitui GOTO por estruturas if/else e loops
-- Permite decomposição funcional
-- Base para testes eficazes
-6.2 Programação Orientada a Objetos (1966)
-- Baseada em: Encapsulamento, Herança e Polimorfismo
-- Principal vantagem: Inversão de dependência
-6.3 Programação Funcional (Cálculo-λ, 1930)
-- Princípio da imutabilidade
-- Disciplina na atribuição de valores
+6.1 Programação Estruturada (Dijkstra, 1968):
+- Substitui GOTO por estruturas if/else e loops;
+- Permite decomposição funcional;
+- Base para testes eficazes;
+6.2 Programação Orientada a Objetos (1966):
+- Baseada em: Encapsulamento, Herança e Polimorfismo;
+- Principal vantagem: Inversão de dependência;
+6.3 Programação Funcional (Cálculo-λ, 1930):
+- Princípio da imutabilidade;
+- Disciplina na atribuição de valores;
 
 ### 7. O Poder do Polimorfismo:
-- Permite inversão de dependência
+- Permite inversão de dependência;
 - Benefícios:
-  * Regras de negócio independentes de UI e banco de dados
-  * Implantação independente de componentes
-  * Desenvolvimento paralelo por diferentes equipes
+  * Regras de negócio independentes de UI e banco de dados;
+  * Implantação independente de componentes;
+  * Desenvolvimento paralelo por diferentes equipes;
 
 ### 8. Conclusões Principais:
-- Princípio fundamental: "A única maneira de seguir rápido é seguir bem"
+- Princípio fundamental: "A única maneira de seguir rápido é seguir bem";
 - Boa arquitetura permite:
-  * Manutenção sustentável
-  * Adaptação a mudanças
-  * Redução de custos a longo prazo
+  * Manutenção sustentável;
+  * Adaptação a mudanças;
+  * Redução de custos a longo prazo;
 - Recomendações:
-  * Evitar dívida técnica desde o início
-  * Adotar práticas como TDD
-  * Manter equilíbrio entre funcionalidade e estrutura
+  * Evitar dívida técnica desde o início;
+  * Adotar práticas como TDD;
+  * Manter equilíbrio entre funcionalidade e estrutura;
