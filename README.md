@@ -3427,35 +3427,48 @@ Capítulos do 1 ao 5:
 - Mito comum: "Podemos escrever código rápido agora e arrumar depois";
 - Realidade: A bagunça raramente é corrigida posteriormente;
 - Experimento com TDD:
+
   * Dias usando Test-Driven Development foram 10% mais eficientes;
   * Até o dia mais lento com TDD foi mais rápido que o dia mais rápido sem TDD;
+  
 - Conclusão: Manter o código limpo desde o início é mais eficiente;
 
 ### 5. Os Dois Valores do Software:
+
 5.1 Comportamento (Funcionalidade):
+
 - O que o software deve fazer;
 - Valor urgente, mas nem sempre o mais importante;
+
 5.2 Arquitetura (Flexibilidade):
+
 - Facilidade de realizar mudanças;
 - Valor importante, mas frequentemente negligenciado;
 - Prioridade: Arquitetura > Comportamento;
 - Argumento: Um sistema flexível pode ser adaptado para novos requisitos;
 
 ### 6. Paradigmas de Programação:
+
 6.1 Programação Estruturada (Dijkstra, 1968):
+
 - Substitui GOTO por estruturas if/else e loops;
 - Permite decomposição funcional;
 - Base para testes eficazes;
+
 6.2 Programação Orientada a Objetos (1966):
+
 - Baseada em: Encapsulamento, Herança e Polimorfismo;
 - Principal vantagem: Inversão de dependência;
+
 6.3 Programação Funcional (Cálculo-λ, 1930):
+
 - Princípio da imutabilidade;
 - Disciplina na atribuição de valores;
 
 ### 7. O Poder do Polimorfismo:
 - Permite inversão de dependência;
 - Benefícios:
+
   * Regras de negócio independentes de UI e banco de dados;
   * Implantação independente de componentes;
   * Desenvolvimento paralelo por diferentes equipes;
