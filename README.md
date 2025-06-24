@@ -1,4 +1,4 @@
-## Curso Udemy - Python do Básico ao Avançado
+## Python do Básico ao Avançado
 
 Este arquivo contém resumos e anotações das aulas
 do curso de Python feito na plataforma Udemy.
