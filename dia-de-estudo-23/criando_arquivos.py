@@ -52,7 +52,7 @@ import os
 # json.load
 
 
-caminho_arquivo = '/Users/marco/Documents/Projects/curso-python-udemy/dia-de-estudo-23/file_day23.txt'
+caminho_arquivo = '/Users/marco/Documents/Projects/estudo-python/dia-de-estudo-23/file_day23.txt'
 
 with open(caminho_arquivo, 'w+') as arquivo:
     arquivo.write('Linha 1\n')

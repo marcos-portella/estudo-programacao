@@ -18,7 +18,7 @@ pessoa = {
     'nada': None,
 }
 
-with open('/Users/marco/Documents/Projects/curso-python-udemy/dia-de-estudo-23/file_23.json', 'w', encoding='utf8') as arquivo:
+with open('/Users/marco/Documents/Projects/estudo-python/dia-de-estudo-23/file_23.json', 'w', encoding='utf8') as arquivo:
     json.dump(
         pessoa,
         arquivo,
