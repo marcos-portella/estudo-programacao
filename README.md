@@ -3470,4 +3470,3 @@ Capítulos do 1 ao 5:
   * Evitar dívida técnica desde o início
   * Adotar práticas como TDD
   * Manter equilíbrio entre funcionalidade e estrutura
-"""
