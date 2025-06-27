@@ -14,6 +14,7 @@
 # É possível criar @property @setter @classmethod
 # @staticmethod e @method como abstratos, para isso
 # use @abstractmethod como decorator mais interno.
+
 from abc import ABC, abstractmethod
 
 
