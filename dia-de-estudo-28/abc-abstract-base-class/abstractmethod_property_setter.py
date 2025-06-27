@@ -4,6 +4,7 @@
 # use @abstractmethod como decorator mais interno.
 # Foo - Bar são palavras usadas como placeholder
 # para palavras que podem mudar na programação.
+
 from abc import ABC, abstractmethod
 
 
