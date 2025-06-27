@@ -1,0 +1,3 @@
+
+Success: Galaxy S está ligado (Smartphone)
+Success: iphone está desligado (Smartphone)
