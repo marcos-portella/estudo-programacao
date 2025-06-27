@@ -26,6 +26,7 @@
 # Para saber a ordem de chamada dos métodos
 # Use o método de classe Classe.mro()
 # Ou o atributo __mro__ (Dunder - Double Underscore)
+
 class A:
     ...
 
