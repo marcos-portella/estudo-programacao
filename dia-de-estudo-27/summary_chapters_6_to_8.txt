@@ -46,7 +46,7 @@ CAPÍTULO 7: SRP (PRINCÍPIO DA RESPONSABILIDADE ÚNICA)
 - **Escopo do Princípio**:
   - Aplica-se a funções, classes, componentes e limites arquiteturais.
 
-
+ 
 CAPÍTULO 8: OCP (PRINCÍPIO ABERTO/FECHADO)
 
 - **Definição**:
