@@ -3485,6 +3485,76 @@ Capítulos do 1 ao 5:
   * Manter equilíbrio entre funcionalidade e estrutura;
 
 
+## Dia 27
+CAPÍTULO 6: PROGRAMAÇÃO FUNCIONAL
+
+- **Conceito Central: Imutabilidade**
+  - Dados não são alterados após criação (variáveis não variam).
+  - Evita problemas de concorrência: race conditions, deadlocks e atualizações concorrentes.
+
+- **Benefícios Arquiteturais**
+  - Sistemas robustos em ambientes multi-thread/multi-processador.
+  - Previsibilidade e ausência de efeitos colaterais.
+
+- **Estratégias Práticas**
+  1. **Segregação de Mutabilidade**:
+     - Dividir aplicação em componentes:
+       * **Imutáveis**: Lógica puramente funcional (sem estado mutável).
+       * **Mutáveis**: Gerenciam estado com proteção (ex: memória transacional).
+  2. **Event Sourcing**:
+     - Armazenar transações (eventos), não estado final.
+     - Reconstruir estado aplicando eventos desde o início.
+     - Vantagens: Elimina atualizações concorrentes e permite auditoria.
+
+- **Conclusão do Paradigma**:
+  - Restringe atribuição de variáveis, complementando OO e programação estruturada.
+
+
+CAPÍTULO 7: SRP (PRINCÍPIO DA RESPONSABILIDADE ÚNICA)
+
+- **Definição Corrigida**:
+  - "Um módulo deve ser responsável por **um, e apenas um, ator**".
+  - *Ator*: Grupo de stakeholders com mesma razão para mudança (ex: RH, Contabilidade).
+
+- **Sintomas de Violação**:
+  1. **Duplicação Acidental**:
+     - Múltiplos atores compartilham código (ex: `Employee` com `calculatePay()` (CFO) e `reportHours()` (COO)).
+     - Mudança para um ator quebra funcionalidade de outro.
+  2. **Fusões em Código-Fonte**:
+     - Múltiplas equipes alteram mesmo arquivo por motivos distintos.
+
+- **Soluções**:
+  1. **Separar Dados Das Funções**:
+     - Criar classes distintas por ator (ex: `PayCalculator`, `HourReporter`).
+  2. **Usar Padrão Facade**:
+     - Classe `EmployeeFacade` coordena classes especializadas.
+  3. **Manter Regras de Negócio Centralizadas**:
+     - Classe principal delega para classes auxiliares.
+
+- **Escopo do Princípio**:
+  - Aplica-se a funções, classes, componentes e limites arquiteturais.
+
+ 
+CAPÍTULO 8: OCP (PRINCÍPIO ABERTO/FECHADO)
+
+- **Definição**:
+  - Entidades devem ser **abertas para extensão**, mas **fechadas para modificação**.
+
+- **Implementação**:
+  - **Abstrações e Polimorfismo**:
+    - Comportamentos variáveis são definidos em interfaces/classes abstratas.
+    - Novas funcionalidades: novas implementações, sem alterar código existente.
+  - **Exemplo Prático**:
+    - Interface `PaymentProcessor` com implementações `CreditCardProcessor`, `PayPalProcessor`.
+
+- **Benefícios**:
+  - Extensibilidade sem refatoração constante.
+  - Minimiza riscos de regressão em código existente.
+
+- **Conclusão dos Princípios SOLID**:
+  - Objetivo: Criar estruturas tolerantes a mudanças, compreensíveis e reutilizáveis.
+
+
 ## Dia 28
 
 ### Prefácio
