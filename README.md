@@ -3483,3 +3483,108 @@ Capítulos do 1 ao 5:
   * Evitar dívida técnica desde o início;
   * Adotar práticas como TDD;
   * Manter equilíbrio entre funcionalidade e estrutura;
+
+
+## Dia 28
+
+### Prefácio
+
+Neste dia 28, aprofundamos conceitos importantes da orientação a objetos em Python, como herança, polimorfismo, mixins, tratamento de exceções, métodos mágicos e classes abstratas. Esses conceitos são fundamentais para criar código organizado, reutilizável e robusto.
+
+## Resumo
+
+A herança simples permite que uma classe filha herde atributos e métodos da classe pai, estabelecendo uma relação “é um”. Por exemplo, a classe `Cliente` herda de `Pessoa` e pode sobrescrever métodos para alterar seu comportamento:
+
+````
+class Pessoa:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def falar(self):
+        print(f'Pessoa: {self.nome}')
+
+class Cliente(Pessoa):
+    def falar(self):
+        print(f'Cliente: {self.nome}')
+````
+
+Além disso, Python suporta herança múltipla, onde uma classe pode derivar de várias classes ao mesmo tempo. Isso exige cuidado com a ordem de resolução dos métodos (MRO), que pode ser consultada via ``Classe.mro()`` para garantir que os métodos sejam chamados na ordem correta e evitar ambiguidades.
+
+O polimorfismo é a capacidade de diferentes classes implementarem o mesmo método com comportamentos distintos, permitindo que o código trate objetos diferentes de forma uniforme. Por exemplo, uma classe abstrata ``Notificacao`` define um método abstrato ``enviar`` que deve ser implementado pelas subclasses:
+
+````
+from abc import ABC, abstractmethod
+
+class Notificacao(ABC):
+    @abstractmethod
+    def enviar(self):
+        pass
+
+class NotificacaoEmail(Notificacao):
+    def enviar(self):
+        print("Enviando e-mail")
+
+class NotificacaoSMS(Notificacao):
+    def enviar(self):
+        print("Enviando SMS")
+````
+
+Para garantir que as chamadas aos métodos das superclasses respeitem a hierarquia correta, utilizamos ``super()``. Isso permite estender o comportamento das classes pai sem quebrar a cadeia de herança. Por exemplo:
+
+````
+class A:
+    def metodo(self):
+        print("Método A")
+
+class B(A):
+    def metodo(self):
+        super().metodo()
+        print("Método B")
+````
+
+Também aprendemos que é simples criar exceções personalizadas ao herdar da classe base ``Exception``, podendo relançar erros para preservar o histórico:
+
+````
+class MeuErro(Exception):
+    pass
+
+try:
+    raise MeuErro("Erro customizado")
+except MeuErro as e:
+    print(f"Caught: {e}")
+````
+
+Além disso, métodos mágicos (``dunder methods``) como ``__repr__`` permitem controlar a forma como objetos são representados, facilitando debug e logs. Exemplo:
+
+````
+class Ponto:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f'Ponto(x={self.x}, y={self.y})'
+
+p = Ponto(1, 2)
+print(p)  # Saída: Ponto(x=1, y=2)
+````
+
+Por fim, os mixins são classes usadas para adicionar funcionalidades específicas, como logging, sem alterar a hierarquia principal das classes. Por exemplo, uma classe ``Smartphone`` pode herdar de ``Eletronico`` e incluir um mixin para registrar logs:
+
+````
+class LogMixin:
+    def log(self, msg):
+        print(f'LOG: {msg}')
+
+class Eletronico:
+    def __init__(self, nome):
+        self.nome = nome
+
+class Smartphone(Eletronico, LogMixin):
+    def ligar(self):
+        self.log(f'{self.nome} está ligado')
+````
+
+### Observações Finais:
+
+Dominar herança múltipla e polimorfismo, entender o MRO e utilizar ``super()`` adequadamente são essenciais para evitar erros difíceis em sistemas complexos. Mixins e classes abstratas promovem código modular e contratos claros, enquanto exceções personalizadas melhoram o controle de erros. A prática desses conceitos aprimora muito a qualidade do código orientado a objetos em Python.
