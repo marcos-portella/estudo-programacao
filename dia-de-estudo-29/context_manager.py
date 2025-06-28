@@ -31,10 +31,12 @@ class MyOpen:
 
     def __exit__(self, class_exception, exception_, traceback_):
         print('FECHANDO ARQUIVO')
+        # exception_.add_note('Minha nota')
         self._arquivo.close()
 
 
-with MyOpen('aula149.txt', 'w') as arquivo:
+
+with MyOpen('aula149.txt', 'w',) as arquivo:
     arquivo.write('Linha 1\n')
     arquivo.write('Linha 2\n')
     arquivo.write('Linha 3\n')
