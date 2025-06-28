@@ -3486,6 +3486,11 @@ Capítulos do 1 ao 5:
 
 
 ## Dia 27
+
+Livro - Arquitetura Limpa by Robert C. Martim
+
+Capítulos do 6 ao 8:
+
 CAPÍTULO 6: PROGRAMAÇÃO FUNCIONAL
 
 - **Conceito Central: Imutabilidade**
