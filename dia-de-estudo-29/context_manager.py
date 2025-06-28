@@ -14,7 +14,7 @@
 # O método __exit__ receberá a classe de exceção, a exceção e o
 # traceback. Se ele retornar True, exceção no with será
 # suprimidas.
-#
+
 # Ex:
 # with open('aula149.txt', 'w') as arquivo:
 #     ...
