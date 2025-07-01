@@ -3668,7 +3668,7 @@ Dominar herança múltipla e polimorfismo, entender o MRO e utilizar ``super()``
 
 ## Dia 29
 
-### Prefá#cio:
+### Prefácio:
 
 Hoje exploramos conceitos que nos permitem ir além do uso básico da linguagem, adentrando o que meu professor decreveu como o "coração" da programação orientada a objetos e a manipulação de fluxo de controle de forma mais refinada. Compreender metaclasses, decoradores (com funções e classes), os métodos especiais ``__new__`` e ``__call__``, e os **gerenciadores de contexto** é fundamental para escrever códigos mais flexíveis, poderosos e Pythonicos. Esses tópicos, embora possam parecer complexos à primeira vista, são pilares para o desenvolvimento de frameworks e bibliotecas, e nos dão um controle granular sobre como nossos objetos e classes são criados e se comportam.
 
