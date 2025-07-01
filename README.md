@@ -3663,3 +3663,190 @@ class Smartphone(Eletronico, LogMixin):
 ### Observações Finais:
 
 Dominar herança múltipla e polimorfismo, entender o MRO e utilizar ``super()`` adequadamente são essenciais para evitar erros difíceis em sistemas complexos. Mixins e classes abstratas promovem código modular e contratos claros, enquanto exceções personalizadas melhoram o controle de erros. A prática desses conceitos aprimora muito a qualidade do código orientado a objetos em Python.
+
+
+
+## Dia 29
+
+### Prefá#cio:
+
+Hoje exploramos conceitos que nos permitem ir além do uso básico da linguagem, adentrando o que meu professor decreveu como o "coração" da programação orientada a objetos e a manipulação de fluxo de controle de forma mais refinada. Compreender metaclasses, decoradores (com funções e classes), os métodos especiais ``__new__`` e ``__call__``, e os **gerenciadores de contexto** é fundamental para escrever códigos mais flexíveis, poderosos e Pythonicos. Esses tópicos, embora possam parecer complexos à primeira vista, são pilares para o desenvolvimento de frameworks e bibliotecas, e nos dão um controle granular sobre como nossos objetos e classes são criados e se comportam.
+
+### Metaclasses: O Tipo das Classes:
+
+Em Python, tudo é um objeto, e isso inclui as próprias classes. Se uma classe é um objeto, ela precisa ter um tipo, certo? Esse tipo é a metaclasse. A metaclasse padrão para todas as classes em Python é ``type``. Pense na metaclasse como a "fábrica" que cria suas classes. Ela permite que você intercepte o processo de criação de uma classe e modifique seu comportamento antes mesmo que qualquer instância seja criada.
+
+O processo de criação de uma classe e suas instâncias é uma orquestra bem definida. Primeiro, o método ``__new__`` da metaclasse é chamado para criar a nova classe. Em seguida, o ``__call__`` da metaclasse entra em ação, que por sua vez chama o ``__new__`` da classe para criar a instância, e então o ``__init__`` da classe para inicializar essa instância.
+
+````
+def meu_repr(self):
+    return f'{type(self).__name__}({self.__dict__})'
+
+class Meta(type):
+    def __new__(mcs, name, bases, dct):
+        print('METACLASS NEW')
+        cls = super().__new__(mcs, name, bases, dct)
+        cls.attr = 1234 # Adiciona um atributo à classe
+        cls.__repr__ = meu_repr # Modifica o __repr__ da classe
+        return cls
+
+class Pessoa(metaclass=Meta):
+    def __init__(self, nome):
+        self.nome = nome
+
+# Ao criar a classe Pessoa, a metaclasse Meta entra em ação.
+# Pessoa já terá o atributo 'attr' e um __repr__ personalizado.
+p1 = Pessoa('Luiz')
+print(p1) # Saída: Pessoa({'nome': 'Luiz', 'attr': 1234})
+````
+
+### Métodos Especiais ``__new__`` e ``__init__``:
+``__new__`` e ``__init__`` são métodos cruciais no ciclo de vida de um objeto em Python, mas com responsabilidades distintas. O método ``__new__`` é o responsável por criar e retornar o novo objeto (a instância da classe). Ele recebe a classe (``cls``) como primeiro argumento. Já o método ``__init__`` é responsável por inicializar a instância recém-criada, ou seja, configurar seus atributos. Ele recebe a própria instância (``self``) como primeiro argumento e, por convenção, não deve retornar nada.
+
+````
+class A:
+    def __new__(cls, *args, **kwargs):
+        print('Sou o new')
+        # Cria e retorna a nova instância
+        instancia = super().__new__(cls)
+        return instancia
+
+    def __init__(self, x):
+        print('Sou o init')
+        self.x = x
+
+a = A(123) # Primeiro 'Sou o new', depois 'Sou o init'
+print(a.x) # Saída: 123
+````
+
+## O Método Especial ``__call__``:
+
+O método especial ``__call__`` permite que as instâncias de uma classe se comportem como funções. Isso significa que você pode "chamar" um objeto como se fosse uma função, usando parênteses. Um objeto que pode ser chamado é conhecido como ``callable``.
+
+````
+class CallMe:
+    def __init__(self, phone):
+        self.phone = phone
+
+    def __call__(self, nome):
+        print(nome, 'está chamando', self.phone)
+        return "Chamada efetuada!"
+
+call1 = CallMe('123-4567')
+retorno = call1('Maria') # Chama a instância como se fosse uma função
+print(retorno) # Saída: Maria está chamando 123-4567 | Chamada efetuada!
+````
+
+### Decoradores: Funções e Classes:
+Decoradores são uma forma poderosa e elegante de estender ou modificar o comportamento de funções ou classes sem alterar seu código-fonte. Eles são basicamente funções que recebem outra função (ou classe) como argumento e retornam uma nova função (ou classe) com o comportamento modificado.
+
+Podemos criar decoradores usando funções ou classes.
+
+#### Decoradores com Funções:
+Um decorador de função geralmente é uma função que define uma função interna (ou wrapper) que executa a lógica adicional e, em seguida, chama a função original.
+
+````
+def meu_planeta(metodo):
+    def interno(self, *args, **kwargs):
+        resultado = metodo(self, *args, **kwargs)
+        if 'Terra' in resultado:
+            return 'Você está em casa'
+        return resultado
+    return interno
+
+class Planeta:
+    def __init__(self, nome):
+        self.nome = nome
+
+    @meu_planeta # Aplica o decorador meu_planeta ao método falar_nome
+    def falar_nome(self):
+        return f'O planeta é {self.nome}'
+
+terra = Planeta('Terra')
+marte = Planeta('Marte')
+
+print(terra.falar_nome()) # Saída: Você está em casa
+print(marte.falar_nome()) # Saída: O planeta é Marte
+````
+
+#### Decoradores com Classes:
+
+Quando uma classe é usada como decorador, ela geralmente implementa o método ``__call__``, que é invocado quando a classe é usada como decorador.
+
+````
+class Multiplicar:
+    def __init__(self, multiplicador):
+        self._multiplicador = multiplicador
+
+    def __call__(self, func):
+        def interna(*args, **kwargs):
+            resultado = func(*args, **kwargs)
+            return resultado * self._multiplicador
+        return interna
+
+@Multiplicar(2) # A classe Multiplicar é instanciada com 2, e seu __call__ é usado para decorar soma
+def soma(x, y):
+    return x + y
+
+dois_mais_quatro = soma(2, 4) # (2 + 4) * 2 = 12
+print(dois_mais_quatro) # Saída: 12`
+````
+
+### Gerenciadores de Contexto: ``with`` Statement:
+**Gerenciadores de Contexto** são objetos que definem o comportamento de entrada (``__enter__``) e saída (``__exit__``) de um bloco de código, como o que vemos com o ``with`` statement. Eles são excelentes para gerenciar recursos (como arquivos, conexões de banco de dados, etc.) que precisam ser abertos e fechados de forma garantida, mesmo em caso de erros.
+
+O Python utiliza o conceito de Duck Typing aqui: ele não se importa com o tipo específico do seu objeto, mas sim se ele implementa os métodos ``__enter__`` e ``__exit__``.
+
+#### Gerenciadores de Contexto com Classes:
+Para criar um gerenciador de contexto com uma classe, você precisa implementar os métodos ``__enter__`` e ``__exit__``. O ``__enter__`` retorna o recurso que será usado dentro do bloco with, e o ``__exit__`` é chamado quando o bloco ``with`` é finalizado, garantindo a liberação do recurso.
+
+````
+class MyOpen:
+    def __init__(self, caminho_arquivo, modo):
+        self.caminho_arquivo = caminho_arquivo
+        self.modo = modo
+        self._arquivo = None
+
+    def __enter__(self):
+        print('ABRINDO ARQUIVO')
+        self._arquivo = open(self.caminho_arquivo, self.modo, encoding='utf8')
+        return self._arquivo
+
+    def __exit__(self, class_exception, exception_, traceback_):
+        print('FECHANDO ARQUIVO')
+        if self._arquivo:
+            self._arquivo.close()
+        # Se você retornar True, qualquer exceção que ocorrer dentro do bloco with será suprimida.
+        # return True # Descomente para suprimir exceções
+
+with MyOpen('meu_arquivo.txt', 'w') as arquivo:
+    arquivo.write('Olá, mundo!\n')
+    print('Dentro do WITH') # Saída: Dentro do WITH
+# Saída final: ABRINDO ARQUIVO | Dentro do WITH | FECHANDO ARQUIVO
+````
+
+### Gerenciadores de Contexto com Funções (usando ``contextlib``):
+A biblioteca ``contextlib`` em Python oferece um decorador chamado ``@contextmanager`` que facilita a criação de gerenciadores de contexto usando funções geradoras. Você usa ``yield`` para entregar o recurso ao bloco ``with``, e o código após o ``yield`` será executado na saída do bloco.
+
+````
+from contextlib import contextmanager
+
+@contextmanager
+def my_open(caminho_arquivo, modo):
+    try:
+        print('Abrindo arquivo')
+        arquivo = open(caminho_arquivo, modo, encoding='utf8')
+        yield arquivo # O arquivo é entregue ao bloco 'with'
+    finally:
+        print('Fechando arquivo')
+        if arquivo:
+            arquivo.close()
+
+with my_open('outro_arquivo.txt', 'w') as arquivo:
+    arquivo.write('Linha via função!\n')
+    print('Com função:', arquivo)
+# Saída final: Abrindo arquivo | Com função: <_io.TextIOWrapper name='outro_arquivo.txt' mode='w' encoding='utf8'> | Fechando arquivo
+````
+
+### Observações Finais:
+A jornada através de metaclasses, decoradores e gerenciadores de contexto nos revela a profunda flexibilidade de Python. Esses recursos, embora avançados, são ferramentas poderosas que capacitam o desenvolvedor a escrever código mais limpo, modular e robusto. Entender como e quando usá-los pode elevar significativamente a qualidade e a manutenibilidade dos seus projetos. Meu professor meu deu de exemplo o conselho de Tim Peters: "se você se pergunta se precisa de metaclasses, provavelmente não precisa" – mas ter o conhecimento de sua existência e funcionalidade é um passo importante para se tornar um desenvolvedor Python mais completo.
