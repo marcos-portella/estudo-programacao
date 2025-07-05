@@ -3976,6 +3976,65 @@ class Bank():
 #     print(c1.account)`
 ````
 
+### Documentação de Código: Docstrings:
+A documentação é uma parte essencial do desenvolvimento de software, e Python oferece docstrings como uma maneira padrão de documentar módulos, classes, funções e métodos. As docstrings são strings literais que aparecem como o primeiro enunciado em uma definição de módulo, classe ou função. Elas são acessíveis em tempo de execução através do atributo ``__doc__`` do objeto e são usadas por ferramentas como ``help()``.
+
+#### Docstrings de Módulo:
+As docstrings no nível do módulo descrevem o propósito geral do arquivo.
+
+````
+"""O que seu módulo faz""" # Exemplo de docstring de módulo em uma_linha.py
+
+# ou com várias linhas:
+"""O que seu módulo faz
+Lorem ipsum dolor sit amet. Et praesentium nisi non quam mollitia At saepe
+quisquam qui quae voluptatem.
+""" # Exemplo de docstring de módulo em varias_linhas.py
+````
+
+#### Docstrings de Funções e Métodos:
+As docstrings para funções e métodos descrevem o que a função faz, seus parâmetros (``:param``), seus tipos (``:type``), o valor de retorno (``:return``), o tipo de retorno (``:rtype``), e possíveis exceções que podem ser levantadas (``:raises``).
+
+````
+def soma(x: int | float, y: int | float) -> int | float:
+    """Soma x e y
+
+    Este módulo contém funções e exemplos de documentação de funções.
+    A função soma você já conhece bastante.
+
+    :param x: Número 1
+    :type x: int or float
+    :param y: Número 2
+    :type y: int or float
+
+    :return: A soma entre x e y
+    :rtype: int or float
+    """
+    return x + y
+
+def bar() -> int:
+    """O que ele faz
+    
+    :raises  NotIMplementedError: se o método não for definido
+    :raises ValueError:  Se  o método não for defiinido
+    """
+    raise NotImplementedError('Teste')
+````
+
+#### Docstrings de Classes:
+As docstrings de classes descrevem o propósito da classe.
+
+````
+class Foo:
+    """Este é um módulo de exemplo""" # Exemplo de docstring de classe em classes.py
+
+    """
+    Este módulo contém funções e exemplos de documentação de funções.
+    A função soma você já conhece bastante.
+    """
+    # ... métodos
+````
+
 ### Observações Finais:
 
 Os exercícios do dia 29 foram cruciais para solidificar a compreensão dos paradigmas de POO em Python. Ao construir o sistema bancário, não apenas vimos Abstração, Herança, Encapsulamento e Polimorfismo em ação, mas também a importância da organização do código em módulos separados (``accounts_.py`` e ``main.py``). O uso de Enumerações, por sua vez, complementou essa estrutura, mostrando como podemos tornar nosso código mais legível e menos propenso a erros ao lidar com conjuntos fixos de valores. A prática com esses conceitos é fundamental para o desenvolvimento de sistemas complexos e bem estruturados.
