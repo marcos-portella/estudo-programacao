@@ -17,7 +17,7 @@
 import enum
 
 # abaixo não é um bom método
-# Direcoes = enum.Enum('Direcoes', ['ESQUERDA', 'DIREITA']) 
+# Direcoes = enum.Enum('Direcoes', ['ESQUERDA', 'DIREITA'])
 
 
 # Abaixo melhor método até o momento:
@@ -30,8 +30,6 @@ class Direcoes(enum.Enum):
 
 print(Direcoes(1), Direcoes['ESQUERDA'], Direcoes.ESQUERDA)
 print(Direcoes(1).name, Direcoes.ESQUERDA.value)
-
-
 def mover(direcao: Direcoes):
     if not isinstance(direcao, Direcoes):
         raise ValueError('Direção não encontrada')
