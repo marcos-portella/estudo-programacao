@@ -16,6 +16,7 @@ print(delta.days, delta.years)
 # print(data_fim)
 # print(data_fim + relativedelta(seconds=60, minutes=10))
 
+
 # delta = data_fim - data_inicio
 # print(delta.days, delta.seconds, delta.microseconds)
 # print(delta.total_seconds())
