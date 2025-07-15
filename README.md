@@ -8,28 +8,6 @@ conforme as aulas avançam, mostrando minha evolução
 
 
 
-## Dia 1 – Primeiros Passos com Python
-
-
-### Configurando o Visual Studio Code:
-
-Hoje aprendi a configurar o VS Code (Visual Studio Code)
-de forma funcional para acompanhar as aulas de Python.
-Usei o arquivo "settings.json" para personalizar o ambiente.
-Mesmo com interfaces gráficas, aprender a configurar manualmente
-ajuda a entender melhor a ferramenta.
-
-
- Meu Primeiro Código:
-
-````
-print('hello, world')  # Meu primeiro programa em Python 🎉
-````
-
-Me senti motivado e acredito que vou gostar cada vez mais
-conforme o curso avança.
-
-
 
 ## Dia 2 – Impressões, Comentários e Strings
 
