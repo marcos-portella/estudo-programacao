@@ -7,66 +7,6 @@ Os resumos vão se tornando mais didáticos e legíveis
 conforme as aulas avançam, mostrando minha evolução
 
 
-
-
-## Dia 2 – Impressões, Comentários e Strings
-
-
-### Funções do print:
-
-
- Aprendi sobre os parâmetros:
-```
-\n   -> # quebra de linha
-sep= -> # define o separador
-end= -> # define o final da linha
-
-print('Python', 'é', 'legal', sep='-', end='!\n')  # Exemplo usando sep e end
-```
-
-
-### Tipos de Comentários:
-
-
-```
- Comentário de uma linha usa  # Comentário
-
-"""
-
-Este é um comentário
-de várias linhas usando DocString
-
-"""
-```
-
-O Python lê da esquerda para a direita e de cima para baixo.
-
-
-### Tipos de Dados e Strings:
-
-
- Escape de caracteres com \
-
-```
-print("Linha 1\nLinha 2")  # \n cria uma quebra de linha
-```
-
- Strings raw (cruas) usando o prefixo 'r'
-```
-print(r"C:\Users\nome")  # Mostra literalmente a barra invertida
-```
-
-
-### Conceitos Técnicos:
-
-
-- Linguagem: Python
-- Tipagem: Dinâmica / Forte
-- Tipo 'str': Representa strings (textos)
-- Strings são textos dentro de aspas simples ou duplas
-
-
-
 ## Dia 3 – Variáveis, Tipos e Strings
 
 
