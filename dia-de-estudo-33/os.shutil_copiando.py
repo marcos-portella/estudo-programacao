@@ -1,6 +1,10 @@
-# os + shutil - Copiando arquivos com Python
+# os + shutil - Apagando, copiando, movendo e renomeando pastas com Python
 # Vamos copiar arquivos de uma pasta para outra.
 # Copiar -> shutil.copy
+# Copiar Árvore recursivamente -> shutil.copytree
+# Apagar Árvore recursivamente -> shutil.rmtree
+# Apagar arquivos -> os.unlink
+# Renomear/Mover -> shutil.move ou os.rename
 import os
 import shutil
 
@@ -9,6 +13,8 @@ DESKTOP = os.path.join(HOME, 'Desktop')
 PASTA_ORIGINAL = os.path.join(DESKTOP, 'Exemplo')
 NOVA_PASTA = os.path.join(DESKTOP, 'NOVA_PASTA')
 
+
+# Exemplo mais longo:
 os.makedirs(NOVA_PASTA, exist_ok=True)
 
 for root, dirs, files in os.walk(PASTA_ORIGINAL):
@@ -24,3 +30,12 @@ for root, dirs, files in os.walk(PASTA_ORIGINAL):
             root.replace(PASTA_ORIGINAL, NOVA_PASTA), file
         )
         shutil.copy(caminho_arquivo, caminnho_novo_arquivo)
+
+
+# Exemplo mais curto:
+
+shutil.rmtree(NOVA_PASTA, ignore_errors=True)  # Não é a melhor forma de evitar
+# o erro, é apenas para ser mais objetivo
+shutil.copytree(PASTA_ORIGINAL, NOVA_PASTA)
+# shutil.move(NOVA_PASTA, NOVA_PASTA + '_EITA')
+shutil.rmtree(NOVA_PASTA, ignore_errors=True)
