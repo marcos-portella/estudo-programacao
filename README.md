@@ -31,68 +31,6 @@ Finalmente, aprendi a usar hasattr e getattr para verificar e chamar métodos di
 11. dir, hasattr e getattr;
 12. Generator expression, Iterables e Iterators;
 
-
-### 1. Introdução à List Comprehension:
-```
-print(list(range(10))) # O que queremos fazer manualmente
-print()
-
-lista = [] #  Forma tradicional
-for numero in range(10):
-    lista.append(numero)
-print(lista)
-
-lista = [ # Usando o list comprehension
-    numero * 2
-    for numero in range(10)
-]
-print(lista)
-```
-
-### 2. List comprehension com múltiplos for e listas aninhadas:
-```
-lista = [] # Método básico
-for x in range(3):
-    for y in range(3):
-        lista.append((x, y))
-print(lista)
-print()
-
-
-lista = [ # Usando o list comprehesion
-    (x, y)
-    for x in range(3)
-    for y in range(3)
-]
-print(lista)
-print()
-
-
-lista = [
-    [(x, letra) for letra in 'Luiz'] # Um list comprehension dentro de outro, complexo até demais
-    for x in range(3)
-]
-
-print(lista)
-```
-
-### 3. Mapeamento de dados em list comprehension com condição:
-```
-produtos = [
-    {'nome': 'p1', 'preco': 20, },
-    {'nome': 'p2', 'preco': 10, },
-    {'nome': 'p3', 'preco': 30, },
-]
-novos_produtos = [
-    {**produto, 'preco': produto['preco'] * 1.05}
-    if produto['preco'] > 20 else {**produto}
-    for produto in produtos
-]
-
-print(novos_produtos)
-print(*novos_produtos, sep='\n')
-```
-
 ### 4. pprint para exibir dados de forma bonita + filtro com if:
 ```
 import pprint
