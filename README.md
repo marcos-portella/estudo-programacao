@@ -154,14 +154,6 @@ Ordenei listas de dicionários com ``sorted``, usando ``lambda`` como chave:
 sorted(produtos, key=lambda p: p['preco'])
 ````
 
-### Uso de ``__init__.py``:
-
-Vi que o arquivo especial ``__init__.py`` dentro de uma pasta permite que ela seja tratada como um pacote Python, podendo assim importar funções ou objetos diretamente dela com:
-
-````
-from minha_pasta import minha_funcao
-````
-
 ### Considerações Finais
 O estudo de hoje foi essencial para me preparar para um código mais modular, reutilizável e seguro. Aprendi a manipular funções como objetos, controlar escopos internos com ``nonlocal``, e tornar minha lógica mais flexível com decoradores — inclusive com parâmetros. Ferramentas como ``zip``, ``itertools``, ``copy`` e a estruturação com ``__init__.py`` aumentam muito a capacidade de escrever código Python mais limpo, organizado e profissional.
 
