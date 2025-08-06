@@ -15,11 +15,11 @@ l2 = []
 
 while True:
     command = input('Digite o quer adicionar a lista ou selecione os comandos: sair, listar, desfazer e refazer : ')
-    os.system('clear')
+    os.system('cls')
     command_lower = command.lower()
 
     if command_lower == 'sair':
-        os.system('clear')
+        os.system('cls')
         break
     
     elif command_lower == 'listar':
@@ -129,7 +129,7 @@ while True:
         listar(tarefas)
         continue
     elif tarefa == 'clear':
-        os.system('clear')
+        os.system('cls')
         continue
     else:
         adicionar(tarefa, tarefas)

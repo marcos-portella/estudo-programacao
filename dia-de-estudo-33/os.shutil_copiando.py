@@ -34,8 +34,8 @@ for root, dirs, files in os.walk(PASTA_ORIGINAL):
 
 # Exemplo mais curto:
 
-shutil.rmtree(NOVA_PASTA, ignore_errors=True)  # Não é a melhor forma de evitar
-# o erro, é apenas para ser mais objetivo
-shutil.copytree(PASTA_ORIGINAL, NOVA_PASTA)
-# shutil.move(NOVA_PASTA, NOVA_PASTA + '_EITA')
-shutil.rmtree(NOVA_PASTA, ignore_errors=True)
+# shutil.rmtree(NOVA_PASTA, ignore_errors=True)  # Não é a melhor forma de evitar
+# # o erro, é apenas para ser mais objetivo
+# shutil.copytree(PASTA_ORIGINAL, NOVA_PASTA)
+# # shutil.move(NOVA_PASTA, NOVA_PASTA + '_EITA')
+# shutil.rmtree(NOVA_PASTA, ignore_errors=True)
