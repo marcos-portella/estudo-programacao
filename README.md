@@ -18,24 +18,6 @@ Neste dia 28, aprofundamos conceitos importantes da orientação a objetos em Py
 
 ## Resumo
 
-A herança simples permite que uma classe filha herde atributos e métodos da classe pai, estabelecendo uma relação “é um”. Por exemplo, a classe `Cliente` herda de `Pessoa` e pode sobrescrever métodos para alterar seu comportamento:
-
-````
-class Pessoa:
-    def __init__(self, nome):
-        self.nome = nome
-
-    def falar(self):
-        print(f'Pessoa: {self.nome}')
-
-class Cliente(Pessoa):
-    def falar(self):
-        print(f'Cliente: {self.nome}')
-````
-
-Além disso, Python suporta herança múltipla, onde uma classe pode derivar de várias classes ao mesmo tempo. Isso exige cuidado com a ordem de resolução dos métodos (MRO), que pode ser consultada via ``Classe.mro()`` para garantir que os métodos sejam chamados na ordem correta e evitar ambiguidades.
-
-O polimorfismo é a capacidade de diferentes classes implementarem o mesmo método com comportamentos distintos, permitindo que o código trate objetos diferentes de forma uniforme. Por exemplo, uma classe abstrata ``Notificacao`` define um método abstrato ``enviar`` que deve ser implementado pelas subclasses:
 
 ````
 from abc import ABC, abstractmethod
