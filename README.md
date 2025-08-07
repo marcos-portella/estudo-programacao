@@ -20,34 +20,6 @@ Neste dia 28, aprofundamos conceitos importantes da orientação a objetos em Py
 
 
 ````
-from abc import ABC, abstractmethod
-
-class Notificacao(ABC):
-    @abstractmethod
-    def enviar(self):
-        pass
-
-class NotificacaoEmail(Notificacao):
-    def enviar(self):
-        print("Enviando e-mail")
-
-class NotificacaoSMS(Notificacao):
-    def enviar(self):
-        print("Enviando SMS")
-````
-
-Para garantir que as chamadas aos métodos das superclasses respeitem a hierarquia correta, utilizamos ``super()``. Isso permite estender o comportamento das classes pai sem quebrar a cadeia de herança. Por exemplo:
-
-````
-class A:
-    def metodo(self):
-        print("Método A")
-
-class B(A):
-    def metodo(self):
-        super().metodo()
-        print("Método B")
-````
 
 Também aprendemos que é simples criar exceções personalizadas ao herdar da classe base ``Exception``, podendo relançar erros para preservar o histórico:
 
