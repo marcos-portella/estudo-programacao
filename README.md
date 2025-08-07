@@ -10,66 +10,6 @@ Lembre-se de verificar os arquivos README.md presentes para melhor
 entendimento da matéria
 
 
-## Dia 28
-
-### Prefácio
-
-Neste dia 28, aprofundamos conceitos importantes da orientação a objetos em Python, como herança, polimorfismo, mixins, tratamento de exceções, métodos mágicos e classes abstratas. Esses conceitos são fundamentais para criar código organizado, reutilizável e robusto.
-
-## Resumo
-
-
-````
-
-Também aprendemos que é simples criar exceções personalizadas ao herdar da classe base ``Exception``, podendo relançar erros para preservar o histórico:
-
-````
-class MeuErro(Exception):
-    pass
-
-try:
-    raise MeuErro("Erro customizado")
-except MeuErro as e:
-    print(f"Caught: {e}")
-````
-
-Além disso, métodos mágicos (``dunder methods``) como ``__repr__`` permitem controlar a forma como objetos são representados, facilitando debug e logs. Exemplo:
-
-````
-class Ponto:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __repr__(self):
-        return f'Ponto(x={self.x}, y={self.y})'
-
-p = Ponto(1, 2)
-print(p)  # Saída: Ponto(x=1, y=2)
-````
-
-Por fim, os mixins são classes usadas para adicionar funcionalidades específicas, como logging, sem alterar a hierarquia principal das classes. Por exemplo, uma classe ``Smartphone`` pode herdar de ``Eletronico`` e incluir um mixin para registrar logs:
-
-````
-class LogMixin:
-    def log(self, msg):
-        print(f'LOG: {msg}')
-
-class Eletronico:
-    def __init__(self, nome):
-        self.nome = nome
-
-class Smartphone(Eletronico, LogMixin):
-    def ligar(self):
-        self.log(f'{self.nome} está ligado')
-````
-
-### Observações Finais:
-
-Dominar herança múltipla e polimorfismo, entender o MRO e utilizar ``super()`` adequadamente são essenciais para evitar erros difíceis em sistemas complexos. Mixins e classes abstratas promovem código modular e contratos claros, enquanto exceções personalizadas melhoram o controle de erros. A prática desses conceitos aprimora muito a qualidade do código orientado a objetos em Python.
-
-
-
 ## Dia 29
 
 ### Prefácio:
