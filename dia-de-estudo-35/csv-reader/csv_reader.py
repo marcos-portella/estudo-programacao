@@ -4,7 +4,7 @@
 import csv
 from pathlib import Path
 
-CAMINHO_CSV = Path(__file__).parent / 'aula179.csv'
+CAMINHO_CSV = Path(__file__).parent / 'csv_reader.csv'
 
 with open(CAMINHO_CSV, 'r', encoding='utf8') as arquivo:
     leitor = csv.DictReader(arquivo)
