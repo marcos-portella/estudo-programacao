@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My HTML</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        table td, table th {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: left;
+        }
+
+        table caption {
+            caption-side: bottom;
+            text-align: right;
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 5px 0;
+        }
+
+        tfoot td, table th {
+            background: #ddd;
+        }
+
+        tfoot {
+            font-style: italic;
+        }
+
+        .responsive-table {
+            max-width: 100%;
+            overflow: auto;
+            
+        }
+    </style>
+</head>
+<body>
+    <p>Vamos aprender sobre tabelas</p>
+    <div class="responsive-table">
+        <table>
+            <caption>Uma descrição para a tabela</caption>
+            <thead>
+                <tr>
+                    <th>Título 1</th>
+                    <th>Título 2</th>
+                    <th>Título 3</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td colspan="2">Ocupando dois espaços</td>
+                    <td>Corpo 2</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Ocupando três espaços</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2">Corpo 1</td>
+                    <td>Corpo 3</td>
+                </tr>
+                <tr>
+                    <td>Corpo 3</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="2" rowspan="2"></td>
+                    <td>TOTAL:</td>
+                </tr>
+                <tr>
+                    <td>R$555</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>
