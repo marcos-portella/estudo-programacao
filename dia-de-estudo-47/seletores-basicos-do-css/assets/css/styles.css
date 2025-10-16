@@ -1,0 +1,113 @@
+/*all*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Pelo nome da tag*/
+h1, p {
+    color:yellow;
+}
+
+div {
+    color: initial;
+}
+
+/*Seleção de dependentes*/
+body div section p,
+body div section h1 {
+    color: red
+}
+
+/*Por classes, uma das melhores formas*/
+.color-purple {
+    color: purple;
+}
+
+.main-content h2 {
+    font-style: italic;
+}
+
+/*Especificando bastante o elemento "h1", é possível remover a classe com java script, por exemplo a classe "error" de "body"*/
+body.error div.main-content h1.heading {
+    font-style: italic;
+}
+
+/*Acaba ficando de herança para a "div" filha da div com a classe "pai"*/
+.pai {
+    color: blue;
+}
+
+.pai.filha {
+    color: orange;
+}
+
+ /*Selecionando somente as filhas, sem as filhas das filhas*/
+.pai > .filha {
+    color: cyan;
+}
+
+/*Agora somente as filhas das filhas*/
+.pai > .filha > .filha {
+    color: pink;
+}
+
+/*Selecionando irmãos, adjacent sibling selector, a seleção de irmãos funcionam com outros elementos, ex.: "div"*/
+.pai2 h1+p{
+    color: brown;
+}
+
+/*Irmãos invertidos*/
+.pai2 p+h1{
+    color: brown;
+}
+
+/*Selecionando irmãos, general sibling selectors*/
+.pai2 h1~p {
+    color: blueviolet;
+}
+
+/*Selecionando irmãos, general sibling selectors, invertido*/
+.pai2 p~h1 {
+    color: blueviolet;
+}
+
+/*Você usarias pseudo classes checked, apenas mosttrando que é possível*/
+[checked] {
+    width: 50px;
+    height: 50px;
+}
+
+/*Criando seu próprios atributos*/
+[meu-atributo] {
+    color: aquamarine;
+}
+
+[meu-atributo-2="valor"] {
+    color: azure;
+}
+
+/*Se ele tiver vários valores eu especificos quais eu quero, se tiver entre eles ele será selecionado*/
+[meu-atributo-2~="valor3"] {
+    color: blue;
+}
+
+/*Aqui o valor tem que ser seguido por um traço e ser o primeiro da lista, mas não é muito útil*/
+[meu-atributo-2|="valor"] {
+    color: red;
+}
+
+/*Se se seus valores começam com estas letras*/
+[meu-atributo-2^="qualq"] {
+    color: magenta;
+}
+
+/*Se se seus valores terminam com estas letras*/
+[meu-atributo-2$="222"] {
+    color: mediumseagreen;
+}
+
+/*Se se seus valores contém estas letras*/
+[meu-atributo-2*="uar"] {
+    color: tan;
+}
