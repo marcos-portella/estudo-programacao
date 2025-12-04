@@ -9,3 +9,6 @@ __pycache__/
 venv/
 env/
 .env
+
+dia-de-estudo-49/db.sqlite3
+*.sqlite3
