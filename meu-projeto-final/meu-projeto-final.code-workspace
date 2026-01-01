@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"terminal.integrated.defaultProfile.windows": "PowerShell",
+		"terminal.integrated.profiles.windows": {
+			"PowerShell": {
+				"path": "PowerShell",
+				"args": [
+					"-NoExit",
+					"-Command",
+					"& { .\\venv\\Scripts\\Activate.ps1 }"
+				]
+			}
+		},
+		"explorer.confirmDelete": false,
+		"git.confirmSync": false,
+		"window.zoomLevel": -1,
+		"explorer.compactFolders": false,
+		"terminal.integrated.fontSize": 15,
+		"workbench.colorTheme": "OM Theme (Default Dracula Italic)",
+		"workbench.iconTheme": "material-icon-theme",
+		"terminal.integrated.fontFamily": "",
+		"python.languageServer": "Pylance"
+	}
+}
