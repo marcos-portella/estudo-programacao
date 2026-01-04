@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from app.routers import customers  # Adicionamos o 'app.' na frente
+from app.routers import customers, orders  # Adicionamos o 'app.' na frente
 
 app = FastAPI()
 
 app.include_router(customers.router, prefix="/customers", tags=["customers"])
+app.include_router(orders.router)
 
 
 @app.get("/")

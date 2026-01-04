@@ -1,9 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from mysql.connector.abstracts import MySQLConnectionAbstract
-from app.dependencies import get_db
+from app.dependencies import get_db, get_api_key
 from app.models.customers import Customer
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/customers",
+    tags=["customers"],
+    dependencies=[Depends(get_api_key)]  # Tranca TODAS as rotas deste arquivo
+    # de uma vez!
+)
 
 
 @router.get("/{customer_id}")
@@ -16,7 +21,6 @@ def get_customer(customer_id: int, db: MySQLConnectionAbstract =
     if not customer:
         raise HTTPException(status_code=404, detail="Customer not found")
     return customer
-    # Ao chegar aqui, o FastAPI volta no 'get_db' e fecha a conexão para você.
 
 
 @router.post("/")
@@ -26,7 +30,7 @@ def create_customer(
     cursor = db.cursor()
     sql = "INSERT INTO customers (nome, idade) VALUES (%s, %s)"
     cursor.execute(sql, (customer.name, customer.age))
-    db.commit()  # O commit deve ser feito aqui após o sucesso da query
+    db.commit()
     new_id = cursor.lastrowid
     cursor.close()
     return {"id": new_id, "message": "Customer created successfully",
