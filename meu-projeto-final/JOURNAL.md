@@ -121,3 +121,48 @@ def delete_customer(customer_id: int, db: MySQLConnectionAbstract = Depends(get_
 - A injeção de dependência desacopla a lógica de negócio da infraestrutura.
 
 - Trabalhar com a suite de testes verde durante a refatoração dá a segurança necessária para grandes mudanças.
+
+
+## JOURNAL - 04/01/2026
+**Módulo: Expansão de Negócio e Relacionalidade**
+
+Nesta data, o desenvolvedor **Marcos** consolidou a arquitetura do sistema ao implementar o módulo de pedidos (**Orders**), estabelecendo a primeira relação complexa entre entidades e garantindo a integridade dos dados no banco MySQL.
+
+**1. Desenvolvimento Técnico**:
+- **Arquitetura de Software**: O desenvolvedor estruturou o projeto seguindo o padrão de separação de responsabilidades, distinguindo claramente os modelos de validação (Pydantic) em ``app/models/orders.py`` da lógica de rotas e persistência em ``app/routers/orders.py``.
+
+- **Persistência e Relacionamentos**: Foi estabelecida uma relação 1:N entre clientes e pedidos. Marcos configurou a restrição ``ON DELETE CASCADE``, garantindo que o sistema mantenha a higienização automática do banco de dados ao remover registros pai.
+
+- **Inteligência de Negócio (BI)**: Implementou uma rota de estatísticas que utiliza funções de agregação SQL (``COUNT``, ``SUM``, ``AVG``), transformando dados brutos em métricas de faturamento e volume de vendas.
+
+- **Engenharia de Tipos**: O desenvolvedor refinou a qualidade do código utilizando técnicas de **Type Hinting** avançadas. Através do uso de ``typing.cast`` e ``Dict[str, Any]``, eliminou inconsistências de análise estática entre a biblioteca ``mysql-connector`` e o servidor de linguagem Pylance.
+
+**2. Resolução de Problemas (Troubleshooting)**:
+
+- **Sintaxe SQL**: Corrigiu falhas de concatenação em comandos ``INSERT`` multilinhas através da padronização com aspas triplas.
+
+- **Gerenciamento de Cursores**: Solucionou o erro crítico ``InternalError: Unread result found``, estruturando o ciclo de vida do comando SQL para garantir que todos os dados sejam consumidos antes do encerramento da conexão.
+
+**3. Destaques de Código**:
+
+````
+# Exemplo de consulta enriquecida com INNER JOIN implementada pelo desenvolvedor:
+sql = """
+    SELECT o.*, c.nome as customer_name 
+    FROM orders o 
+    INNER JOIN customers c ON o.customer_id = c.id
+"""
+````
+
+````
+# Aplicação de casting para garantir estabilidade de tipos:
+stats = cast(Optional[Dict[str, Any]], cursor.fetchone())
+````
+
+### Status da Entrega:
+
+**Desenvolvedor**: Marcos
+
+**Conclusão**: 100% (Módulo de Pedidos e Estatísticas)
+
+**Próximo Objetivo**: Implementação de camadas de segurança e autenticação.
