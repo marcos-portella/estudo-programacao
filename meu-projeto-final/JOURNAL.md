@@ -1,58 +1,104 @@
-## Diário de Bordo: Evolução API Clientes
-### Desenvolvedor: Marcos Portella
+## JOURNAL - 05/01/2026
 
-### Objetivo: Registro diário de desafios técnicos, soluções de arquitetura e progresso em FastAPI e MySQL.
+Status do Projeto: Estável (8 testes aprovados, 0 warnings)
 
+### Visão Geral
+A sessão de hoje focou na estabilização da infraestrutura do projeto, correção de dívidas técnicas de tipagem e padronização do ambiente de testes integrados. O objetivo central foi alcançar um estado de "Zero Warnings" no terminal e garantir a integridade dos dados no MySQL durante o ciclo de vida dos testes.
 
-## Dia 57: A Grande Refatoração (Arquitetura Modular)
+### Implementações e Resoluções Técnicas
+**1. Refatoração de Modelos (Pydantic V2)**
+Migração da configuração dos esquemas de validação para os padrões da versão 2.12 do Pydantic.
 
-### Objetivo do Dia:
+- **Problema**: O terminal exibia avisos de depreciação (``PydanticDeprecatedSince20``) devido ao uso da antiga ``class Config``.
 
-Transição da estrutura monolítica (arquivo único) para uma arquitetura profissional baseada em pacotes, separando responsabilidades em pastas específicas.
+- **Solução**: Implementação do ``model_config`` utilizando ``ConfigDict``.
 
-### Desafios Superados:
+- **Impacto**: Eliminação total de avisos de sistema e garantia de compatibilidade com versões futuras da biblioteca.
 
-- **Inferno dos Imports**: Resolvido o erro ``ModuleNotFoundError`` configurando o ``PYTHONPATH`` e usando a execução via módulo (``python -m``).
+**2. Estabilização do Ambiente de Testes (Pytest)**
 
-- **Sincronia do VS Code**: Ajustado o ``settings.json`` para eliminar falsos positivos de erro (vermelhos) do Pylance/Mypy.
+Aprimoramento do rigor técnico nos testes de integração.
 
-- **Roteamento**: Configuração de prefixos no ``main.py`` para evitar URLs duplicadas ou erros ``404 Not Found``.
+- **Gestão de Estado**: Implementação de lógica de teardown robusta com blocos ``try/finally`` para garantir que, independentemente do sucesso ou falha do teste, a conexão com o banco seja encerrada e o registro criado seja removido.
 
-### Códigos de Destaque:
+- **Segurança**: Inclusão de cabeçalhos ``X-API-KEY`` em todas as requisições de teste para refletir o middleware de produção.
 
-**1. Estrutura de Modelos Isolada (``app/models/customer.py``)**
+**3. Resolução de Importação e Namespacing**
+Correção de erros de análise estática que persistiam mesmo com o código funcional.
+
+- **Package Initialization**: Criação do arquivo ``tests/__init__.py``, permitindo que o Mypy e o Pylance resolvam corretamente os caminhos entre pacotes irmãos (``app`` e ``tests``).
+
+- **Linting Control**: Uso estratégico de ``# noqa: E402`` e ``# type: ignore`` para gerenciar a ordem de carregamento do ``load_dotenv()`` sem violar as regras da PEP 8.
+
+### Fragmentos de Código Relevantes
 
 ````
-from pydantic import BaseModel, Field
+# Modernização do modelo OrderResponse
+from pydantic import ConfigDict
 
-class Customer(BaseModel):
-    name: str = Field(..., min_length=1, max_length=100)
-    age: int = Field(..., ge=0, le=120)
+class OrderResponse(Order):
+    model_config = ConfigDict(from_attributes=True)
+
+# Padrão de limpeza de banco em Testes de Integração
+conn = get_db_connection()
+try:
+    with conn.cursor() as cursor:
+        cursor.execute("DELETE FROM customers WHERE id = %s", (new_id,))
+    conn.commit()
+finally:
+    conn.close()
 ````
 
-### 2. Orquestração de Rotas (``app/main.py``):
+### Insights e Próximos Passos
+
+- **Aprendizado**: A resolução independente de erros de configuração de IDE (Pylance/Mypy) demonstrou a importância da estrutura de diretórios (``__init__.py``) para ferramentas de análise estática.
+
+- **Próximo Passo**: Avaliar a transição para uma arquitetura de camadas (Services/Repositories) para desacoplar a lógica de negócio das rotas da API.
+
+
+## JOURNAL - 04/01/2026
+**Módulo: Expansão de Negócio e Relacionalidade**
+
+Nesta data, o desenvolvedor **Marcos** consolidou a arquitetura do sistema ao implementar o módulo de pedidos (**Orders**), estabelecendo a primeira relação complexa entre entidades e garantindo a integridade dos dados no banco MySQL.
+
+**1. Desenvolvimento Técnico**:
+- **Arquitetura de Software**: O desenvolvedor estruturou o projeto seguindo o padrão de separação de responsabilidades, distinguindo claramente os modelos de validação (Pydantic) em ``app/models/orders.py`` da lógica de rotas e persistência em ``app/routers/orders.py``.
+
+- **Persistência e Relacionamentos**: Foi estabelecida uma relação 1:N entre clientes e pedidos. Marcos configurou a restrição ``ON DELETE CASCADE``, garantindo que o sistema mantenha a higienização automática do banco de dados ao remover registros pai.
+
+- **Inteligência de Negócio (BI)**: Implementou uma rota de estatísticas que utiliza funções de agregação SQL (``COUNT``, ``SUM``, ``AVG``), transformando dados brutos em métricas de faturamento e volume de vendas.
+
+- **Engenharia de Tipos**: O desenvolvedor refinou a qualidade do código utilizando técnicas de **Type Hinting** avançadas. Através do uso de ``typing.cast`` e ``Dict[str, Any]``, eliminou inconsistências de análise estática entre a biblioteca ``mysql-connector`` e o servidor de linguagem Pylance.
+
+**2. Resolução de Problemas (Troubleshooting)**:
+
+- **Sintaxe SQL**: Corrigiu falhas de concatenação em comandos ``INSERT`` multilinhas através da padronização com aspas triplas.
+
+- **Gerenciamento de Cursores**: Solucionou o erro crítico ``InternalError: Unread result found``, estruturando o ciclo de vida do comando SQL para garantir que todos os dados sejam consumidos antes do encerramento da conexão.
+
+**3. Destaques de Código**:
 
 ````
-from fastapi import FastAPI
-from app.routers import customers
-
-app = FastAPI()
-
-# Registro modular das rotas de clientes
-app.include_router(customers.router, prefix="/customers", tags=["Customers"])
-
-@app.get("/")
-def root():
-    return {"message": "API Online - Estrutura Modularizada!"}
+# Exemplo de consulta enriquecida com INNER JOIN implementada pelo desenvolvedor:
+sql = """
+    SELECT o.*, c.nome as customer_name 
+    FROM orders o 
+    INNER JOIN customers c ON o.customer_id = c.id
+"""
 ````
 
-### Status Final:
+````
+# Aplicação de casting para garantir estabilidade de tipos:
+stats = cast(Optional[Dict[str, Any]], cursor.fetchone())
+````
 
-- **Servidor**: Rodando via uvicorn app.main:app --reload.
+### Status da Entrega:
 
-- **Testes**: 8 testes de integração passando (PASSED).
+**Desenvolvedor**: Marcos
 
-- **Arquitetura**: Padrão de mercado com pastas app/, routers/, models/ e tests/.
+**Conclusão**: 100% (Módulo de Pedidos e Estatísticas)
+
+**Próximo Objetivo**: Implementação de camadas de segurança e autenticação.
 
 
 ## Diário de Bordo: Evolução da API de Clientes
@@ -123,46 +169,65 @@ def delete_customer(customer_id: int, db: MySQLConnectionAbstract = Depends(get_
 - Trabalhar com a suite de testes verde durante a refatoração dá a segurança necessária para grandes mudanças.
 
 
-## JOURNAL - 04/01/2026
-**Módulo: Expansão de Negócio e Relacionalidade**
+## Diário de Bordo: Evolução API Clientes
+### Desenvolvedor: Marcos Portella
 
-Nesta data, o desenvolvedor **Marcos** consolidou a arquitetura do sistema ao implementar o módulo de pedidos (**Orders**), estabelecendo a primeira relação complexa entre entidades e garantindo a integridade dos dados no banco MySQL.
+### Objetivo: Registro diário de desafios técnicos, soluções de arquitetura e progresso em FastAPI e MySQL.
 
-**1. Desenvolvimento Técnico**:
-- **Arquitetura de Software**: O desenvolvedor estruturou o projeto seguindo o padrão de separação de responsabilidades, distinguindo claramente os modelos de validação (Pydantic) em ``app/models/orders.py`` da lógica de rotas e persistência em ``app/routers/orders.py``.
 
-- **Persistência e Relacionamentos**: Foi estabelecida uma relação 1:N entre clientes e pedidos. Marcos configurou a restrição ``ON DELETE CASCADE``, garantindo que o sistema mantenha a higienização automática do banco de dados ao remover registros pai.
+## Dia 57: A Grande Refatoração (Arquitetura Modular)
 
-- **Inteligência de Negócio (BI)**: Implementou uma rota de estatísticas que utiliza funções de agregação SQL (``COUNT``, ``SUM``, ``AVG``), transformando dados brutos em métricas de faturamento e volume de vendas.
+### Objetivo do Dia:
 
-- **Engenharia de Tipos**: O desenvolvedor refinou a qualidade do código utilizando técnicas de **Type Hinting** avançadas. Através do uso de ``typing.cast`` e ``Dict[str, Any]``, eliminou inconsistências de análise estática entre a biblioteca ``mysql-connector`` e o servidor de linguagem Pylance.
+Transição da estrutura monolítica (arquivo único) para uma arquitetura profissional baseada em pacotes, separando responsabilidades em pastas específicas.
 
-**2. Resolução de Problemas (Troubleshooting)**:
+### Desafios Superados:
 
-- **Sintaxe SQL**: Corrigiu falhas de concatenação em comandos ``INSERT`` multilinhas através da padronização com aspas triplas.
+- **Inferno dos Imports**: Resolvido o erro ``ModuleNotFoundError`` configurando o ``PYTHONPATH`` e usando a execução via módulo (``python -m``).
 
-- **Gerenciamento de Cursores**: Solucionou o erro crítico ``InternalError: Unread result found``, estruturando o ciclo de vida do comando SQL para garantir que todos os dados sejam consumidos antes do encerramento da conexão.
+- **Sincronia do VS Code**: Ajustado o ``settings.json`` para eliminar falsos positivos de erro (vermelhos) do Pylance/Mypy.
 
-**3. Destaques de Código**:
+- **Roteamento**: Configuração de prefixos no ``main.py`` para evitar URLs duplicadas ou erros ``404 Not Found``.
 
-````
-# Exemplo de consulta enriquecida com INNER JOIN implementada pelo desenvolvedor:
-sql = """
-    SELECT o.*, c.nome as customer_name 
-    FROM orders o 
-    INNER JOIN customers c ON o.customer_id = c.id
-"""
-````
+### Códigos de Destaque:
+
+**1. Estrutura de Modelos Isolada (``app/models/customer.py``)**
 
 ````
-# Aplicação de casting para garantir estabilidade de tipos:
-stats = cast(Optional[Dict[str, Any]], cursor.fetchone())
+from pydantic import BaseModel, Field
+
+class Customer(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    age: int = Field(..., ge=0, le=120)
 ````
 
-### Status da Entrega:
+### 2. Orquestração de Rotas (``app/main.py``):
 
-**Desenvolvedor**: Marcos
+````
+from fastapi import FastAPI
+from app.routers import customers
 
-**Conclusão**: 100% (Módulo de Pedidos e Estatísticas)
+app = FastAPI()
 
-**Próximo Objetivo**: Implementação de camadas de segurança e autenticação.
+# Registro modular das rotas de clientes
+app.include_router(customers.router, prefix="/customers", tags=["Customers"])
+
+@app.get("/")
+def root():
+    return {"message": "API Online - Estrutura Modularizada!"}
+````
+
+### Status Final:
+
+- **Servidor**: Rodando via uvicorn app.main:app --reload.
+
+- **Testes**: 8 testes de integração passando (PASSED).
+
+- **Arquitetura**: Padrão de mercado com pastas app/, routers/, models/ e tests/.
+
+
+
+
+
+
+
