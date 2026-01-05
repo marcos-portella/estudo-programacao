@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from mysql.connector.abstracts import MySQLConnectionAbstract
-from app.dependencies import get_db, get_api_key
+from app.dependencies.database import get_db
+from app.dependencies.auth import get_api_key
 from app.models.orders import Order, OrderUpdate, DashboardStats
 from datetime import datetime
 from typing import Optional, Any, Dict, cast

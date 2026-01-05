@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 
 
@@ -6,6 +6,7 @@ class Order(BaseModel):
     description: str
     amount: float
     customer_id: int
+    pass
 
 
 class OrderResponse(Order):
@@ -13,8 +14,7 @@ class OrderResponse(Order):
     created_at: datetime
     customer_name: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class OrderUpdate(BaseModel):
