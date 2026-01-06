@@ -1,4 +1,62 @@
-## JOURNAL - 05/01/2026
+## JOURNAL - 05/01/2026 (Tarde/noite)
+
+**Status**: Arquitetura Refatorada e Estável (8/8 testes passados)
+
+### Objetivo da Sessão:
+
+Transição da arquitetura "Monolítica Simples" para uma **Arquitetura em Camadas (Service Layer Pattern)**, visando o desacoplamento da lógica de negócio das rotas da API e a melhoria da testabilidade do sistema.
+
+### Evoluções Técnicas Implementadas:
+
+**1. Implementação da Service Layer (Camada de Serviço)**:
+
+- **Centralização de Lógica**: Criação dos módulos ``app/services/order_service.py`` e ``app/services/customer_service.py``.
+
+- **Desacoplamento de Framework**: Foram removidas todas as dependências do FastAPI (como ``Depends``) de dentro da lógica de negócio. Os serviços agora operam de forma independente, recebendo a conexão do banco como um parâmetro comum.
+
+- **Vantagem**: O código agora é reutilizável fora do contexto da API (scripts, automações) e muito mais fácil de testar isoladamente.
+
+**2. Refatoração de Rotas (Controllers)**:
+
+- **Skinny Controllers**: As rotas em ``app/routers/`` foram simplificadas para atuar apenas como "gateways". Elas recebem o tráfego, injetam as dependências e delegam a execução para o Service correspondente.
+
+- **Clean Code**: Redução drástica na complexidade visual dos arquivos de rotas, melhorando a manutenibilidade.
+
+**3. Tipagem Estrita e Segurança de Dados**:
+
+- **Uso de ``typing.cast``**: Aplicado para garantir que os retornos complexos do driver MySQL sejam interpretados corretamente pelo Mypy e Pylance como ``List[Dict[str, Any]]`` ou ``Optional[Dict]``.
+
+- **Context Managers (``with``)**: Adotada a prática de utilizar ``with db.cursor() as cursor:`` nos métodos de escrita (Update/Delete), garantindo que o cursor seja fechado automaticamente e prevenindo vazamentos de memória (Memory Leaks).
+
+- **Consistência de Tipagem**: Padronização absoluta do uso da interface ``MySQLConnectionAbstract`` em todas as assinaturas de métodos.
+
+### Exemplo do Padrão Implementado:
+
+````
+# app/services/customer_service.py
+@staticmethod
+def delete_customer(customer_id: int, db: MySQLConnectionAbstract):
+    with db.cursor() as cursor:
+        sql = "DELETE FROM customers WHERE id = %s"
+        cursor.execute(sql, (customer_id,))
+        if cursor.rowcount == 0:
+            raise HTTPException(status_code=404, detail="Customer not found")
+        db.commit()
+        return {"message": "Customer deleted successfully", "id": customer_id}
+
+# app/routers/customers.py
+@router.delete("/{customer_id}")
+def delete_customer(customer_id: int, db: MySQLConnectionAbstract = Depends(get_db)):
+    return CustomerServices.delete_customer(customer_id, db)
+````
+
+### Insights e Próximos Passos:
+
+- **Maturidade**: A refatoração provou que o uso de testes automatizados (Pytest) é fundamental. A confiança em mudar a estrutura do projeto veio do fato de os 8 testes continuarem "verdes" após o transplante de código.
+
+- **Próximo Desafio (Sprint 30 Dias)**: Iniciar a Semana 1 focada em **Segurança (JWT)** para substituir a autenticação por API Key por um sistema de tokens assinados e expiráveis.
+
+## JOURNAL - 05/01/2026 (Manhã)
 
 Status do Projeto: Estável (8 testes aprovados, 0 warnings)
 
