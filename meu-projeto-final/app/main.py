@@ -1,7 +1,7 @@
 import time
 import logging
 from fastapi import FastAPI, Request
-from app.routers import customers, orders
+from app.routers import customers, orders, auth
 
 # 1. Configuração do Log
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +16,7 @@ async def log_requests(request: Request, call_next):
     start_time = time.time()
 
     # Informações da requisição
-    logger.info(f"{request.method} {request.url.path} - Iniciado")
+    logger.info(f" {request.method} {request.url.path} - Iniciado")
 
     response = await call_next(request)
 
@@ -32,6 +32,7 @@ async def log_requests(request: Request, call_next):
 # 3. Inclusão das Rotas
 app.include_router(customers.router)  # Se o prefixo já estiver no router.py
 app.include_router(orders.router)
+app.include_router(auth.router)
 
 
 @app.get("/")

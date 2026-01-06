@@ -8,10 +8,18 @@ from datetime import datetime
 class OrderService:
     @staticmethod
     def list_orders(
-        db: MySQLConnectionAbstract, customer_id: Optional[int] = None
+        user_email: str,
+        db: MySQLConnectionAbstract,
+        customer_id: Optional[int] = None
     ) -> List[Dict[str, Any]]:
 
         cursor = db.cursor(dictionary=True)
+
+        if customer_id:
+            print(
+                    f"Ação: Usuário {user_email} buscou os pedidos do cliente"
+                    f"{customer_id}"
+                )
 
         sql = """
             SELECT o.*, c.nome as customer_name
@@ -34,11 +42,14 @@ class OrderService:
 
     @staticmethod
     def update_order(
-        order_id: int, order_data: OrderUpdate, db: MySQLConnectionAbstract
+        order_id: int, order_data: OrderUpdate, db: MySQLConnectionAbstract,
+        user_email: str
     ):
         cursor = db.cursor()
 
-        # 1. Verificar se o pedido existe
+        print(
+            f"Ação: Usuário {user_email} atualizou o pedido {order_id}"
+        )
         cursor.execute("SELECT id FROM orders WHERE id = %s", (order_id,))
         if not cursor.fetchone():
             cursor.close()
@@ -59,13 +70,22 @@ class OrderService:
         db.commit()
         cursor.close()
 
-        return {"message": f"Pedido {order_id} atualizado com sucesso!"}
+        return {
+            "message": f"Pedido {order_id} atualizado com sucesso!",
+            "order_id": order_id,
+            "updated_by": user_email
+        }
 
     @staticmethod
-    def create_order(order: Order, db: MySQLConnectionAbstract):
+    def create_order(
+        order: Order, db: MySQLConnectionAbstract, user_email: str
+    ):
         cursor = db.cursor()
 
-        # 1. Verificar se o cliente existe
+        print(
+                f"Ação: Usuário {user_email} criou um pedido"
+            )
+
         cursor.execute(
             "SELECT id FROM customers WHERE id = %s", (order.customer_id,)
         )
@@ -91,12 +111,20 @@ class OrderService:
         new_id = cursor.lastrowid
         cursor.close()
 
-        return {"id": new_id, "message": "Pedido criado com sucesso!",
-                "timestamp": now}
+        return {
+            "order_ id": new_id,
+            "message": "Pedido criado com sucesso!",
+            "timestamp": now,
+            "created_by": user_email
+        }
 
     @staticmethod
-    def get_order_stats(db: MySQLConnectionAbstract):
+    def get_order_stats(db: MySQLConnectionAbstract, user_email: str):
         cursor = db.cursor(dictionary=True)
+
+        print(
+                f"Ação: Usuário {user_email} buscou os status de vendas"
+            )
 
         sql = """
             SELECT
@@ -116,12 +144,14 @@ class OrderService:
             return {
                 "total_orders": 0,
                 "total_revenue": 0.0,
-                "average_order_value": 0.0
+                "average_order_value": 0.0,
+                "created_by": user_email
             }
 
         # Agora o Pylance sabe que stats['chave'] é válido
         return {
             "total_orders": stats['total_orders'] or 0,
             "total_revenue": float(stats['total_revenue'] or 0),
-            "average_order_value": float(stats['average_order_value'] or 0)
+            "average_order_value": float(stats['average_order_value'] or 0),
+            "geted_by": user_email
         }

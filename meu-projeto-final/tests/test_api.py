@@ -3,6 +3,27 @@ from pathlib import Path
 import pytest
 from dotenv import load_dotenv
 from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+
+@pytest.fixture
+def auth_headers():
+    login_data = {"username": "mmmmm@gmail.com", "password": "312118"}
+    # Tente trocar 'data=' por 'json=' se o seu login não usar
+    # OAuth2PasswordRequestForm
+    response = client.post("/auth/login", data=login_data)
+
+    if response.status_code != 200:
+        # Isso vai imprimir o erro real no terminal
+        pytest.fail(
+            f"STATUS: {response.status_code} - DETALHE: {response.text}"
+        )
+
+    token = response.json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+
 
 # Carregamos o dotenv no topo, mas logo após os imports padrão
 env_path = Path(__file__).parent.parent / '.env'
@@ -19,23 +40,23 @@ API_KEY = os.getenv("API_KEY", "")
 HEADERS: dict[str, str] = {"X-API-KEY": API_KEY}
 
 
-def test_root_status():
-    response = client.get("/", headers=HEADERS)
+def test_root_status(auth_headers):
+    response = client.get("/", headers=auth_headers)
     assert response.status_code == 200
     assert response.json() == {"message": "API Online - Monitoramento Ativo!"}
 
 
-def test_get_non_existent_customer():
+def test_get_non_existent_customer(auth_headers):
     customer_id = 999999
-    response = client.get(f"/customers/{customer_id}", headers=HEADERS)
+    response = client.get(f"/customers/{customer_id}", headers=auth_headers)
     assert response.status_code == 404
     assert response.json()["detail"] == "Customer not found"
 
 
-def test_create_and_delete_customer_by_id():
+def test_create_and_delete_customer_by_id(auth_headers):
     payload = {"name": "Test User ID", "age": 40}
 
-    response = client.post("/customers/", json=payload, headers=HEADERS)
+    response = client.post("/customers/", json=payload, headers=auth_headers)
     assert response.status_code == 200
 
     data = response.json()
@@ -60,25 +81,25 @@ def test_create_and_delete_customer_by_id():
                     "do teste.")
 
 
-def test_get_customer_404():
-    response = client.get("/customers/999999", headers=HEADERS)
+def test_get_customer_404(auth_headers):
+    response = client.get("/customers/999999", headers=auth_headers)
     assert response.status_code == 404
     assert response.json()["detail"] == "Customer not found"
 
 
-def test_create_customer_invalid_age():
+def test_create_customer_invalid_age(auth_headers):
     payload = {"name": "Invalido", "age": -1}
-    response = client.post("/customers/", json=payload, headers=HEADERS)
+    response = client.post("/customers/", json=payload, headers=auth_headers)
     assert response.status_code == 422
 
 
-def test_full_cycle():
+def test_full_cycle(auth_headers):
     payload = {"name": "Ciclo Completo", "age": 22}
 
-    res_post = client.post("/customers/", json=payload, headers=HEADERS)
+    res_post = client.post("/customers/", json=payload, headers=auth_headers)
     new_id = res_post.json()["id"]
 
-    res_get = client.get(f"/customers/{new_id}", headers=HEADERS)
+    res_get = client.get(f"/customers/{new_id}", headers=auth_headers)
     assert res_get.status_code == 200
     assert res_get.json()["nome"] == "Ciclo Completo"
 
@@ -90,11 +111,11 @@ def test_full_cycle():
         conn.close()
 
 
-def test_update_customer():
+def test_update_customer(auth_headers):
     # 1. Cria um usuário inicial
     payload_original = {"name": "Marcos Velho", "age": 30}
     res_post = client.post(
-        "/customers/", json=payload_original, headers=HEADERS
+        "/customers/", json=payload_original, headers=auth_headers
     )
     customer_id = res_post.json()["id"]
 
@@ -103,16 +124,16 @@ def test_update_customer():
 
     # 3. Executa o Update (PUT)
     # Primeiro pegamos pra ver se existe (opcional)
-    res_put = client.get(f"/customers/{customer_id}", headers=HEADERS)
+    res_put = client.get(f"/customers/{customer_id}", headers=auth_headers)
     res_put = client.put(
-        f"/customers/{customer_id}", json=payload_novo, headers=HEADERS
+        f"/customers/{customer_id}", json=payload_novo, headers=auth_headers
     )
 
     assert res_put.status_code == 200
     assert res_put.json()["message"] == "Customer updated successfully"
 
     # 4. Valida se no banco mudou mesmo (Fazendo um GET)
-    res_get = client.get(f"/customers/{customer_id}", headers=HEADERS)
+    res_get = client.get(f"/customers/{customer_id}", headers=auth_headers)
     assert res_get.json()["nome"] == "Marcos Novo"
     assert res_get.json()["idade"] == 25
 
@@ -127,19 +148,22 @@ def test_update_customer():
         conn.close()
 
 
-def test_delete_api_route():
+def test_delete_api_route(auth_headers):
     # 1. Cria um usuário para morrer
     res_post = client.post(
-        "/customers/", json={"name": "Vou sumir", "age": 99}, headers=HEADERS
+        "/customers/", json={"name": "Vou sumir", "age": 99},
+        headers=auth_headers
     )
     customer_id = res_post.json()["id"]
 
     # 2. Chama a rota de DELETE
-    res_delete = client.delete(f"/customers/{customer_id}", headers=HEADERS)
+    res_delete = client.delete(
+        f"/customers/{customer_id}", headers=auth_headers
+    )
 
     assert res_delete.status_code == 200
     assert res_delete.json()["message"] == "Customer deleted successfully"
 
     # 3. Prova real: tenta buscar ele de novo e tem que dar 404
-    res_get = client.get(f"/customers/{customer_id}", headers=HEADERS)
+    res_get = client.get(f"/customers/{customer_id}", headers=auth_headers)
     assert res_get.status_code == 404
