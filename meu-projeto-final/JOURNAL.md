@@ -1,3 +1,55 @@
+## JOURNAL - (06/01/2026)
+
+O foco deste estágio foi a elevação da maturidade da API, estabelecendo a conexão entre segurança JWT, integridade referencial no banco de dados e confiabilidade de código através de testes automatizados. O marco principal foi a validação de 8 cenários de teste com sucesso.
+
+### Resumo do Dia:
+
+- **Módulo de Orders**: Finalização da lógica de pedidos com a implementação de relacionamentos via ``customer_id``. Foi desenvolvido um Dashboard de estatísticas utilizando funções de agregação SQL (``SUM``, ``COUNT``, ``AVG``) para extração de métricas financeiras.
+
+- **Segurança JWT**: Migração da autenticação baseada em ``API-KEY`` para o padrão JWT **(Bearer Token)**. A arquitetura agora permite a identificação do operador em cada requisição através da extração do e-mail contido no payload do token.
+
+-**Suíte de Testes (QA)**: Resolução de inconsistências de autenticação (Erro 401) no Pytest. Identificou-se a necessidade de utilizar o formato ``form-data`` (``data=``) no ``TestClient`` para conformidade com o endpoint de login baseado em OAuth2.
+
+### Códigos do Dia:
+
+**1. SQL com Relacionamento e Inteligência (JOIN)**
+
+````
+# Consulta otimizada para retornar o nome do cliente vinculado ao pedido
+sql = """
+    SELECT o.*, c.nome as customer_name
+    FROM orders o
+    INNER JOIN customers c ON o.customer_id = c.id
+"""
+````
+
+**2. Autenticação Automatizada para Testes (Fixture)**
+
+````
+@pytest.fixture
+def auth_headers():
+    # Geração dinâmica de token para autorização das rotas protegidas
+    login_data = {"username": "mmmmm@gmail.com", "password": "312118"}
+    response = client.post("/auth/login", data=login_data)
+    token = response.json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+````
+
+### Evolução do Projeto:
+
+O sistema avançou da fase de prototipagem para uma estrutura de nível profissional. A implementação de testes de integração autenticados garante que a evolução do código não comprometa as funcionalidades de segurança e lógica de negócio já estabelecidas.
+
+### Próximos Passos:
+
+- Desenvolvimento do arquivo ``test_orders.py`` com o novo padrão de headers.
+
+- Implementação de validações Pydantic para restrição de valores negativos em ``amount``.
+
+- Reestruturação dos diretórios de teste para organização modular.
+
+**Status**: 8 Testes Verdes ✅
+
+
 ## JOURNAL - 05/01/2026 (Tarde/noite)
 
 **Status**: Arquitetura Refatorada e Estável (8/8 testes passados)
