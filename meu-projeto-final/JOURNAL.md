@@ -1,3 +1,66 @@
+## JOURNAL - (07/01/2026)
+
+O foco de hoje foi a transição do projeto para um nível profissional, priorizando a **otimização da suíte de testes**, a **blindagem da autenticação e a segurança de credenciais**.
+
+### Resumo Técnico:
+
+- **Otimização de Performance (Pytest)**: Refatoração das fixtures no ``conftest.py`` utilizando ``scope="session"``. Ao centralizar o login uma única vez para toda a bateria de testes, o tempo de execução caiu drasticamente de **3.04s para 0.90s** (uma redução de ~70%).
+
+- **Segurança Administrativa**: Implementação de soberania nas rotas de autenticação. Agora, o ``/auth/register`` exige um token de administrador (``get_current_user``), garantindo que apenas usuários autorizados criem novos perfis, com rastreabilidade via campo ``created_by``.
+
+- **Tratamento de Tipagem e Ambiente**: Migração de credenciais de teste para o arquivo ``.env``. Uso de ``os.getenv`` com fallbacks e validações para evitar erros de ``NoneType`` e satisfazer as exigências de tipagem estrita do Pylance/Mypy.
+
+- **Estabilidade da API**: Consolidação de 12 testes automatizados cobrindo fluxos de sucesso e tratamento de erros (401 Unauthorized, 404 Not Found e 422 Unprocessable Entity).
+
+### Códigos em Destaque:
+
+**1. Fixture de Sessão (Alta Performance)**
+
+````
+# tests/conftest.py
+@pytest.fixture(scope="session")
+def auth_headers():
+
+    email = os.getenv("TEST_USER_EMAIL", "")
+    password = os.getenv("TEST_USER_PASSWORD", "")
+
+    login_data = {"username": email, "password": password}
+    response = client.post("/auth/login", data=login_data)
+
+    if response.status_code != 200:
+        pytest.fail(f"Falha no login global: {response.text}")
+
+    token = response.json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+````
+
+**2. Proteção de Rota Administrativa**
+
+````
+@router.post("/register", summary="Registrar novo administrador")
+def create_user(
+    user_data: UserCreate, db: MySQLConnectionAbstract = Depends(get_db),
+    user_email: str = Depends(get_current_user)
+):
+    """
+    Cria um novo usuário no sistema.
+    Esta descrição detalhada aparece logo abaixo do título quando a rota é
+    expandida. Usar como exemplo.
+    """
+    return AuthService.create_user(user_data, db, user_email)
+````
+
+### Evolução e Insights:
+
+- **Insight 1**: Testes lentos são inimigos do desenvolvimento ágil. Otimizar o I/O (como o login) é o primeiro passo para escalar uma API.
+
+- **Insight 2**: A segurança "circular" (exigir token para logar) é um erro comum de lógica que foi identificado e corrigido ao manter o ``/login`` público e o ``/register`` privado.
+
+- **Insight 3**: Credenciais hardcoded são riscos de segurança; o uso de ``.env`` é indispensável para qualquer projeto sério.
+
+**Status Final**: 12 Testes Verdes | Tempo Recorde: 0.90s | API Segura e Auditável ✅
+
+
 ## JOURNAL - (06/01/2026)
 
 O foco deste estágio foi a elevação da maturidade da API, estabelecendo a conexão entre segurança JWT, integridade referencial no banco de dados e confiabilidade de código através de testes automatizados. O marco principal foi a validação de 8 cenários de teste com sucesso.
