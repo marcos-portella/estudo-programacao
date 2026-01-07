@@ -1,10 +1,12 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 
 
 class Order(BaseModel):
     description: str
-    amount: float
+    amount: float = Field(
+        gt=0, description="O valor do pedido deve ser positivo"
+    )
     customer_id: int
     pass
 

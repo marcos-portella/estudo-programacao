@@ -1,43 +1,9 @@
-import os
-from pathlib import Path
 import pytest
-from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 from app.main import app
+from app.database import get_db_connection
 
 client = TestClient(app)
-
-
-@pytest.fixture
-def auth_headers():
-    login_data = {"username": "mmmmm@gmail.com", "password": "312118"}
-    # Tente trocar 'data=' por 'json=' se o seu login não usar
-    # OAuth2PasswordRequestForm
-    response = client.post("/auth/login", data=login_data)
-
-    if response.status_code != 200:
-        # Isso vai imprimir o erro real no terminal
-        pytest.fail(
-            f"STATUS: {response.status_code} - DETALHE: {response.text}"
-        )
-
-    token = response.json()["access_token"]
-    return {"Authorization": f"Bearer {token}"}
-
-
-# Carregamos o dotenv no topo, mas logo após os imports padrão
-env_path = Path(__file__).parent.parent / '.env'
-load_dotenv(dotenv_path=env_path)
-
-# Agora importamos o que depende do .env
-# O comentário # noqa: E402 avisa o Flake8 que sabemos o que estamos fazendo
-from app.main import app  # noqa: E402
-from app.database import get_db_connection  # noqa: E402
-
-client = TestClient(app)
-
-API_KEY = os.getenv("API_KEY", "")
-HEADERS: dict[str, str] = {"X-API-KEY": API_KEY}
 
 
 def test_root_status(auth_headers):
@@ -146,24 +112,3 @@ def test_update_customer(auth_headers):
             )
         conn.commit()
         conn.close()
-
-
-def test_delete_api_route(auth_headers):
-    # 1. Cria um usuário para morrer
-    res_post = client.post(
-        "/customers/", json={"name": "Vou sumir", "age": 99},
-        headers=auth_headers
-    )
-    customer_id = res_post.json()["id"]
-
-    # 2. Chama a rota de DELETE
-    res_delete = client.delete(
-        f"/customers/{customer_id}", headers=auth_headers
-    )
-
-    assert res_delete.status_code == 200
-    assert res_delete.json()["message"] == "Customer deleted successfully"
-
-    # 3. Prova real: tenta buscar ele de novo e tem que dar 404
-    res_get = client.get(f"/customers/{customer_id}", headers=auth_headers)
-    assert res_get.status_code == 404

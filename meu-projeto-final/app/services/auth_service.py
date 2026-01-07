@@ -7,7 +7,9 @@ from typing import Any, Dict, cast
 
 class AuthService:
     @staticmethod
-    def create_user(user_data: UserCreate, db: MySQLConnectionAbstract):
+    def create_user(
+        user_data: UserCreate, db: MySQLConnectionAbstract, user_email: str
+    ):
         cursor = db.cursor(dictionary=True)
 
         # 1. Verificar se o e-mail já existe
@@ -34,7 +36,8 @@ class AuthService:
 
         return {
             "id": new_id, "email": user_data.email,
-            "message": "Usuário criado com sucesso"
+            "message": "Usuário criado com sucesso",
+            "created_by": user_email
         }
 
     @staticmethod
@@ -57,7 +60,7 @@ class AuthService:
 
         # Aqui usamos str() ou cast para garantir que o valor enviado é string
         hashed_password = cast(str, user["hashed_password"])
-        user_email = cast(str, user["email"])
+        user_email_code = cast(str, user["email"])
 
         if not HashHelper.verify_password(password, hashed_password):
             raise HTTPException(
@@ -65,6 +68,6 @@ class AuthService:
             )
 
         # 3. Se deu tudo certo, gera o Token
-        token = create_access_token(data={"sub": user_email})
+        token = create_access_token(data={"sub": user_email_code})
 
         return {"access_token": token, "token_type": "bearer"}
